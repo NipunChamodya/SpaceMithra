@@ -13,6 +13,7 @@ import SpaceMithraCore
     @Published var rows: [FileRecord] = []
     @Published var columns: [(String, [FileRecord])] = []
     @Published var selection: String?
+    @Published private(set) var cleanupReview: CleanupReview?
     @Published var queue: [FileRecord] = []
     @Published var protections: [Protection] = []
     @Published var history: [HistoryEntry] = []
@@ -44,7 +45,13 @@ import SpaceMithraCore
     private var refreshID = UUID()
     var selected: FileRecord? { rows.first { $0.path == selection } ?? queue.first { $0.path == selection } }
     var scanning: Bool { [.preparing, .scanning, .paused].contains(progress.state) }
-    var queuedBytes: Int64 { queue.reduce(0) { $0 + $1.logical } }
+    var historySessions: [CleanupHistorySession] { CleanupHistorySession.group(history) }
+    var queuedBytes: Int64 {
+        queue.reduce(0) { total, file in
+            let (sum, overflow) = total.addingReportingOverflow(max(0, file.logical))
+            return overflow ? Int64.max : sum
+        }
+    }
     func text(_ key: String) -> String {
         Self.localized(key, language: language, bundle: .main)
     }
@@ -159,9 +166,26 @@ import SpaceMithraCore
     func unprotect(_ rule: Protection) {
         Task { do { try await catalog?.removeProtection(rule.id); try await loadPersistent() } catch { self.error = describe(error) } }
     }
-    func performCleanup() {
+    func prepareCleanupReview() async {
+        guard !scanning, !working, let catalog else { return }
+        working = true; cleanupReview = nil
+        defer { working = false }
+        let selected = queue
+        do {
+            let review = try await CleanupReviewer().review(selected, journal: catalog)
+            guard queue == selected else { throw StorageError.refused("error.changed") }
+            cleanupReview = review
+        } catch { self.error = describe(error) }
+    }
+    func cancelCleanupReview() { cleanupReview = nil }
+    func isCurrentReview(_ review: CleanupReview) -> Bool {
+        cleanupReview?.id == review.id && review.canConfirm && review.records == queue
+    }
+    func performCleanup(confirmed review: CleanupReview) {
         guard !scanning, !working, let cleanup else { return }
-        let approved = queue
+        guard isCurrentReview(review) else { self.error = text("error.changed"); return }
+        let approved = review.records
+        cleanupReview = nil
         working = true
         Task {
             defer { working = false }

@@ -8,8 +8,8 @@ Recorded 2026-11-14 on the available Apple Silicon host running macOS 26.6.2, us
 |---|---|
 | Native Debug build | Passed during implementation |
 | Final universal Release build | Passed, arm64 + x86_64 |
-| Core + presentation XCTest suite | 33 tests passed, 0 failures, about 2.80 seconds |
-| Localization coverage | 159 keys × 7 languages; dynamic key families and literal UI keys checked |
+| Core + presentation XCTest suite | 38 tests passed, 0 failures (cleanup-review checkpoint) |
+| Localization coverage | 164 keys × 7 languages; dynamic key families and literal UI keys checked |
 | Localization fallback | Tested using an isolated synthetic bundle with a missing Sinhala key and unsupported locale |
 | Local signature verification | Ad hoc signature verifies; not Developer ID notarized |
 | ZIP checksum | SHA-256 verified after packaging |
@@ -70,3 +70,11 @@ Restore now validates the Trash identity, resolved parent paths and destination 
 CleanupJournal abstracts only the three journal operations used by cleanup. Production uses the same SQLite Catalog. Tests inject failures at pending, result and restore writes. Failed pending/restore writes prevent mutation; a failed result write stops the remaining batch and leaves a durable pending entry requiring manual inspection.
 
 The follow-up release was built with `scripts/release.sh build-safety` to avoid overwriting the previously launched app. The updated app is in `build-safety/Build/Products/Release/SpaceMithra.app`; the ZIP in `dist/` is refreshed. These changes do not eliminate the final path-based Foundation syscall race.
+
+## Cleanup review and history follow-up
+
+Five additional tests exercise read-only preflight, empty selection, changed/protected identities, unwritable parents, mixed-outcome session grouping, and approval invalidation after cancellation or queue changes. All 38 core/presentation tests pass. The review snapshot owns both paths and estimated bytes, so the review sheet does not derive approval from a changing live queue. The cleanup service independently repeats safety checks immediately before each operation.
+
+Recovery sessions show exact per-status counts and estimated selected bytes, never reclaimed disk-space claims. The current follow-up uses `scripts/release.sh build-review`; its app is at `build-review/Build/Products/Release/SpaceMithra.app`, preserving earlier running copies. Native UI interaction remains unverified because host automation is unavailable; a visible-window startup smoke check does not validate the review dialog or VoiceOver.
+
+The final review build also passed a visible-window startup smoke check in **1.41 seconds**. To coexist with the previously launched normal copy, this check used a temporary copy with a separate bundle identifier, ad hoc signing, Launch Services, and the explicit isolated-database flags. The first direct executable launch while the normal app was running remained idle in AppKit before creating a window; only that test process was terminated. The normal running application was not stopped. This smoke result verifies basic launch only, not interactive confirmation or accessibility behavior.

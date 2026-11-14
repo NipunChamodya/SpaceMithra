@@ -10,7 +10,7 @@ Hard-linked regular files retain logical size in details; device+inode deduplica
 
 ## Cleanup transaction
 
-1. UI captures exact records in an explicit queue and shows all selected paths and consequences in a confirmation sheet.
+1. A read-only preflight checks exact queued records, their identity, protection, resolved paths and parent writability. It never replaces stale approved identities with fresh ones. UI captures an immutable review snapshot and shows all paths, consequences and blockers. Confirmation requires no blockers and an unchanged selection; cancellation invalidates the snapshot. Preflight does not guarantee that Trash will be available when the operation runs.
 2. Cleanup persists a pending operation before any filesystem mutation. Journal errors abort the batch.
 3. It reloads protection rules for each file and applies system restrictions independently.
 4. It rejects changed identity (device, inode, length, modification time, change time, link count), symbolic-link paths and unsupported metadata, and checks parent writability.

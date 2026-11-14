@@ -443,3 +443,75 @@ extension CoreTests {
         XCTAssertTrue(FileManager.default.fileExists(atPath: try XCTUnwrap(entry.trashPath)))
     }
 }
+
+extension CoreTests {
+    func testReviewIsReadOnlyAndEmptySelectionCannotConfirm() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let record = try FileMetadata.read(f.file("a.txt"))
+        let reviewer = CleanupReviewer()
+        let empty = try await reviewer.review([], journal: f.catalog)
+        XCTAssertFalse(empty.canConfirm)
+        let review = try await reviewer.review([record], journal: f.catalog)
+        XCTAssertTrue(review.canConfirm); XCTAssertEqual(review.readyCount, 1)
+        XCTAssertEqual(review.records, [record])
+        XCTAssertEqual(try FileMetadata.identity(record.path), record.identity)
+        let history = try await f.catalog.history()
+        XCTAssertTrue(history.isEmpty)
+    }
+    func testReviewRejectsChangedAndNewlyProtectedFilesWithoutRefreshingApproval() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        try Data("changed".utf8).write(to: URL(fileURLWithPath: a.path))
+        try await f.catalog.saveProtection(Protection(path: b.path, descendants: false))
+        let review = try await CleanupReviewer().review([a,b], journal: f.catalog)
+        XCTAssertFalse(review.canConfirm); XCTAssertEqual(review.blockedCount, 2)
+        XCTAssertEqual(review.records, [a,b])
+        XCTAssertEqual(review.items.first?.blocker, "error.changed")
+        XCTAssertEqual(review.items.last?.blocker, "error.protected")
+    }
+    func testReviewReportsUnwritableParentBeforeConfirmation() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let record = try FileMetadata.read(f.file("readonly/a.txt"))
+        try FileManager.default.setAttributes([.posixPermissions: 0o500], ofItemAtPath: record.parent)
+        defer { try? FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: record.parent) }
+        let review = try await CleanupReviewer().review([record], journal: f.catalog)
+        XCTAssertFalse(review.canConfirm)
+        XCTAssertEqual(review.items.first?.blocker, "error.permission")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: record.path))
+    }
+    func testHistoryGroupsMixedResultsByActualSession() throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let record = try FileMetadata.read(f.file("a.txt"))
+        let entries = [
+            HistoryEntry(id: "1", session: "older", record: record, date: Date(timeIntervalSince1970: 1), status: "trashed", message: "message.trashed"),
+            HistoryEntry(id: "2", session: "newer", record: record, date: Date(timeIntervalSince1970: 2), status: "pending", message: "message.pending"),
+            HistoryEntry(id: "3", session: "older", record: record, date: Date(timeIntervalSince1970: 1), status: "skipped", message: "error.changed")
+        ]
+        let sessions = CleanupHistorySession.group(entries)
+        XCTAssertEqual(sessions.map(\.id), ["newer", "older"])
+        XCTAssertEqual(sessions.last?.counts, ["trashed": 1, "skipped": 1])
+        XCTAssertEqual(sessions.last?.estimatedSelectedBytes, record.logical * 2)
+        XCTAssertEqual(sessions.first?.counts, ["pending": 1])
+    }
+}
+
+extension PresentationTests {
+    func testChangedQueueAndCancelledReviewInvalidateApproval() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt", content: "a different selected size"))
+        let model = AppModel(); model.catalog = f.catalog; model.queue = [a]
+        await model.prepareCleanupReview()
+        let review = try XCTUnwrap(model.cleanupReview)
+        XCTAssertTrue(model.isCurrentReview(review))
+        model.queue = [b]
+        XCTAssertEqual(review.estimatedSelectedBytes, a.logical)
+        XCTAssertNotEqual(review.estimatedSelectedBytes, model.queuedBytes)
+        XCTAssertFalse(model.isCurrentReview(review))
+        model.queue = [a]
+        model.cancelCleanupReview()
+        XCTAssertFalse(model.isCurrentReview(review))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: a.path))
+        let history = try await f.catalog.history()
+        XCTAssertTrue(history.isEmpty)
+    }
+}

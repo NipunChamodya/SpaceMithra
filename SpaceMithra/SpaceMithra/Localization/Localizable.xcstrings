@@ -6158,6 +6158,241 @@
         }
       }
     },
+    "review.ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ready for your review"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ඔබේ සමාලෝචනයට සූදානම්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "உங்கள் சரிபார்ப்புக்குத் தயார்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "आपकी समीक्षा के लिए तैयार"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "جاهز لمراجعتك"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Prêt pour votre vérification"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "可供您检查"
+          }
+        }
+      }
+    },
+    "review.blocked": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocked"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අවහිරයි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தடுக்கப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अवरुद्ध"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "محظور"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bloqué"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已阻止"
+          }
+        }
+      }
+    },
+    "review.guidance": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This review checks the exact files you selected. Remove blocked items from the queue and review again. Nothing moves until you confirm. Files will be checked again before Trash."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මෙම සමාලෝචනය තෝරාගත් නිශ්චිත ගොනු පරීක්ෂා කරයි. අවහිර අයිතම පෝලිමෙන් ඉවත් කර නැවත සමාලෝචනය කරන්න. තහවුරු කරන තුරු කිසිවක් ගෙන යන්නේ නැත. කුණු කූඩයට ගෙන යාමට පෙර නැවත පරීක්ෂා කරයි."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நீங்கள் தேர்ந்தெடுத்த குறிப்பிட்ட கோப்புகள் சரிபார்க்கப்படும். தடுக்கப்பட்டவற்றை வரிசையிலிருந்து நீக்கி மீண்டும் சரிபார்க்கவும். உறுதிப்படுத்தும் வரை எதுவும் நகராது. குப்பைக்கு நகர்த்தும் முன் மீண்டும் சரிபார்க்கப்படும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "यह समीक्षा चुनी हुई सटीक फ़ाइलें जाँचती है। अवरुद्ध आइटम कतार से हटाकर फिर समीक्षा करें। पुष्टि तक कुछ नहीं हटेगा। ट्रैश में भेजने से पहले फिर जाँच होगी।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تتحقق المراجعة من الملفات المحددة بعينها. أزل العناصر المحظورة من القائمة وراجع مجدداً. لن يُنقل شيء قبل التأكيد. سيُعاد التحقق قبل النقل إلى السلة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cette vérification porte sur les fichiers précis sélectionnés. Retirez les éléments bloqués de la file et vérifiez à nouveau. Rien ne sera déplacé avant confirmation. Une nouvelle vérification précède la Corbeille."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "本次检查针对您选择的确切文件。请从队列中移除受阻项目，然后重新检查。确认前不会移动任何内容。移到废纸篓前将再次检查文件。"
+          }
+        }
+      }
+    },
+    "cleanupSession": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleanup session"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පිරිසිදු කිරීමේ සැසිය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சுத்தப்படுத்தும் அமர்வு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सफ़ाई सत्र"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "جلسة التنظيف"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Session de nettoyage"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清理会话"
+          }
+        }
+      }
+    },
+    "estimatedSelected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated selected size (not reclaimed space)"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "තෝරාගත් ප්‍රමාණ ඇස්තමේන්තුව (නිදහස් වූ ඉඩ නොවේ)"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தேர்ந்தெடுத்த அளவின் மதிப்பீடு (காலியான இடம் அல்ல)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "चुने गए आकार का अनुमान (खाली हुआ स्थान नहीं)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الحجم المحدد التقديري (ليس مساحة محررة)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Taille sélectionnée estimée (pas d’espace libéré)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "所选大小估计值（并非已释放空间）"
+          }
+        }
+      }
+    },
     "error.database": {
       "extractionState": "manual",
       "localizations": {

@@ -233,7 +233,9 @@ struct MainView: View {
                 Text(byteString(model.queuedBytes) + " · \(model.queue.count) " + model.text("items"))
                 Spacer()
                 Button(model.text("deselectAll")) { model.queue.removeAll() }.disabled(model.working)
-                Button(model.text("reviewTrash")) { confirming = true }.disabled(model.queue.isEmpty || model.scanning || model.working)
+                Button(model.text("reviewTrash")) {
+                    Task { await model.prepareCleanupReview(); confirming = model.cleanupReview != nil }
+                }.disabled(model.queue.isEmpty || model.scanning || model.working)
             }.padding()
         }
     }
@@ -241,20 +243,32 @@ struct MainView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text(model.text("confirmTitle")).font(.title2.bold())
             Text(model.text("trashWarning"))
-            Text(model.text("reviewConsequences"))
-            List(model.queue) { file in
-                VStack(alignment: .leading) {
-                    Text(file.path).textSelection(.enabled)
-                    Text(byteString(file.logical) + " · " + model.text("riskLevel." + model.assessment(file).risk.rawValue))
-                    Text(model.text(model.assessment(file).consequence)).foregroundStyle(.secondary)
+            Text(model.text("review.guidance"))
+            if let review = model.cleanupReview {
+                HStack {
+                    Label("\(review.readyCount) " + model.text("review.ready"), systemImage: "checkmark.circle")
+                    Label("\(review.blockedCount) " + model.text("review.blocked"), systemImage: "exclamationmark.triangle")
+                }.font(.callout)
+                List(review.items) { item in
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(item.record.path).textSelection(.enabled)
+                        Text(byteString(item.record.logical) + " · " + model.text("riskLevel." + item.assessment.risk.rawValue))
+                        Text(model.text(item.assessment.consequence)).foregroundStyle(.secondary)
+                        if let blocker = item.blocker {
+                            Label(model.text(blocker), systemImage: "exclamationmark.triangle").foregroundStyle(.red)
+                        }
+                    }.padding(.vertical, 4)
+                }.frame(height: 280)
+                HStack {
+                    Text(byteString(review.estimatedSelectedBytes)); Spacer()
+                    Button(model.text("cancel"), role: .cancel) { model.cancelCleanupReview(); confirming = false }.keyboardShortcut(.cancelAction)
+                    Button(model.text("moveToTrash"), role: .destructive) { confirming = false; model.performCleanup(confirmed: review) }
+                        .disabled(!model.isCurrentReview(review))
+                        .accessibilityIdentifier("confirmCleanup")
                 }
-            }.frame(height: 260)
-            HStack {
-                Text(byteString(model.queuedBytes)); Spacer()
-                Button(model.text("cancel"), role: .cancel) { confirming = false }.keyboardShortcut(.cancelAction)
-                Button(model.text("moveToTrash"), role: .destructive) { confirming = false; model.performCleanup() }
             }
-        }.padding(24).frame(width: 650)
+        }.padding(24).frame(width: 680)
+        .onDisappear { model.cancelCleanupReview() }
     }
     private var protectionList: some View {
         List(model.protections) { rule in
@@ -265,17 +279,33 @@ struct MainView: View {
         }
     }
     private var historyList: some View {
-        List(model.history) { entry in
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(entry.record.name).font(.headline)
-                    Text(entry.record.path).font(.caption).textSelection(.enabled)
-                    Text(entry.date.formatted()).font(.caption)
-                    Text(model.text("history." + entry.status))
-                    Text(model.text(entry.message)).font(.caption).foregroundStyle(.secondary).textSelection(.enabled)
+        List {
+            ForEach(model.historySessions) { session in
+                Section {
+                    ForEach(session.entries) { entry in
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(entry.record.name).font(.headline)
+                                Text(entry.record.path).font(.caption).textSelection(.enabled)
+                                Text(model.text("history." + entry.status))
+                                Text(model.text(entry.message)).font(.caption).foregroundStyle(.secondary).textSelection(.enabled)
+                            }
+                            Spacer()
+                            if entry.status == "trashed" {
+                                Button(model.text("restore")) { recovery = entry }.disabled(model.working || entry.trashIdentity == nil)
+                            }
+                        }
+                    }
+                } header: {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(session.date.formatted()).font(.headline)
+                        Text(model.text("cleanupSession") + " " + session.id).font(.caption).textSelection(.enabled)
+                        Text(model.text("estimatedSelected") + ": " + byteString(session.estimatedSelectedBytes))
+                        ForEach(session.counts.keys.sorted(), id: \.self) { status in
+                            Text(model.text("history." + status) + ": \(session.counts[status] ?? 0)")
+                        }
+                    }.textCase(nil).padding(.vertical, 5)
                 }
-                Spacer()
-                if entry.status == "trashed" { Button(model.text("restore")) { recovery = entry }.disabled(model.working || entry.trashIdentity == nil) }
             }
         }
     }

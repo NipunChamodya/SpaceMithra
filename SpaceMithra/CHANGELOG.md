@@ -11,3 +11,10 @@ Initial native app: SQLite-backed scans, folder exploration, risk/protection rul
 - Inject journal failures in isolated tests; stop batches when result persistence fails.
 - Expand the suite from 28 to 33 passing tests.
 - Allow a separate release build directory to preserve an already running app.
+
+### Cleanup review and recovery follow-up
+
+- Add read-only preflight of exact selected records, with identity/protection/path/permission blockers.
+- Bind confirmation to an immutable review snapshot; changing the queue or cancelling invalidates consent.
+- Group recovery history by cleanup session, with separate outcome counts and estimated selected bytes.
+- Expand regression coverage to 38 passing tests and localization to 164 keys in seven languages.
