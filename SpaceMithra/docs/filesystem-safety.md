@@ -29,3 +29,9 @@ Only a stored successful Trash entry with a matching Trash identity can be resto
 Foundation Trash and move operations accept paths, not open inode descriptors. Another process can replace a path between validation and operation. This is a documented release risk, not a claim of race-free deletion. Stop affected applications and avoid concurrently changing directories. The app does not execute file contents or shell strings from filenames.
 
 Protection rules bind exact normalized paths and explicit descendant boundaries; `/a/b` cannot match `/a/brother`. File identities must still match the reviewed record. Rules for future items apply only beneath that explicit path and can expire after 24 hours. System restrictions cannot be overridden through user rules.
+
+## Recovery availability
+
+The recovery screen performs read-only, timestamped inspections of recorded Trash identities and original destinations. Missing Trash paths, changed identities or symbolic-link paths, occupied original locations and unverified permissions disable Restore. Inspection does not change historical operation outcomes: a file that was successfully moved remains historically moved even if Trash was later emptied. Availability is only a snapshot and does not authorize a filesystem operation; the restore engine independently revalidates after confirmation.
+
+Preflight can be cancelled while awaiting journal protection rules or between metadata checks. Cancellation cannot persist a cleanup entry, create an approval, or move a file. An in-progress filesystem metadata syscall itself is not interruptible.

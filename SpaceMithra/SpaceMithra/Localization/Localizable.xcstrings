@@ -6158,6 +6158,429 @@
         }
       }
     },
+    "review.preparing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking selected files…"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "තෝරාගත් ගොනු පරීක්ෂා කරමින්…"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தேர்ந்தெடுத்த கோப்புகளைச் சரிபார்க்கிறது…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "चुनी हुई फ़ाइलों की जाँच…"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "جارٍ التحقق من الملفات المحددة…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vérification de la sélection…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在检查所选文件…"
+          }
+        }
+      }
+    },
+    "refresh": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refresh"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නැවුම් කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "புதுப்பி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ताज़ा करें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تحديث"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Actualiser"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "刷新"
+          }
+        }
+      }
+    },
+    "recoveryCheck.notice": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Availability is a read-only snapshot, checked again before restoring. Recovery is unavailable after Trash is emptied."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ලබාගත හැකි බව කියවීමට පමණක් වූ තත්ත්ව පරීක්ෂාවකි. ප්‍රතිසාධනයට පෙර නැවත පරීක්ෂා කරයි. කුණු කූඩය හිස් කළ පසු ප්‍රතිසාධනය කළ නොහැක."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கிடைக்கும் நிலை படிப்பதற்கான சரிபார்ப்பு மட்டுமே. மீட்புக்கு முன் மீண்டும் சரிபார்க்கப்படும். குப்பை காலியான பின் மீட்க முடியாது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "उपलब्धता केवल पढ़ने वाली स्थिति-जाँच है। पुनर्स्थापना से पहले फिर जाँच होगी। ट्रैश खाली होने के बाद पुनर्प्राप्ति नहीं होगी।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "التوفر فحص للقراءة فقط ويُعاد التحقق قبل الاستعادة. لا تتاح الاستعادة بعد إفراغ السلة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La disponibilité est un instantané en lecture seule, vérifié à nouveau avant restauration. Aucune récupération après vidage de la Corbeille."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "可用性仅为只读状态快照，恢复前会再次检查。废纸篓清空后无法恢复。"
+          }
+        }
+      }
+    },
+    "recoveryCheck.available": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available at last check"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අවසන් පරීක්ෂාවේදී තිබුණි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கடைசி சரிபார்ப்பில் கிடைத்தது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पिछली जाँच में उपलब्ध"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "متاح عند آخر فحص"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Disponible lors du dernier contrôle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上次检查时可用"
+          }
+        }
+      }
+    },
+    "recoveryCheck.missing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No longer at the recorded Trash path"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සටහන් කළ කුණු කූඩ මාර්ගයේ තවදුරටත් නැත"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பதிவுசெய்த குப்பைப் பாதையில் இல்லை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "दर्ज ट्रैश पथ पर अब उपलब्ध नहीं"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "لم يعد في مسار السلة المسجل"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Absent du chemin de Corbeille enregistré"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已不在记录的废纸篓路径中"
+          }
+        }
+      }
+    },
+    "recoveryCheck.changed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Item or path changed; inspect manually"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අයිතමය හෝ මාර්ගය වෙනස් වී ඇත; අතින් පරීක්ෂා කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "உருப்படி அல்லது பாதை மாறியது; கைமுறையாகச் சரிபார்க்கவும்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "आइटम या पथ बदल गया; स्वयं जाँचें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تغير العنصر أو المسار؛ افحص يدوياً"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Élément ou chemin modifié ; inspectez manuellement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "项目或路径已更改；请手动检查"
+          }
+        }
+      }
+    },
+    "recoveryCheck.conflict": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Original path is occupied; no overwrite allowed"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මුල් මාර්ගයේ අයිතමයක් ඇත; උඩින් ලිවිය නොහැක"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அசல் பாதையில் உருப்படி உள்ளது; மேலெழுத முடியாது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "मूल पथ पर आइटम है; उस पर लिखना निषिद्ध"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المسار الأصلي مشغول؛ الاستبدال غير مسموح"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Chemin d’origine occupé ; écrasement interdit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "原始路径已被占用；禁止覆盖"
+          }
+        }
+      }
+    },
+    "recoveryCheck.unverified": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Availability could not be verified"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ලබාගත හැකි බව තහවුරු කළ නොහැක"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கிடைக்கும் நிலையை உறுதிப்படுத்த முடியவில்லை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "उपलब्धता सत्यापित नहीं हो सकी"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تعذر التحقق من التوفر"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Disponibilité non vérifiée"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "无法验证可用性"
+          }
+        }
+      }
+    },
+    "recoveryCheck.notApplicable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manual inspection required"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අතින් පරීක්ෂා කිරීම අවශ්‍යයි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கைமுறைச் சரிபார்ப்பு தேவை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्वयं जाँच आवश्यक"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الفحص اليدوي مطلوب"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inspection manuelle nécessaire"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "需要手动检查"
+          }
+        }
+      }
+    },
     "review.ready": {
       "extractionState": "manual",
       "localizations": {

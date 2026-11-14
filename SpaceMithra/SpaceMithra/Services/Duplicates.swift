@@ -15,7 +15,7 @@ public actor DuplicateDetector {
             try Task.checkCancellation()
             let page = try await catalog.list(biggest: true, offset: offset, limit: 500)
             if page.isEmpty { break }
-            for file in page where file.logical > 0 && !file.isSymlink && !file.inPackage && !file.cloud && file.identity.links == 1 {
+            for file in page where file.logical > 0 && file.isRegular == true && !file.isSymlink && !file.inPackage && !file.cloud && file.category != .cloud && file.identity.links == 1 {
                 candidates[file.logical, default: []].append(file)
                 count += 1
                 if count > 20000 { throw StorageError.refused("error.duplicateLimit") }
@@ -29,6 +29,9 @@ public actor DuplicateDetector {
                 try Task.checkCancellation()
                 guard URL(fileURLWithPath: file.path).resolvingSymlinksInPath().path == file.path,
                       try FileMetadata.identity(file.path) == file.identity else { continue }
+                let fresh = try FileMetadata.read(URL(fileURLWithPath: file.path))
+                guard fresh.isRegular == true, !fresh.cloud, fresh.category != .cloud,
+                      !fresh.inPackage, fresh.identity == file.identity else { continue }
                 let handle = try FileHandle(forReadingFrom: URL(fileURLWithPath: file.path))
                 var hasher = SHA256()
                 do {

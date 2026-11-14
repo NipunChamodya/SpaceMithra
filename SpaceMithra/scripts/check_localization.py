@@ -8,6 +8,7 @@ for key,entry in catalog['strings'].items():
     for locale in locales:
         assert entry['localizations'][locale]['stringUnit']['value'].strip(), (key,locale)
 for family,values in {
+    'recoveryCheck.':['available','missing','changed','conflict','unverified','notApplicable'],
     'state.':['idle','preparing','scanning','paused','completed','cancelled','failed'],
     'riskLevel.':['low','reviewRequired','protected','unknown'],
     'history.':['pending','trashed','skipped','uncertain','restoring','restored'],

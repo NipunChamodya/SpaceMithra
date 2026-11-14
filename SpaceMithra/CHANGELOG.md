@@ -18,3 +18,10 @@ Initial native app: SQLite-backed scans, folder exploration, risk/protection rul
 - Bind confirmation to an immutable review snapshot; changing the queue or cancelling invalidates consent.
 - Group recovery history by cleanup session, with separate outcome counts and estimated selected bytes.
 - Expand regression coverage to 38 passing tests and localization to 164 keys in seven languages.
+
+### Recovery availability and cancellation follow-up
+
+- Add timestamped read-only availability checks for Trash entries and original-path conflicts; unavailable entries cannot be restored from the UI.
+- Allow cancelling preflight while it is waiting or checking files, without a late approval appearing.
+- Exclude cloud-classified and unestablished file types from duplicate hashing; recheck metadata before opening content.
+- Expand to 42 passing tests and 173 localization keys across seven languages.

@@ -8,8 +8,8 @@ Recorded 2026-11-14 on the available Apple Silicon host running macOS 26.6.2, us
 |---|---|
 | Native Debug build | Passed during implementation |
 | Final universal Release build | Passed, arm64 + x86_64 |
-| Core + presentation XCTest suite | 38 tests passed, 0 failures (cleanup-review checkpoint) |
-| Localization coverage | 164 keys × 7 languages; dynamic key families and literal UI keys checked |
+| Core + presentation XCTest suite | 42 tests passed, 0 failures (recovery-availability checkpoint) |
+| Localization coverage | 173 keys × 7 languages; dynamic key families and literal UI keys checked |
 | Localization fallback | Tested using an isolated synthetic bundle with a missing Sinhala key and unsupported locale |
 | Local signature verification | Ad hoc signature verifies; not Developer ID notarized |
 | ZIP checksum | SHA-256 verified after packaging |
@@ -78,3 +78,13 @@ Five additional tests exercise read-only preflight, empty selection, changed/pro
 Recovery sessions show exact per-status counts and estimated selected bytes, never reclaimed disk-space claims. The current follow-up uses `scripts/release.sh build-review`; its app is at `build-review/Build/Products/Release/SpaceMithra.app`, preserving earlier running copies. Native UI interaction remains unverified because host automation is unavailable; a visible-window startup smoke check does not validate the review dialog or VoiceOver.
 
 The final review build also passed a visible-window startup smoke check in **1.41 seconds**. To coexist with the previously launched normal copy, this check used a temporary copy with a separate bundle identifier, ad hoc signing, Launch Services, and the explicit isolated-database flags. The first direct executable launch while the normal app was running remained idle in AppKit before creating a window; only that test process was terminated. The normal running application was not stopped. This smoke result verifies basic launch only, not interactive confirmation or accessibility behavior.
+
+## Recovery availability and cancellation follow-up
+
+Four additional tests cover cancellation during a suspended preflight, recovery availability as Trash disappears or its contents change, original-path conflicts and uncertain journal states, and exclusion of cloud-classified/unestablished file types from duplicate hashing. All 42 tests pass. A deterministic test gate holds the journal read while cancellation occurs; the test verifies that approval cannot reappear, busy state clears, files remain untouched, and no history entry is created.
+
+RecoveryInspector never mutates journal entries or files. It reports available-at-last-check, missing, changed, conflict, unverified or not-applicable with a timestamp. UI refresh repeats this inspection, and restore remains disabled without a positive check. Actual restoration still performs independent filesystem validation and journaling. These fixture checks do not establish actual system Trash behavior on every supported macOS/volume.
+
+The new app is built separately with `scripts/release.sh build-recovery`, at `build-recovery/Build/Products/Release/SpaceMithra.app`. The release ZIP is refreshed without replacing older running copies.
+
+The final recovery build passed its isolated Launch Services startup smoke check: a visible window and initialized test database were reported in **1.65 seconds**, then the test app exited successfully. A separate temporary bundle identity was used so the user's running copy remained untouched. The universal app signature, ZIP SHA-256 and 173-key/seven-language coverage checks also passed. This does not validate interactive VoiceOver or actual system Trash on unsupported/unavailable test hardware.

@@ -20,8 +20,8 @@ The app is at `build/Build/Products/Debug/SpaceMithra.app`. Development builds a
 - User-initiated recursive scans, pause/resume/cancel, streamed SQLite storage, bounded pages, folder totals, hard-link-aware aggregate estimates, unreadable-item counts.
 - Folder columns, breadcrumbs, search, category/name/size/date sorting, hidden files, file metadata, Finder reveal and Quick Look.
 - Biggest-files filters, recognized cache owners grouped by discovered paths, developer storage inspection, deterministic risk explanations.
-- Individual Keep/Clean/Protect, persistent exact-path and descendant rules, 24-hour protection, explicit review queue spanning scans, read-only preflight and immutable confirmation snapshots.
-- Identity revalidation, durable per-operation journal, Move to Trash without permanent-delete fallback, recovery with conflict checks and history grouped by cleanup session.
+- Individual Keep/Clean/Protect, persistent exact-path and descendant rules, 24-hour protection, explicit review queue spanning scans, read-only preflight and immutable confirmation snapshots and cancellable preflight.
+- Identity revalidation, durable per-operation journal, Move to Trash without permanent-delete fallback, recovery with conflict checks and history grouped by cleanup session, with timestamped recovery availability and conflict checks.
 - SHA-256 duplicate detection with bounded candidate count and no automatic duplicate selection.
 - Interactive treemap, volume usage and local scan totals over time.
 - Seven-language string catalog, Sinhala default, Arabic RTL, standard keyboard controls and native accessibility semantics.

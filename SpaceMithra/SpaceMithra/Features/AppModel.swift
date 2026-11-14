@@ -16,6 +16,9 @@ import SpaceMithraCore
     @Published private(set) var cleanupReview: CleanupReview?
     @Published var queue: [FileRecord] = []
     @Published var protections: [Protection] = []
+    @Published private(set) var recoveryChecks: [String: RecoveryCheck] = [:]
+    @Published private(set) var checkingRecovery = false
+    @Published private(set) var preparingReview = false
     @Published var history: [HistoryEntry] = []
     @Published var duplicates: [DuplicateGroup] = []
     @Published var discoveredStorage: [DiscoveredStorage] = []
@@ -41,6 +44,8 @@ import SpaceMithraCore
     private var cleanup: CleanupEngine?
     private var scanTask: Task<Void, Never>?
     private var duplicateTask: Task<Void, Never>?
+    private var reviewTask: Task<CleanupReview, Error>?
+    private var recoveryCheckID = UUID()
     private var scope: URL?
     private var refreshID = UUID()
     var selected: FileRecord? { rows.first { $0.path == selection } ?? queue.first { $0.path == selection } }
@@ -87,6 +92,7 @@ import SpaceMithraCore
         trends = try await catalog.trends()
         discoveredStorage = try await catalog.discoveredStorage()
         scanIssues = try await catalog.scanIssues()
+        await refreshRecoveryAvailability()
     }
     func chooseFolder() {
         let panel = NSOpenPanel(); panel.canChooseDirectories = true; panel.canChooseFiles = false
@@ -111,7 +117,7 @@ import SpaceMithraCore
     func pause() { let value = progress.state != .paused; Task { await scanner.pause(value) } }
     func cancel() { Task { await scanner.cancel() } }
     func navigate(_ path: String) { folder = path; section = "explorer"; selection = nil; page = 0; Task { await refresh() } }
-    func switchSection(_ value: String) { section = value; storageGroup = nil; selection = nil; page = 0; Task { await refresh() } }
+    func switchSection(_ value: String) { section = value; storageGroup = nil; selection = nil; page = 0; Task { await refresh(); if value == "recovery" { await refreshRecoveryAvailability() } } }
     func refresh() async {
         guard let catalog else { return }
         let request = UUID(); refreshID = request
@@ -166,18 +172,33 @@ import SpaceMithraCore
     func unprotect(_ rule: Protection) {
         Task { do { try await catalog?.removeProtection(rule.id); try await loadPersistent() } catch { self.error = describe(error) } }
     }
-    func prepareCleanupReview() async {
-        guard !scanning, !working, let catalog else { return }
-        working = true; cleanupReview = nil
-        defer { working = false }
+    func prepareCleanupReview(using journal: (any CleanupJournal)? = nil) async {
+        guard !scanning, !working, let source = journal ?? catalog else { return }
+        working = true; preparingReview = true; cleanupReview = nil
+        defer { working = false; preparingReview = false; reviewTask = nil }
         let selected = queue
+        let task = Task { try await CleanupReviewer().review(selected, journal: source) }
+        reviewTask = task
         do {
-            let review = try await CleanupReviewer().review(selected, journal: catalog)
+            let review = try await withTaskCancellationHandler(operation: { try await task.value }, onCancel: { task.cancel() })
+            guard !task.isCancelled else { return }
             guard queue == selected else { throw StorageError.refused("error.changed") }
             cleanupReview = review
+        } catch is CancellationError {
+            // Cancelling preflight never creates an approval or a history entry.
         } catch { self.error = describe(error) }
     }
-    func cancelCleanupReview() { cleanupReview = nil }
+    func cancelCleanupReview() { reviewTask?.cancel(); cleanupReview = nil }
+    func refreshRecoveryAvailability() async {
+        let token = UUID(); recoveryCheckID = token; checkingRecovery = true
+        defer { if recoveryCheckID == token { checkingRecovery = false } }
+        do {
+            let checks = try await RecoveryInspector().check(history)
+            guard recoveryCheckID == token else { return }
+            recoveryChecks = checks
+        } catch is CancellationError {
+        } catch { if recoveryCheckID == token { self.error = describe(error) } }
+    }
     func isCurrentReview(_ review: CleanupReview) -> Bool {
         cleanupReview?.id == review.id && review.canConfirm && review.records == queue
     }

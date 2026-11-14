@@ -515,3 +515,97 @@ extension PresentationTests {
         XCTAssertTrue(history.isEmpty)
     }
 }
+
+private actor ReviewGate: CleanupJournal {
+    let catalog: Catalog
+    private var entered = false
+    private var gate: CheckedContinuation<Void, Never>?
+    private var observers: [CheckedContinuation<Void, Never>] = []
+    init(catalog: Catalog) { self.catalog = catalog }
+    func protections() async throws -> [Protection] {
+        let rules = try await catalog.protections()
+        await withCheckedContinuation { continuation in
+            gate = continuation; entered = true
+            observers.forEach { $0.resume() }; observers.removeAll()
+        }
+        return rules
+    }
+    func waitUntilEntered() async {
+        if entered { return }
+        await withCheckedContinuation { observers.append($0) }
+    }
+    func release() { gate?.resume(); gate = nil }
+    func history() async throws -> [HistoryEntry] { try await catalog.history() }
+    func saveHistory(_ entry: HistoryEntry) async throws { try await catalog.saveHistory(entry) }
+}
+
+extension PresentationTests {
+    func testCancellingInFlightReviewCannotReappearAsApproval() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let record = try FileMetadata.read(f.file("a.txt"))
+        let gate = ReviewGate(catalog: f.catalog)
+        let model = AppModel(); model.catalog = f.catalog; model.queue = [record]
+        let task = Task { await model.prepareCleanupReview(using: gate) }
+        await gate.waitUntilEntered()
+        XCTAssertTrue(model.preparingReview); XCTAssertTrue(model.working)
+        model.cancelCleanupReview()
+        await gate.release()
+        await task.value
+        XCTAssertNil(model.cleanupReview); XCTAssertNil(model.error)
+        XCTAssertFalse(model.preparingReview); XCTAssertFalse(model.working)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: record.path))
+        let history = try await f.catalog.history()
+        XCTAssertTrue(history.isEmpty)
+    }
+}
+
+extension CoreTests {
+    func testRecoveryAvailabilityTracksPresenceConflictAndMissingTrash() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let record = try FileMetadata.read(f.file("a.txt"))
+        let results = try await CleanupEngine(catalog: f.catalog, operations: FixtureTrash(root: f.root)).clean(confirmed: [record])
+        let entry = try XCTUnwrap(results.first)
+        let inspector = RecoveryInspector()
+        let available = try await inspector.check([entry])
+        XCTAssertEqual(available[entry.id]?.availability, .available)
+        _ = try f.file("a.txt", content: "conflicting original")
+        let conflict = try await inspector.check([entry])
+        XCTAssertEqual(conflict[entry.id]?.availability, .conflict)
+        XCTAssertFalse(conflict[entry.id]?.canRestore ?? true)
+        try FileManager.default.removeItem(atPath: try XCTUnwrap(entry.trashPath))
+        let missing = try await inspector.check([entry])
+        XCTAssertEqual(missing[entry.id]?.availability, .missing)
+        XCTAssertEqual(try String(contentsOfFile: record.path, encoding: .utf8), "conflicting original")
+        let unchangedHistory = try await f.catalog.history()
+        XCTAssertEqual(unchangedHistory.first?.status, "trashed")
+    }
+    func testRecoveryAvailabilityRejectsTamperingAndUncertainHistory() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let record = try FileMetadata.read(f.file("a.txt"))
+        let results = try await CleanupEngine(catalog: f.catalog, operations: FixtureTrash(root: f.root)).clean(confirmed: [record])
+        var entry = try XCTUnwrap(results.first)
+        let inspector = RecoveryInspector()
+        try Data("changed Trash content".utf8).write(to: URL(fileURLWithPath: try XCTUnwrap(entry.trashPath)))
+        let changed = try await inspector.check([entry])
+        XCTAssertEqual(changed[entry.id]?.availability, .changed)
+        entry.status = "pending"
+        let pending = try await inspector.check([entry])
+        XCTAssertEqual(pending[entry.id]?.availability, .notApplicable)
+        entry.status = "trashed"; entry.trashIdentity = nil
+        let unknown = try await inspector.check([entry])
+        XCTAssertEqual(unknown[entry.id]?.availability, .unverified)
+    }
+    func testDuplicateDetectionExcludesCloudCategoryAndUnestablishedFileType() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt"))
+        var b = try FileMetadata.read(f.file("b.txt"))
+        b.category = .cloud; b.cloud = false
+        try await f.catalog.insert([a,b])
+        let cloud = try await DuplicateDetector().find(catalog: f.catalog) { _ in }
+        XCTAssertTrue(cloud.isEmpty)
+        b.category = .unknown; b.isRegular = nil
+        try await f.catalog.insert([b])
+        let unknownType = try await DuplicateDetector().find(catalog: f.catalog) { _ in }
+        XCTAssertTrue(unknownType.isEmpty)
+    }
+}

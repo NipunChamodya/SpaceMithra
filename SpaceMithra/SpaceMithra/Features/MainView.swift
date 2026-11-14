@@ -217,6 +217,13 @@ struct MainView: View {
     private var queue: some View {
         VStack(alignment: .leading) {
             Text(model.text("trashWarning")).padding()
+            if model.preparingReview {
+                HStack {
+                    ProgressView().controlSize(.small)
+                    Text(model.text("review.preparing"))
+                    Button(model.text("cancel")) { model.cancelCleanupReview() }
+                }.padding(.horizontal)
+            }
             List(model.queue) { file in
                 HStack {
                     VStack(alignment: .leading) {
@@ -279,32 +286,48 @@ struct MainView: View {
         }
     }
     private var historyList: some View {
-        List {
-            ForEach(model.historySessions) { session in
-                Section {
-                    ForEach(session.entries) { entry in
-                        HStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(entry.record.name).font(.headline)
-                                Text(entry.record.path).font(.caption).textSelection(.enabled)
-                                Text(model.text("history." + entry.status))
-                                Text(model.text(entry.message)).font(.caption).foregroundStyle(.secondary).textSelection(.enabled)
-                            }
-                            Spacer()
-                            if entry.status == "trashed" {
-                                Button(model.text("restore")) { recovery = entry }.disabled(model.working || entry.trashIdentity == nil)
+        VStack(alignment: .leading) {
+            HStack {
+                Text(model.text("recoveryCheck.notice")).font(.caption).foregroundStyle(.secondary)
+                Spacer()
+                if model.checkingRecovery { ProgressView().controlSize(.small) }
+                Button(model.text("refresh")) { Task { await model.refreshRecoveryAvailability() } }
+                    .disabled(model.checkingRecovery || model.working)
+            }.padding()
+            List {
+                ForEach(model.historySessions) { session in
+                    Section {
+                        ForEach(session.entries) { entry in
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(entry.record.name).font(.headline)
+                                    Text(entry.record.path).font(.caption).textSelection(.enabled)
+                                    Text(model.text("history." + entry.status))
+                                    Text(model.text(entry.message)).font(.caption).foregroundStyle(.secondary).textSelection(.enabled)
+                                }
+                                Spacer()
+                                if entry.status == "trashed" {
+                                    VStack(alignment: .trailing, spacing: 6) {
+                                        if let check = model.recoveryChecks[entry.id] {
+                                            Text(model.text("recoveryCheck." + check.availability.rawValue)).font(.caption)
+                                            Text(check.date.formatted()).font(.caption2).foregroundStyle(.secondary)
+                                        }
+                                        Button(model.text("restore")) { recovery = entry }
+                                            .disabled(model.working || model.checkingRecovery || model.recoveryChecks[entry.id]?.canRestore != true)
+                                    }
+                                }
                             }
                         }
+                    } header: {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(session.date.formatted()).font(.headline)
+                            Text(model.text("cleanupSession") + " " + session.id).font(.caption).textSelection(.enabled)
+                            Text(model.text("estimatedSelected") + ": " + byteString(session.estimatedSelectedBytes))
+                            ForEach(session.counts.keys.sorted(), id: \.self) { status in
+                                Text(model.text("history." + status) + ": \(session.counts[status] ?? 0)")
+                            }
+                        }.textCase(nil).padding(.vertical, 5)
                     }
-                } header: {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text(session.date.formatted()).font(.headline)
-                        Text(model.text("cleanupSession") + " " + session.id).font(.caption).textSelection(.enabled)
-                        Text(model.text("estimatedSelected") + ": " + byteString(session.estimatedSelectedBytes))
-                        ForEach(session.counts.keys.sorted(), id: \.self) { status in
-                            Text(model.text("history." + status) + ": \(session.counts[status] ?? 0)")
-                        }
-                    }.textCase(nil).padding(.vertical, 5)
                 }
             }
         }
