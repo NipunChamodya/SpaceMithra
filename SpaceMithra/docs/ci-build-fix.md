@@ -13,7 +13,7 @@ The diagnostic points at the treemap tile's nested `Button`/shape/conditional ov
 | Setting | Failed GitHub runner | Local validation host |
 |---|---|---|
 | Xcode | 26.6, build 17F113 (runner inventory) | 27.2, build 27B52 |
-| Swift compiler | Original log did not print its version; fixed workflow records it explicitly | Apple Swift 6.4.2 |
+| Swift compiler | Apple Swift 6.3.3 (confirmed in the successful follow-up using pinned Xcode 26.6) | Apple Swift 6.4.2 |
 | macOS SDK | 26.5 | 27.2 |
 | Host architecture | arm64 (`macos-26-arm64` image) | arm64 |
 | Output architectures | arm64 + x86_64 | arm64 + x86_64 |
@@ -46,3 +46,7 @@ xcodebuild -project SpaceMithra.xcodeproj -scheme SpaceMithra -configuration Deb
 CI builds into RUNNER_TEMP and local validation uses separate temporary build directories. Neither validation nor the shared build helper packages over existing v0.2.0 release ZIPs/checksums or replaces the running app. The release script's packaging behavior is retained for explicit release invocations.
 
 The GitHub Actions run for the pushed fix must finish successfully. Local success alone, particularly with a newer compiler, is insufficient to declare this CI issue resolved.
+
+## Confirmed CI result
+
+[Run 43617885696](https://github.com/NipunChamodya/SpaceMithra/actions/runs/43617885696), for fix commit `52a39c8ba1e9a68573c2c80bb7359ce179b1e179`, completed successfully. Xcode 26.6 / Swift 6.3.3 / macOS SDK 26.5 compiled the Release binary with both arm64 and x86_64 slices, and both explicit lipo checks passed. The CI regression run passed 85 tests with its two opt-in stress scenarios skipped. The full local stress-enabled suite passed all 87 tests with zero skips/failures in 533.69 seconds, including 25,000 and 50,000 real-file candidates. All three local native UI tests passed in 82.45 seconds. Local universal compilation also passed with Xcode 27.2 / Swift 6.4.2; the preserved v0.2.0 ZIP checksum was unchanged.
