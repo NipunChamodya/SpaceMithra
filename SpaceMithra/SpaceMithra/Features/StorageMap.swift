@@ -11,20 +11,12 @@ struct StorageMap: View {
                 let cells = tiles(items, in: CGRect(origin: .zero, size: geometry.size))
                 ZStack(alignment: .topLeading) {
                     ForEach(Array(cells.enumerated()), id: \.element.file.path) { index, cell in
-                        Button { navigate(cell.file) } label: {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color(hue: Double(index) / 14, saturation: 0.65, brightness: 0.45))
-                                .overlay {
-                                    if cell.rect.width > 70 && cell.rect.height > 35 {
-                                        VStack { Text(cell.file.name).lineLimit(2); Text(model.byteText(cell.file.logical)).font(.caption2) }
-                                            .font(.caption).foregroundStyle(.white).padding(6)
-                                    }
-                                }
-                        }.buttonStyle(.plain)
-                            .frame(width: max(0, cell.rect.width - 3), height: max(0, cell.rect.height - 3))
-                            .offset(x: cell.rect.minX, y: cell.rect.minY)
-                            .accessibilityLabel(cell.file.name + ", " + model.byteText(cell.file.logical))
-                            .help(cell.file.path + " · " + model.byteText(cell.file.logical))
+                        StorageTileButton(
+                            file: cell.file,
+                            rect: cell.rect,
+                            hue: Double(index) / 14,
+                            sizeText: model.byteText(cell.file.logical)
+                        ) { navigate(cell.file) }
                     }
                 }
             }.frame(height: 220)
@@ -58,5 +50,50 @@ struct StorageMap: View {
             b = CGRect(x: rect.minX, y: a.maxY, width: rect.width, height: rect.height - a.height)
         }
         return tiles(Array(files.prefix(split)), in: a) + tiles(Array(files.dropFirst(split)), in: b)
+    }
+}
+
+/// Keep the interactive tile and its label as separate type-checking boundaries.
+/// Older Swift compilers time out on the combined ForEach/Button/overlay expression.
+private struct StorageTileButton: View {
+    let file: FileRecord
+    let rect: CGRect
+    let hue: Double
+    let sizeText: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            StorageTileLabel(name: file.name, sizeText: sizeText, hue: hue,
+                             showsText: rect.width > 70 && rect.height > 35)
+        }
+        .buttonStyle(.plain)
+        .frame(width: max(0, rect.width - 3), height: max(0, rect.height - 3))
+        .offset(x: rect.minX, y: rect.minY)
+        .accessibilityLabel(file.name + ", " + sizeText)
+        .help(file.path + " · " + sizeText)
+    }
+}
+
+private struct StorageTileLabel: View {
+    let name: String
+    let sizeText: String
+    let hue: Double
+    let showsText: Bool
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 5)
+                .fill(Color(hue: hue, saturation: 0.65, brightness: 0.45))
+            if showsText {
+                VStack {
+                    Text(name).lineLimit(2)
+                    Text(sizeText).font(.caption2)
+                }
+                .font(.caption)
+                .foregroundStyle(.white)
+                .padding(6)
+            }
+        }
     }
 }

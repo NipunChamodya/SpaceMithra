@@ -1,14 +1,33 @@
 name: macOS
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   build-and-test:
-    runs-on: macos-latest
+    runs-on: macos-26
+    timeout-minutes: 30
+    env:
+      # Keep the compiler that exposed the StorageMap type-checking regression.
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+    defaults:
+      run:
+        shell: bash
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Toolchain diagnostics
+        run: |
+          sw_vers
+          uname -m
+          xcodebuild -version
+          xcrun swift --version
+          xcrun --sdk macosx --show-sdk-version
+          xcrun --sdk macosx --show-sdk-path
       - name: Localization coverage
         run: python3 SpaceMithra/scripts/check_localization.py
       - name: Isolated core tests
         working-directory: SpaceMithra
         run: SPACEMITHRA_TEST_MODE=1 swift test
       - name: Universal release build
-        run: xcodebuild -project SpaceMithra/SpaceMithra.xcodeproj -scheme SpaceMithra -configuration Release -derivedDataPath build ARCHS='arm64 x86_64' ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO build
+        run: SpaceMithra/scripts/build-universal.sh "$RUNNER_TEMP/SpaceMithra-universal"
