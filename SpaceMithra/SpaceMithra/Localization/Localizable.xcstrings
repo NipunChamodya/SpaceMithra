@@ -1,0 +1,7479 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "dashboard": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dashboard"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "උපකරණ පුවරුව"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "முகப்புப் பலகை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डैशबोर्ड"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "لوحة المعلومات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tableau de bord"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "概览"
+          }
+        }
+      }
+    },
+    "explorer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Storage Explorer"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ගබඩා ගවේෂකය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சேமிப்பக உலாவி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्टोरेज एक्सप्लोरर"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مستكشف التخزين"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Explorateur de stockage"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "存储浏览器"
+          }
+        }
+      }
+    },
+    "caches": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cache Explorer"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "හැඹිලි ගවේෂකය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தற்காலிக சேமிப்பு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "कैश एक्सप्लोरर"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مستكشف ذاكرة التخزين المؤقت"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Explorateur de caches"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "缓存浏览器"
+          }
+        }
+      }
+    },
+    "biggest": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biggest Files"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "විශාලතම ගොනු"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பெரிய கோப்புகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सबसे बड़ी फ़ाइलें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "أكبر الملفات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fichiers volumineux"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "最大文件"
+          }
+        }
+      }
+    },
+    "duplicates": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicates"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අනුපිටපත්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நகல் கோப்புகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डुप्लिकेट"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الملفات المكررة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Doublons"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "重复文件"
+          }
+        }
+      }
+    },
+    "developer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Developer Storage"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සංවර්ධක ගබඩාව"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மேம்பாட்டுச் சேமிப்பகம்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डेवलपर स्टोरेज"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تخزين المطور"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Stockage développeur"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "开发者存储"
+          }
+        }
+      }
+    },
+    "queue": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleanup Queue"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පිරිසිදු කිරීමේ පෝලිම"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சுத்தப்படுத்தும் வரிசை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सफ़ाई कतार"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "قائمة التنظيف"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "File de nettoyage"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清理队列"
+          }
+        }
+      }
+    },
+    "protected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protected Items"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ආරක්ෂිත අයිතම"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பாதுகாக்கப்பட்டவை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सुरक्षित आइटम"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "العناصر المحمية"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Éléments protégés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "受保护项目"
+          }
+        }
+      }
+    },
+    "recovery": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovery History"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රතිසාධන ඉතිහාසය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீட்டெடுப்பு வரலாறு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्प्राप्ति इतिहास"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "سجل الاستعادة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Historique de récupération"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "恢复历史"
+          }
+        }
+      }
+    },
+    "settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සැකසුම්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அமைப்புகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सेटिंग्स"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الإعدادات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Réglages"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "设置"
+          }
+        }
+      }
+    },
+    "locations": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locations"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ස්ථාන"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இடங்கள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्थान"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المواقع"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emplacements"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "位置"
+          }
+        }
+      }
+    },
+    "allAccessible": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose accessible storage…"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රවේශ විය හැකි ගබඩාවක් තෝරන්න…"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அணுகக்கூடிய சேமிப்பகத்தைத் தேர்ந்தெடு…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सुलभ स्टोरेज चुनें…"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "اختيار مساحة تخزين متاحة…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Choisir un stockage accessible…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "选择可访问的存储位置…"
+          }
+        }
+      }
+    },
+    "volumes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mounted volumes"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සම්බන්ධිත ධාවක"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இணைக்கப்பட்ட வட்டுகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "जुड़ी हुई ड्राइव"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "وحدات التخزين المتصلة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Volumes connectés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已挂载的卷"
+          }
+        }
+      }
+    },
+    "applications": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applications"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "යෙදුම්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "செயலிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ऐप्स"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "التطبيقات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Applications"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "应用程序"
+          }
+        }
+      }
+    },
+    "documents": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Documents"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ලේඛන"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ஆவணங்கள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "दस्तावेज़"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المستندات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Documents"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "文稿"
+          }
+        }
+      }
+    },
+    "downloads": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downloads"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "බාගැනීම්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பதிவிறக்கங்கள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डाउनलोड"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "التنزيلات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Téléchargements"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "下载"
+          }
+        }
+      }
+    },
+    "desktop": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desktop"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ඩෙස්ක්ටොප්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மேசைப்பலகை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डेस्कटॉप"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "سطح المكتب"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bureau"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "桌面"
+          }
+        }
+      }
+    },
+    "pictures": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pictures"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පින්තූර"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "படங்கள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "चित्र"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الصور"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Images"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "图片"
+          }
+        }
+      }
+    },
+    "movies": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movies"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "වීඩියෝ"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "காணொளிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "वीडियो"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الفيديو"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vidéos"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "影片"
+          }
+        }
+      }
+    },
+    "music": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Music"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සංගීතය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இசை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "संगीत"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الموسيقى"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Musique"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "音乐"
+          }
+        }
+      }
+    },
+    "library": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Library"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පුස්තකාලය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நூலகம்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "लाइब्रेरी"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المكتبة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bibliothèque"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "资源库"
+          }
+        }
+      }
+    },
+    "chooseFolder": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan a folder…"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ෆෝල්ඩරයක් පරිලෝකනය කරන්න…"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கோப்புறையை வருடு…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "फ़ोल्डर स्कैन करें…"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "فحص مجلد…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Analyser un dossier…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "扫描文件夹…"
+          }
+        }
+      }
+    },
+    "scan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පරිලෝකනය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வருடு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्कैन"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "فحص"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Analyser"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "扫描"
+          }
+        }
+      }
+    },
+    "cancel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අවලංගු කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ரத்துசெய்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "रद्द करें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إلغاء"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Annuler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "取消"
+          }
+        }
+      }
+    },
+    "pause": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "විරාමය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இடைநிறுத்து"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "रोकें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إيقاف مؤقت"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pause"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "暂停"
+          }
+        }
+      }
+    },
+    "resume": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නැවත අරඹන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தொடரவும்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "जारी रखें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "متابعة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reprendre"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "继续"
+          }
+        }
+      }
+    },
+    "items": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "items"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අයිතම"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "உருப்படிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "आइटम"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "عناصر"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "éléments"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "项目"
+          }
+        }
+      }
+    },
+    "scanErrors": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unreadable or changed"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "කියවිය නොහැකි හෝ වෙනස් වූ"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "படிக்க முடியாதவை அல்லது மாற்றப்பட்டவை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अपठनीय या बदले हुए"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "غير مقروءة أو متغيرة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "illisibles ou modifiés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "无法读取或已更改"
+          }
+        }
+      }
+    },
+    "seconds": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "seconds"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "තත්පර"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "விநாடிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सेकंड"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ثوانٍ"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "secondes"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "秒"
+          }
+        }
+      }
+    },
+    "welcomeSubtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Understand your storage. Choose what stays."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ඔබේ ගබඩාව තේරුම් ගන්න. තබාගන්නා දේ තෝරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சேமிப்பகத்தைப் புரிந்துகொள்ளுங்கள். எதை வைத்திருக்க வேண்டும் என்பதைத் தேர்ந்தெடுங்கள்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अपना स्टोरेज समझें। तय करें कि क्या रखना है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "افهم مساحة التخزين واختر ما تريد الاحتفاظ به."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Comprenez votre stockage. Choisissez ce qui reste."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "了解存储空间，选择保留的内容。"
+          }
+        }
+      }
+    },
+    "privacy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline and private. No accounts, uploads, ads, or telemetry."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නොබැඳි සහ පෞද්ගලිකයි. ගිණුම්, උඩුගත කිරීම්, දැන්වීම් හෝ භාවිත දත්ත රැස් කිරීම නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இணையமின்றி தனியுரிமையுடன். கணக்குகள், பதிவேற்றங்கள், விளம்பரங்கள் அல்லது பயன்பாட்டுத் தரவு சேகரிப்பு இல்லை."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ऑफ़लाइन और निजी। कोई खाता, अपलोड, विज्ञापन या उपयोग डेटा संग्रह नहीं।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "خاص ويعمل دون اتصال. بلا حسابات أو رفع ملفات أو إعلانات أو جمع بيانات استخدام."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hors ligne et privé. Sans compte, envoi de fichiers, publicité ni télémétrie."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "离线且保护隐私。无需账户、上传文件、广告或遥测。"
+          }
+        }
+      }
+    },
+    "scanGuidance": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a folder to scan. Scanning only reads metadata. macOS may ask permission for the selected location. If access is denied, choose a smaller accessible folder. Full Disk Access is optional and is never requested at startup."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පරිලෝකනයට ෆෝල්ඩරයක් තෝරන්න. මෙය පාරදත්ත පමණක් කියවයි. macOS අවසර ඉල්ලා සිටිය හැක. ප්‍රවේශය ප්‍රතික්ෂේප වුවහොත් වෙනත් ෆෝල්ඩරයක් තෝරන්න. සම්පූර්ණ තැටි ප්‍රවේශය ආරම්භයේදී ඉල්ලන්නේ නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வருட ஒரு கோப்புறையைத் தேர்ந்தெடுக்கவும். வருடல் மெட்டாடேட்டாவை மட்டுமே படிக்கும். macOS அனுமதி கேட்கலாம். அணுகல் மறுக்கப்பட்டால் மற்றொரு கோப்புறையைத் தேர்ந்தெடுக்கவும். தொடக்கத்தில் முழு வட்டு அணுகல் கேட்கப்படாது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्कैन करने के लिए फ़ोल्डर चुनें। स्कैन केवल मेटाडेटा पढ़ता है। macOS अनुमति माँग सकता है। अनुमति न मिलने पर दूसरा फ़ोल्डर चुनें। शुरुआत में पूर्ण डिस्क पहुँच नहीं माँगी जाती।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "اختر مجلداً لفحصه. يقرأ الفحص البيانات الوصفية فقط. قد يطلب macOS إذناً. إذا رُفض الوصول فاختر مجلداً آخر. لا يُطلب الوصول الكامل للقرص عند بدء التشغيل."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Choisissez un dossier. L’analyse lit seulement les métadonnées. macOS peut demander une autorisation. En cas de refus, choisissez un autre dossier. L’accès complet au disque n’est pas demandé au démarrage."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "选择要扫描的文件夹。扫描只读取元数据。macOS 可能会请求权限。如果访问被拒绝，请选择其他可访问的文件夹。启动时不会请求完全磁盘访问权限。"
+          }
+        }
+      }
+    },
+    "diskUsage": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume usage"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ධාවක භාවිතය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வட்டுப் பயன்பாடு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ड्राइव उपयोग"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "استخدام وحدة التخزين"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Utilisation du volume"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "卷使用情况"
+          }
+        }
+      }
+    },
+    "distribution": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folder distribution"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ෆෝල්ඩර බෙදාහැරීම"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கோப்புறைப் பகிர்வு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "फ़ोल्डर वितरण"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توزيع المجلدات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Répartition des dossiers"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "文件夹分布"
+          }
+        }
+      }
+    },
+    "partialNotice": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows the current page, up to 12 largest entries. Partial scans and inaccessible files leave totals incomplete. Allocated bytes are estimates; APFS clones may share blocks."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "වත්මන් පිටුවේ විශාලතම අයිතම 12ක් දක්වයි. අසම්පූර්ණ පරිලෝකන සහ ප්‍රවේශ නොහැකි ගොනු නිසා එකතුව අසම්පූර්ණ විය හැක. APFS ගොනු තැටි කොටස් බෙදාගත හැක."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தற்போதைய பக்கத்தில் மிகப்பெரிய 12 உருப்படிகள் காட்டப்படும். முழுமையற்ற வருடலும் அணுக முடியாத கோப்புகளும் மொத்தத்தைப் பாதிக்கும். APFS நகல்கள் தொகுதிகளைப் பகிரலாம்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "वर्तमान पृष्ठ के अधिकतम 12 सबसे बड़े आइटम दिखते हैं। अधूरे स्कैन और अप्राप्य फ़ाइलों से कुल अधूरा हो सकता है। APFS क्लोन ब्लॉक साझा कर सकते हैं।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تعرض الصفحة الحالية حتى 12 من أكبر العناصر. الفحص الجزئي والملفات غير المتاحة يجعلان الإجماليات ناقصة. قد تتشارك نسخ APFS كتل التخزين."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Affiche jusqu’à 12 grands éléments de la page actuelle. Une analyse partielle ou des fichiers inaccessibles rendent les totaux incomplets. Les clones APFS peuvent partager des blocs."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "显示当前页面中最多12个最大项目。部分扫描和无法访问的文件会导致总计不完整。APFS 克隆可能共享存储块。"
+          }
+        }
+      }
+    },
+    "trends": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan history"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පරිලෝකන ඉතිහාසය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வருடல் வரலாறு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्कैन इतिहास"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "سجل الفحص"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Historique des analyses"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "扫描历史"
+          }
+        }
+      }
+    },
+    "trendNotice": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historical totals are scanned logical bytes. Different roots and inaccessible items can make scans incomparable."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "එකතු පරිලෝකනය කළ තාර්කික බයිට් වේ. වෙනස් ෆෝල්ඩර සහ ප්‍රවේශ සීමා නිසා පරිලෝකන සැසඳිය නොහැකි විය හැක."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மொத்தங்கள் வருடப்பட்ட தருக்க பைட்டுகள். வெவ்வேறு இடங்கள் மற்றும் அணுகல் வரம்புகளால் வருடல்களை ஒப்பிட முடியாமல் போகலாம்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "कुल स्कैन किए गए तार्किक बाइट हैं। अलग फ़ोल्डर और पहुँच सीमाओं के कारण स्कैन अतुलनीय हो सकते हैं।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الإجماليات هي بايتات منطقية مفحوصة. قد تمنع اختلافات المواقع والأذونات مقارنة الفحوص."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Les totaux sont les octets logiques analysés. Des dossiers ou autorisations différents peuvent empêcher la comparaison."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "总计为扫描的逻辑字节数。不同的根目录和访问限制可能使扫描结果无法比较。"
+          }
+        }
+      }
+    },
+    "date": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "දිනය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தேதி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "तारीख़"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "التاريخ"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Date"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "日期"
+          }
+        }
+      }
+    },
+    "size": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logical size"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රමාණය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அளவு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "आकार"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الحجم"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Taille"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "大小"
+          }
+        }
+      }
+    },
+    "name": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නම"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பெயர்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "नाम"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الاسم"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nom"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "名称"
+          }
+        }
+      }
+    },
+    "type": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "වර්ගය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வகை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "प्रकार"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "النوع"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Type"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "类型"
+          }
+        }
+      }
+    },
+    "risk": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Risk"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අවදානම"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அபாயம்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "जोखिम"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المخاطر"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Risque"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "风险"
+          }
+        }
+      }
+    },
+    "clean": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clean"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පිරිසිදු කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சுத்தப்படுத்து"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "साफ़ करें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تنظيف"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nettoyer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清理"
+          }
+        }
+      }
+    },
+    "keep": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "තබාගන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வைத்திரு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "रखें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "احتفاظ"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conserver"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "保留"
+          }
+        }
+      }
+    },
+    "protect": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protect"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ආරක්ෂා කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பாதுகாக்கவும்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सुरक्षित करें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "حماية"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Protéger"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "保护"
+          }
+        }
+      }
+    },
+    "parentFolder": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parent folder"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මව් ෆෝල්ඩරය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பெற்றோர் கோப்புறை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ऊपरी फ़ोल्डर"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المجلد الأب"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dossier parent"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上级文件夹"
+          }
+        }
+      }
+    },
+    "search": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search scanned names"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පරිලෝකනය කළ නම් සොයන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வருடப்பட்ட பெயர்களைத் தேடு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्कैन किए गए नाम खोजें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بحث في الأسماء المفحوصة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rechercher les noms analysés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "搜索已扫描的名称"
+          }
+        }
+      }
+    },
+    "sort": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sort"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අනුපිළිවෙල"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வரிசைப்படுத்து"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "क्रम"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ترتيب"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Trier"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "排序"
+          }
+        }
+      }
+    },
+    "category": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Category"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රවර්ගය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பிரிவு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "श्रेणी"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الفئة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Catégorie"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "类别"
+          }
+        }
+      }
+    },
+    "all": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All categories"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සියලු ප්‍රවර්ග"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அனைத்துப் பிரிவுகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सभी श्रेणियाँ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "كل الفئات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Toutes les catégories"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "所有类别"
+          }
+        }
+      }
+    },
+    "minimumMB": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimum MB"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අවම MB"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "குறைந்தபட்ச MB"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "न्यूनतम MB"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الحد الأدنى بالميغابايت"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Minimum en Mo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "最小 MB"
+          }
+        }
+      }
+    },
+    "extension": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extension"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ගොනු දිගුව"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கோப்பு நீட்சி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "एक्सटेंशन"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "امتداد الملف"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Extension"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "扩展名"
+          }
+        }
+      }
+    },
+    "modifiedAfter": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modified after"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මෙම දිනට පසු වෙනස් කළ"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இதற்குப் பிறகு மாற்றப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "इसके बाद संशोधित"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "عُدّل بعد"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Modifié après"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "修改日期晚于"
+          }
+        }
+      }
+    },
+    "apply": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "යොදන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பயன்படுத்து"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "लागू करें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تطبيق"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Appliquer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "应用"
+          }
+        }
+      }
+    },
+    "scanInProgress": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan in progress. Results are partial; cleanup is unavailable."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පරිලෝකනය සිදුවෙමින් පවතී. ප්‍රතිඵල අසම්පූර්ණයි. පිරිසිදු කිරීම අක්‍රියයි."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வருடல் நடைபெறுகிறது. முடிவுகள் முழுமையற்றவை; சுத்தப்படுத்த முடியாது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्कैन जारी है। परिणाम अधूरे हैं; सफ़ाई अनुपलब्ध है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الفحص جارٍ. النتائج جزئية والتنظيف غير متاح."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Analyse en cours. Résultats partiels ; nettoyage indisponible."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在扫描。结果尚不完整，无法清理。"
+          }
+        }
+      }
+    },
+    "previous": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පෙර"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "முந்தைய"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पिछला"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "السابق"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Précédent"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上一页"
+          }
+        }
+      }
+    },
+    "next": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ඊළඟ"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அடுத்த"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अगला"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "التالي"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Suivant"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "下一页"
+          }
+        }
+      }
+    },
+    "selectEligible": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select eligible on page"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පිටුවේ සුදුසු අයිතම තෝරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பக்கத்தில் தகுதியானவற்றைத் தேர்ந்தெடு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पृष्ठ के योग्य आइटम चुनें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تحديد المؤهل في الصفحة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sélectionner les éléments admissibles de la page"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "选择本页符合条件的项目"
+          }
+        }
+      }
+    },
+    "deselectPage": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deselect page"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පිටුවේ තේරීම් ඉවත් කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பக்கத் தேர்வை நீக்கு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पृष्ठ का चयन हटाएँ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إلغاء تحديد الصفحة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désélectionner la page"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "取消选择本页"
+          }
+        }
+      }
+    },
+    "reveal": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show in Finder"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Finder තුළ පෙන්වන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Finder இல் காட்டு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Finder में दिखाएँ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إظهار في Finder"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Afficher dans le Finder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在 Finder 中显示"
+          }
+        }
+      }
+    },
+    "trashWarning": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only explicitly reviewed files will be moved to Trash. Moving to Trash does not free disk space. SpaceMithra never empties Trash. Close affected apps first. Recovery is possible only while the item remains available in Trash."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "තෝරා සමාලෝචනය කළ ගොනු පමණක් කුණු කූඩයට ගෙන යයි. මෙයින් තැටියේ ඉඩ නිදහස් නොවේ. යෙදුම කුණු කූඩය හිස් නොකරයි. අදාළ යෙදුම් වසන්න. ගොනුව කුණු කූඩයේ තිබෙන තුරු පමණක් ප්‍රතිසාධනය කළ හැක."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நீங்கள் தேர்ந்தெடுத்து சரிபார்த்த கோப்புகள் மட்டுமே குப்பைக்கு நகர்த்தப்படும். இதனால் வட்டு இடம் காலியாகாது. இந்தச் செயலி குப்பையை காலி செய்யாது. தொடர்புடைய செயலிகளை மூடவும். கோப்பு குப்பையில் இருக்கும் வரை மட்டுமே மீட்டெடுக்க முடியும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "केवल चुनी और जाँची गई फ़ाइलें ट्रैश में भेजी जाएँगी। इससे डिस्क स्थान खाली नहीं होता। यह ऐप ट्रैश खाली नहीं करता। संबंधित ऐप बंद करें। फ़ाइल ट्रैश में उपलब्ध रहने तक ही पुनर्प्राप्ति संभव है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ستُنقل إلى سلة المهملات الملفات التي اخترتها وراجعتها فقط. النقل لا يحرر مساحة القرص. لن يفرغ التطبيق السلة. أغلق التطبيقات المعنية أولاً. الاستعادة ممكنة فقط ما دام الملف متاحاً في السلة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Seuls les fichiers choisis et vérifiés seront déplacés vers la Corbeille. Cela ne libère pas d’espace disque. Cette app ne vide jamais la Corbeille. Fermez les apps concernées. La récupération reste possible uniquement si le fichier est encore dans la Corbeille."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "仅将您明确选择并检查的文件移到废纸篓。这不会释放磁盘空间。本应用绝不会清空废纸篓。请先关闭相关应用。只有文件仍在废纸篓中时才能恢复。"
+          }
+        }
+      }
+    },
+    "reviewTrash": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review selected files…"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "තෝරාගත් ගොනු සමාලෝචනය කරන්න…"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தேர்ந்தெடுத்த கோப்புகளைச் சரிபார்…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "चुनी हुई फ़ाइलें जाँचें…"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مراجعة الملفات المحددة…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vérifier les fichiers sélectionnés…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "检查所选文件…"
+          }
+        }
+      }
+    },
+    "confirmTitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move these exact files to Trash?"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මෙම නිශ්චිත ගොනු කුණු කූඩයට ගෙන යන්නද?"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இந்தக் குறிப்பிட்ட கோப்புகளைக் குப்பைக்கு நகர்த்தவா?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "इन सटीक फ़ाइलों को ट्रैश में भेजें?"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نقل هذه الملفات بعينها إلى سلة المهملات؟"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déplacer ces fichiers précis vers la Corbeille ?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "将这些确切的文件移到废纸篓？"
+          }
+        }
+      }
+    },
+    "reviewConsequences": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review every path and consequence. Changed, protected, or inaccessible items will be skipped. Unknown files may contain important personal data."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සෑම මාර්ගයක් සහ ප්‍රතිවිපාකයක්ම සමාලෝචනය කරන්න. වෙනස් වූ, ආරක්ෂිත හෝ ප්‍රවේශ නොහැකි අයිතම මඟහරියි. නොදන්නා ගොනුවල වැදගත් දත්ත තිබිය හැක."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ஒவ்வொரு பாதையையும் விளைவையும் சரிபார்க்கவும். மாற்றப்பட்ட, பாதுகாக்கப்பட்ட அல்லது அணுக முடியாத உருப்படிகள் தவிர்க்கப்படும். தெரியாத கோப்புகளில் முக்கியமான தரவு இருக்கலாம்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "हर पथ और परिणाम जाँचें। बदले हुए, सुरक्षित या अप्राप्य आइटम छोड़ दिए जाएँगे। अज्ञात फ़ाइलों में महत्वपूर्ण डेटा हो सकता है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "راجع كل مسار ونتائجه. ستُتخطى العناصر المتغيرة أو المحمية أو غير المتاحة. قد تحتوي الملفات غير المعروفة على بيانات مهمة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vérifiez chaque chemin et les conséquences. Les éléments modifiés, protégés ou inaccessibles seront ignorés. Les fichiers inconnus peuvent contenir des données importantes."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "请检查每个路径和删除后果。已更改、受保护或无法访问的项目将被跳过。未知文件可能包含重要数据。"
+          }
+        }
+      }
+    },
+    "moveToTrash": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move selected files to Trash"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "තෝරාගත් ගොනු කුණු කූඩයට ගෙන යන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தேர்ந்தெடுத்த கோப்புகளைக் குப்பைக்கு நகர்த்து"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "चुनी हुई फ़ाइलें ट्रैश में भेजें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نقل الملفات المحددة إلى السلة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déplacer la sélection vers la Corbeille"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "将所选文件移到废纸篓"
+          }
+        }
+      }
+    },
+    "deselectAll": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deselect all"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සියලු තේරීම් ඉවත් කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அனைத்துத் தேர்வுகளையும் நீக்கு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सभी चयन हटाएँ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إلغاء تحديد الكل"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tout désélectionner"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "取消全选"
+          }
+        }
+      }
+    },
+    "permanent": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Until removed"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ඉවත් කරන තුරු"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நீக்கும் வரை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "हटाने तक"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "حتى إزالة القاعدة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jusqu’à suppression de la règle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "直到移除规则"
+          }
+        }
+      }
+    },
+    "oneDay": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protect for 24 hours"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පැය 24ක් ආරක්ෂා කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "24 மணிநேரம் பாதுகாக்கவும்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "24 घंटे सुरक्षित रखें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "حماية لمدة 24 ساعة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Protéger pendant 24 heures"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "保护24小时"
+          }
+        }
+      }
+    },
+    "removeProtection": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove rule"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "රීතිය ඉවත් කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "விதியை நீக்கு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "नियम हटाएँ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إزالة القاعدة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Supprimer la règle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "移除规则"
+          }
+        }
+      }
+    },
+    "restore": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රතිසාධනය කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீட்டமை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्स्थापित करें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "استعادة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Restaurer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "恢复"
+          }
+        }
+      }
+    },
+    "restoreWarning": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore to the original path without overwriting existing files. If Trash has been emptied, recovery is unavailable."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පවතින ගොනු උඩින් නොලියා මුල් ස්ථානයට ප්‍රතිසාධනය කරන්න. කුණු කූඩය හිස් කර ඇත්නම් ප්‍රතිසාධනය කළ නොහැක."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இருக்கும் கோப்புகளை மேலெழுதாமல் அசல் இடத்திற்கு மீட்டமைக்கவும். குப்பை காலியாக்கப்பட்டிருந்தால் மீட்பு கிடைக்காது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "मौजूदा फ़ाइलों पर लिखे बिना मूल स्थान पर पुनर्स्थापित करें। ट्रैश खाली हो चुका है तो पुनर्प्राप्ति उपलब्ध नहीं है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الاستعادة إلى المسار الأصلي دون الكتابة فوق ملفات موجودة. لا يمكن الاستعادة بعد إفراغ السلة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Restaurer à l’emplacement d’origine sans écraser de fichier. Si la Corbeille a été vidée, la récupération est impossible."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "恢复到原始路径，不覆盖现有文件。如果废纸篓已被清空，则无法恢复。"
+          }
+        }
+      }
+    },
+    "duplicateGuidance": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exact SHA-256 duplicates. Choose copies individually and keep at least one. Hard links and cloud files are excluded. Shared APFS blocks cannot be identified."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "SHA-256 සමාන අනුපිටපත්. පිටපත් වෙන වෙනම තෝරා අවම වශයෙන් එකක් තබාගන්න. දෘඪ සබැඳි සහ වලාකුළු ගොනු බැහැර කරයි. APFS හවුල් කොටස් හඳුනාගත නොහැක."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "SHA-256 மூலம் துல்லியமான நகல்கள். தனித்தனியாகத் தேர்ந்தெடுத்து குறைந்தது ஒரு நகலை வைத்திருங்கள். கடின இணைப்புகள் மற்றும் மேகக் கோப்புகள் விலக்கப்படும். APFS பகிரப்பட்ட தொகுதிகளை அடையாளம் காண முடியாது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सटीक SHA-256 डुप्लिकेट। प्रतियाँ अलग-अलग चुनें और कम से कम एक रखें। हार्ड लिंक और क्लाउड फ़ाइलें शामिल नहीं हैं। APFS साझा ब्लॉक पहचाने नहीं जा सकते।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نسخ مطابقة باستخدام SHA-256. اختر النسخ فردياً واحتفظ بواحدة على الأقل. تُستبعد الروابط الصلبة والملفات السحابية. لا يمكن تحديد كتل APFS المشتركة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Doublons exacts par SHA-256. Choisissez chaque copie et conservez-en au moins une. Les liens physiques et fichiers cloud sont exclus. Les blocs APFS partagés ne sont pas identifiables."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "通过 SHA-256 检测完全相同的文件。请逐个选择副本并至少保留一个。硬链接和云端文件不参与比较。无法识别 APFS 共享块。"
+          }
+        }
+      }
+    },
+    "findDuplicates": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find exact duplicates"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නිශ්චිත අනුපිටපත් සොයන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "துல்லியமான நகல்களைக் கண்டறி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सटीक डुप्लिकेट खोजें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "البحث عن نسخ مطابقة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rechercher les doublons exacts"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "查找完全相同的文件"
+          }
+        }
+      }
+    },
+    "language": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "භාෂාව"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மொழி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "भाषा"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "اللغة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Langue"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "语言"
+          }
+        }
+      }
+    },
+    "showHidden": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show hidden files"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සැඟවුණු ගොනු පෙන්වන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மறைக்கப்பட்ட கோப்புகளைக் காட்டு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "छिपी फ़ाइलें दिखाएँ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إظهار الملفات المخفية"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Afficher les fichiers cachés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "显示隐藏文件"
+          }
+        }
+      }
+    },
+    "translationNotice": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Translations are drafts and require fluent-speaker review. Some text uses English fallback."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පරිවර්තන කෙටුම්පත් වන අතර චතුර කථිකයන්ගේ සමාලෝචනය අවශ්‍යයි."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மொழிபெயர்ப்புகள் வரைவுகள்; சரளமாகப் பேசுவோர் மதிப்பாய்வு செய்ய வேண்டும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अनुवाद प्रारूप हैं; धाराप्रवाह वक्ताओं की समीक्षा आवश्यक है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الترجمات مسودات وتحتاج إلى مراجعة متحدثين متمكنين."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Les traductions sont provisoires et doivent être relues par des locuteurs compétents."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "翻译为草稿，需要流利使用该语言的人员审核。"
+          }
+        }
+      }
+    },
+    "limitations": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folder cleanup, tool commands, live-use detection, and automatic system cleanup are intentionally unavailable. Unknown data is never selected automatically."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ෆෝල්ඩර පිරිසිදු කිරීම, මෙවලම් විධාන, සජීවී භාවිත හඳුනාගැනීම සහ ස්වයංක්‍රීය පද්ධති පිරිසිදු කිරීම නොමැත. නොදන්නා දත්ත ස්වයංක්‍රීයව තෝරන්නේ නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கோப்புறை சுத்தப்படுத்தல், கருவிக் கட்டளைகள், நேரடி பயன்பாடு கண்டறிதல் மற்றும் தானியங்கு அமைப்புச் சுத்தப்படுத்தல் இல்லை. தெரியாத தரவு தானாகத் தேர்ந்தெடுக்கப்படாது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "फ़ोल्डर सफ़ाई, टूल कमांड, सक्रिय उपयोग का पता लगाना और स्वचालित सिस्टम सफ़ाई उपलब्ध नहीं हैं। अज्ञात डेटा कभी अपने आप नहीं चुना जाता।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تنظيف المجلدات وأوامر الأدوات وكشف الاستخدام المباشر وتنظيف النظام تلقائياً غير متاحة. لا تُحدد البيانات غير المعروفة تلقائياً."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Le nettoyage des dossiers, les commandes d’outils, la détection d’utilisation active et le nettoyage automatique du système sont indisponibles. Les données inconnues ne sont jamais sélectionnées automatiquement."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "暂不提供文件夹清理、工具命令、实时使用检测和自动系统清理。绝不会自动选择未知数据。"
+          }
+        }
+      }
+    },
+    "getStarted": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get started"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ආරම්භ කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தொடங்கவும்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "शुरू करें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "البدء"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Commencer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "开始使用"
+          }
+        }
+      }
+    },
+    "error": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Operation could not complete"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ක්‍රියාව සම්පූර්ණ කළ නොහැක"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "செயலை முடிக்க முடியவில்லை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "कार्रवाई पूरी नहीं हो सकी"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تعذر إكمال العملية"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Impossible de terminer l’opération"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "无法完成操作"
+          }
+        }
+      }
+    },
+    "ok": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "හරි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சரி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ठीक है"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "موافق"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "OK"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "好"
+          }
+        }
+      }
+    },
+    "allocated": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allocated estimate"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "වෙන් කළ ඉඩ ඇස්තමේන්තුව"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ஒதுக்கப்பட்ட அளவின் மதிப்பீடு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "आवंटित स्थान का अनुमान"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تقدير المساحة المخصصة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Estimation de l’espace alloué"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "分配空间估计值"
+          }
+        }
+      }
+    },
+    "created": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Created"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නිර්මාණය කළ"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "உருவாக்கப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "बनाया गया"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تاريخ الإنشاء"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Création"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "创建时间"
+          }
+        }
+      }
+    },
+    "modified": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modified"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "වෙනස් කළ"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மாற்றப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "संशोधित"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تاريخ التعديل"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Modification"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "修改时间"
+          }
+        }
+      }
+    },
+    "opened": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last accessed (not necessarily opened)"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අවසන් ප්‍රවේශය (විවෘත කළ දිනයම නොවේ)"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கடைசியாக அணுகியது (திறந்த நேரமாக இருக்க வேண்டியதில்லை)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अंतिम पहुँच (ज़रूरी नहीं कि खोला गया हो)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "آخر وصول (ليس بالضرورة فتح الملف)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dernier accès (pas nécessairement une ouverture)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "最后访问时间（不一定是打开时间）"
+          }
+        }
+      }
+    },
+    "owner": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recognized cache owner"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "හඳුනාගත් හැඹිලි හිමිකරු"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அறியப்பட்ட தற்காலிகச் சேமிப்பு உரிமையாளர்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पहचाना गया कैश स्वामी"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مالك ذاكرة التخزين المؤقت المعروف"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Propriétaire du cache identifié"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "识别出的缓存所属应用"
+          }
+        }
+      }
+    },
+    "activeUse": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active use"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "දැනට භාවිතය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தற்போதைய பயன்பாடு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सक्रिय उपयोग"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الاستخدام النشط"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Utilisation active"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在使用"
+          }
+        }
+      }
+    },
+    "unavailable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unavailable / not established"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නොමැත / තහවුරු කර නැත"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கிடைக்கவில்லை / உறுதிப்படுத்தப்படவில்லை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अनुपलब्ध / प्रमाणित नहीं"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "غير متاح / لم يُثبت"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Indisponible / non établi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "不可用／未确认"
+          }
+        }
+      }
+    },
+    "recoveryNotice": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trash recovery is conditional. No recovery after Trash is emptied."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රතිසාධනය කොන්දේසි සහිතයි. කුණු කූඩය හිස් කළ පසු ප්‍රතිසාධනය නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீட்பு நிபந்தனைக்குட்பட்டது. குப்பை காலியான பிறகு மீட்க முடியாது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्प्राप्ति सशर्त है। ट्रैश खाली होने के बाद पुनर्प्राप्ति नहीं।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الاستعادة مشروطة. لا استعادة بعد إفراغ السلة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La récupération est conditionnelle et impossible après vidage de la Corbeille."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "恢复有条件。清空废纸篓后无法恢复。"
+          }
+        }
+      }
+    },
+    "preview": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick Look"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ඉක්මන් පෙරදසුන"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "விரைவுப் பார்வை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "त्वरित पूर्वावलोकन"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نظرة سريعة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Coup d’œil"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "快速查看"
+          }
+        }
+      }
+    },
+    "riskLevel.low": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අඩු"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "குறைவு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "कम"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "منخفض"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Faible"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "低"
+          }
+        }
+      }
+    },
+    "riskLevel.reviewRequired": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review required"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සමාලෝචනය අවශ්‍යයි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மதிப்பாய்வு தேவை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "समीक्षा आवश्यक"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تتطلب مراجعة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vérification requise"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "需要检查"
+          }
+        }
+      }
+    },
+    "riskLevel.protected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protected"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ආරක්ෂිතයි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பாதுகாக்கப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सुरक्षित"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "محمي"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Protégé"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "受保护"
+          }
+        }
+      }
+    },
+    "riskLevel.unknown": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නොදන්නා"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தெரியாதது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अज्ञात"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "غير معروف"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inconnu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "未知"
+          }
+        }
+      }
+    },
+    "risk.protected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A system restriction or protection rule prevents cleanup."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පද්ධති සීමාවක් හෝ ආරක්ෂණ රීතියක් පිරිසිදු කිරීම වළක්වයි."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அமைப்புக் கட்டுப்பாடு அல்லது பாதுகாப்பு விதி சுத்தப்படுத்தலைத் தடுக்கிறது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सिस्टम प्रतिबंध या सुरक्षा नियम सफ़ाई रोकता है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يمنع قيد في النظام أو قاعدة حماية التنظيف."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Une restriction système ou une règle de protection empêche le nettoyage."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "系统限制或保护规则阻止清理。"
+          }
+        }
+      }
+    },
+    "consequence.protected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leave this item in place."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මෙම අයිතමය එලෙසම තබන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இந்த உருப்படியை அப்படியே வைத்திருக்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "इस आइटम को यहीं रहने दें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "اترك هذا العنصر في مكانه."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Laissez cet élément en place."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "请保留此项目。"
+          }
+        }
+      }
+    },
+    "risk.special": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is a folder, link, package item, shared hard link, or cloud-managed item."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මෙය ෆෝල්ඩරයක්, සබැඳියක්, පැකේජ අයිතමයක්, දෘඪ සබැඳියක් හෝ වලාකුළු අයිතමයකි."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இது கோப்புறை, இணைப்பு, தொகுப்பு உருப்படி, கடின இணைப்பு அல்லது மேக உருப்படி."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "यह फ़ोल्डर, लिंक, पैकेज आइटम, हार्ड लिंक या क्लाउड आइटम है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "هذا مجلد أو رابط أو عنصر حزمة أو رابط صلب أو عنصر سحابي."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Il s’agit d’un dossier, lien, élément de paquet, lien physique ou fichier cloud."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "这是文件夹、链接、软件包项目、硬链接或云端管理的项目。"
+          }
+        }
+      }
+    },
+    "consequence.special": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removal could affect other locations, applications, or synchronized devices. Cleanup is blocked."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ඉවත් කිරීම වෙනත් ස්ථාන, යෙදුම් හෝ සමමුහුර්ත උපාංගවලට බලපෑ හැක. පිරිසිදු කිරීම අවහිරයි."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நீக்குதல் பிற இடங்கள், செயலிகள் அல்லது ஒத்திசைக்கப்பட்ட சாதனங்களைப் பாதிக்கலாம். சுத்தப்படுத்தல் தடுக்கப்பட்டது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "हटाने से अन्य स्थान, ऐप्स या सिंक किए गए डिवाइस प्रभावित हो सकते हैं। सफ़ाई अवरुद्ध है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "قد تؤثر الإزالة على مواقع أو تطبيقات أو أجهزة متزامنة أخرى. التنظيف محظور."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La suppression pourrait affecter d’autres emplacements, applications ou appareils synchronisés. Nettoyage bloqué."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "移除可能影响其他位置、应用程序或同步设备。已阻止清理。"
+          }
+        }
+      }
+    },
+    "risk.database": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This may contain application state or a database."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මෙහි යෙදුම් තත්ත්වය හෝ දත්ත සමුදායක් තිබිය හැක."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இதில் செயலி நிலை அல்லது தரவுத்தளம் இருக்கலாம்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "इसमें ऐप की स्थिति या डेटाबेस हो सकता है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "قد يحتوي هذا على حالة تطبيق أو قاعدة بيانات."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cet élément peut contenir l’état d’une application ou une base de données."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "此项目可能包含应用程序状态或数据库。"
+          }
+        }
+      }
+    },
+    "consequence.database": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deleting this item may lose application data. Cleanup is blocked."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මකා දැමීමෙන් යෙදුම් දත්ත නැතිවිය හැක. පිරිසිදු කිරීම අවහිරයි."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நீக்கினால் செயலித் தரவை இழக்கலாம். சுத்தப்படுத்தல் தடுக்கப்பட்டது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "हटाने से ऐप डेटा खो सकता है। सफ़ाई अवरुद्ध है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "قد يؤدي الحذف إلى فقدان بيانات التطبيق. التنظيف محظور."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La suppression peut perdre des données d’application. Nettoyage bloqué."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "删除可能导致应用程序数据丢失。已阻止清理。"
+          }
+        }
+      }
+    },
+    "risk.cache": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A recognized cache path may contain regenerable data. Active use and dependencies are not established."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "හඳුනාගත් හැඹිලි මාර්ගයක නැවත සෑදිය හැකි දත්ත තිබිය හැක. වත්මන් භාවිතය සහ පරායත්තතා තහවුරු කර නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அறியப்பட்ட தற்காலிகச் சேமிப்புப் பாதையில் மீண்டும் உருவாகும் தரவு இருக்கலாம். பயன்பாடு மற்றும் சார்புகள் உறுதிப்படுத்தப்படவில்லை."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पहचाने गए कैश पथ में दोबारा बनने वाला डेटा हो सकता है। सक्रिय उपयोग और निर्भरताएँ प्रमाणित नहीं हैं।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "قد يحتوي مسار تخزين مؤقت معروف على بيانات يمكن إعادة إنشائها. لم يُثبت الاستخدام النشط أو التبعيات."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Un chemin de cache reconnu peut contenir des données régénérables. L’utilisation active et les dépendances ne sont pas établies."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已识别的缓存路径可能包含可重新生成的数据，但无法确认是否正在使用或存在依赖关系。"
+          }
+        }
+      }
+    },
+    "consequence.cache": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close the owning app. Deletion may slow initial loads or require previews, builds, or downloads to be regenerated."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "හිමිකරු යෙදුම වසන්න. මකා දැමීමෙන් මුල් පැටවීම මන්දගාමී විය හැකි අතර පෙරදසුන්, ගොඩනැගීම් හෝ බාගැනීම් නැවත අවශ්‍ය විය හැක."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தொடர்புடைய செயலியை மூடவும். நீக்கினால் ஏற்றுதல் மெதுவாகலாம்; முன்னோட்டங்கள், கட்டமைப்புகள் அல்லது பதிவிறக்கங்களை மீண்டும் உருவாக்க வேண்டியிருக்கலாம்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "संबंधित ऐप बंद करें। हटाने से आरंभिक लोड धीमा हो सकता है या पूर्वावलोकन, बिल्ड या डाउनलोड दोबारा बनाने पड़ सकते हैं।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "أغلق التطبيق المالك. قد يبطئ الحذف التحميل الأولي أو يتطلب إعادة إنشاء معاينات أو عمليات بناء أو تنزيلات."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fermez l’application concernée. La suppression peut ralentir les premiers chargements ou nécessiter de régénérer aperçus, compilations ou téléchargements."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "请关闭所属应用。删除可能导致首次加载变慢，或需要重新生成预览、构建结果或下载内容。"
+          }
+        }
+      }
+    },
+    "risk.recent": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This file was recently modified, or its modification date is unavailable."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මෙම ගොනුව මෑතකදී වෙනස් කර ඇත, නැතහොත් වෙනස් කළ දිනය නොමැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இந்தக் கோப்பு சமீபத்தில் மாற்றப்பட்டது அல்லது மாற்றிய தேதி கிடைக்கவில்லை."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "यह फ़ाइल हाल ही में बदली गई है या संशोधन तारीख़ उपलब्ध नहीं है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "عُدّل هذا الملف مؤخراً أو تاريخ تعديله غير متاح."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ce fichier a été modifié récemment ou sa date de modification est indisponible."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "此文件最近被修改，或无法获取修改日期。"
+          }
+        }
+      }
+    },
+    "consequence.user": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deletion may remove personal or project data. Confirm you no longer need this exact file."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මකා දැමීමෙන් පෞද්ගලික හෝ ව්‍යාපෘති දත්ත නැතිවිය හැක. මෙම නිශ්චිත ගොනුව තවදුරටත් අවශ්‍ය නැති බව තහවුරු කරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நீக்கினால் தனிப்பட்ட அல்லது திட்டத் தரவை இழக்கலாம். இந்தக் கோப்பு தேவையில்லை என்பதை உறுதிசெய்யவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "हटाने से निजी या परियोजना डेटा खो सकता है। पुष्टि करें कि इस सटीक फ़ाइल की आवश्यकता नहीं है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "قد يزيل الحذف بيانات شخصية أو بيانات مشروع. تأكد من أنك لا تحتاج هذا الملف بعينه."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La suppression peut perdre des données personnelles ou de projet. Confirmez que ce fichier précis est inutile."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "删除可能导致个人或项目数据丢失。请确认不再需要这个确切的文件。"
+          }
+        }
+      }
+    },
+    "risk.unknown": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No positive cleanup rule establishes the purpose of this item."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මෙම අයිතමයේ අරමුණ තහවුරු කරන පිරිසිදු කිරීමේ රීතියක් නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இந்த உருப்படியின் நோக்கத்தை உறுதிப்படுத்தும் சுத்தப்படுத்தல் விதி இல்லை."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "इस आइटम का उद्देश्य स्थापित करने वाला कोई सफ़ाई नियम नहीं है।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "لا توجد قاعدة تنظيف تثبت الغرض من هذا العنصر."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucune règle de nettoyage ne permet d’établir l’usage de cet élément."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "没有明确的清理规则可以确认此项目的用途。"
+          }
+        }
+      }
+    },
+    "history.pending": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending / uncertain — inspect Trash manually"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අපේක්ෂිත / අවිනිශ්චිත — කුණු කූඩය පරීක්ෂා කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நிலுவை / உறுதியில்லை — குப்பையைச் சரிபார்க்கவும்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "लंबित / अनिश्चित — ट्रैश जाँचें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "معلق / غير مؤكد — افحص السلة يدوياً"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "En attente / incertain — inspectez la Corbeille"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "等待中／不确定 — 请手动检查废纸篓"
+          }
+        }
+      }
+    },
+    "history.trashed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moved to Trash"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "කුණු කූඩයට ගෙන ගියේය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "குப்பைக்கு நகர்த்தப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ट्रैश में भेजा गया"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نُقل إلى سلة المهملات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déplacé vers la Corbeille"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已移到废纸篓"
+          }
+        }
+      }
+    },
+    "history.skipped": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skipped / failed — inspect details"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මඟහැරිය / අසාර්ථකයි — විස්තර බලන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தவிர்க்கப்பட்டது / தோல்வி — விவரங்களைப் பார்க்கவும்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "छोड़ा गया / विफल — विवरण देखें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تم التخطي / فشل — راجع التفاصيل"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ignoré / échec — consultez les détails"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已跳过／失败 — 请查看详情"
+          }
+        }
+      }
+    },
+    "history.restoring": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore uncertain — inspect original path"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රතිසාධනය අවිනිශ්චිතයි — මුල් මාර්ගය පරීක්ෂා කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீட்பு உறுதியில்லை — அசல் பாதையைச் சரிபார்க்கவும்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्स्थापना अनिश्चित — मूल पथ जाँचें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الاستعادة غير مؤكدة — افحص المسار الأصلي"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Restauration incertaine — inspectez le chemin d’origine"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "恢复结果不确定 — 请检查原始路径"
+          }
+        }
+      }
+    },
+    "history.restored": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restored"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රතිසාධනය කළා"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீட்டமைக்கப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्स्थापित"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تمت الاستعادة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Restauré"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已恢复"
+          }
+        }
+      }
+    },
+    "state.idle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idle"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නිෂ්ක්‍රීයයි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "செயலற்றது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "निष्क्रिय"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "خامل"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inactif"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "空闲"
+          }
+        }
+      }
+    },
+    "state.preparing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සූදානම් වෙමින්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தயாராகிறது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "तैयारी"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "جارٍ التحضير"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Préparation"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "准备中"
+          }
+        }
+      }
+    },
+    "state.scanning": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scanning"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පරිලෝකනය කරමින්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வருடுகிறது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्कैन जारी"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "جارٍ الفحص"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Analyse"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "扫描中"
+          }
+        }
+      }
+    },
+    "state.paused": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paused"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "විරාමයේ"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இடைநிறுத்தப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "रुका हुआ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "متوقف مؤقتاً"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "En pause"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已暂停"
+          }
+        }
+      }
+    },
+    "state.completed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completed"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සම්පූර්ණයි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "முடிந்தது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पूरा"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مكتمل"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Terminé"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已完成"
+          }
+        }
+      }
+    },
+    "state.cancelled": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelled"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අවලංගුයි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ரத்துசெய்யப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "रद्द"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ملغى"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Annulé"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已取消"
+          }
+        }
+      }
+    },
+    "state.failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අසාර්ථකයි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தோல்வி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "विफल"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "فشل"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Échec"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "失败"
+          }
+        }
+      }
+    },
+    "category.applications": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applications"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "යෙදුම්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "செயலிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ऐप्स"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تطبيقات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Applications"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "应用程序"
+          }
+        }
+      }
+    },
+    "category.documents": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Documents"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ලේඛන"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ஆவணங்கள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "दस्तावेज़"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مستندات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Documents"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "文稿"
+          }
+        }
+      }
+    },
+    "category.images": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Images"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පින්තූර"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "படங்கள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "चित्र"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "صور"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Images"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "图片"
+          }
+        }
+      }
+    },
+    "category.videos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Videos"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "වීඩියෝ"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "காணொளிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "वीडियो"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "فيديو"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vidéos"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "视频"
+          }
+        }
+      }
+    },
+    "category.audio": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ශ්‍රව්‍ය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ஒலி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ऑडियो"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "صوت"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Audio"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "音频"
+          }
+        }
+      }
+    },
+    "category.archives": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archives"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සංරක්ෂිත ගොනු"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "காப்பகங்கள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "संग्रह"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "أرشيفات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Archives"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "压缩文件"
+          }
+        }
+      }
+    },
+    "category.installers": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downloaded installers"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "බාගත් ස්ථාපක"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பதிவிறக்கிய நிறுவிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डाउनलोड किए इंस्टॉलर"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "برامج تثبيت محملة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Programmes d’installation téléchargés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已下载的安装程序"
+          }
+        }
+      }
+    },
+    "category.caches": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temporary caches"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "තාවකාලික හැඹිලි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தற்காலிகச் சேமிப்புகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अस्थायी कैश"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بيانات تخزين مؤقت"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Caches temporaires"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "临时缓存"
+          }
+        }
+      }
+    },
+    "category.logs": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logs"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ලොග්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பதிவுகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "लॉग"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "سجلات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Journaux"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "日志"
+          }
+        }
+      }
+    },
+    "category.backups": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backups"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "උපස්ථ"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "காப்புப்பிரதிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "बैकअप"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نسخ احتياطية"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sauvegardes"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "备份"
+          }
+        }
+      }
+    },
+    "category.developer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Developer files"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සංවර්ධක ගොනු"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மேம்பாட்டுக் கோப்புகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डेवलपर फ़ाइलें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ملفات المطور"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fichiers de développement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "开发者文件"
+          }
+        }
+      }
+    },
+    "category.support": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Application support"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "යෙදුම් සහාය දත්ත"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "செயலி ஆதரவுத் தரவு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ऐप सहायता डेटा"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بيانات دعم التطبيقات"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Données d’application"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "应用程序支持数据"
+          }
+        }
+      }
+    },
+    "category.cloud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloud-managed files"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "වලාකුළු කළමනාකරණ ගොනු"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மேக நிர்வகிப்புக் கோப்புகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "क्लाउड प्रबंधित फ़ाइलें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ملفات تديرها السحابة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fichiers gérés dans le cloud"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "云端管理的文件"
+          }
+        }
+      }
+    },
+    "category.unknown": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown data"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නොදන්නා දත්ත"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தெரியாத தரவு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "अज्ञात डेटा"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بيانات غير معروفة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Données inconnues"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "未知数据"
+          }
+        }
+      }
+    },
+    "history.uncertain": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outcome uncertain — inspect Trash manually; do not retry automatically"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රතිඵලය අවිනිශ්චිතයි — කුණු කූඩය පරීක්ෂා කරන්න"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "முடிவு உறுதியில்லை — குப்பையைச் சரிபார்க்கவும்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "परिणाम अनिश्चित — ट्रैश जाँचें"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "النتيجة غير مؤكدة — افحص السلة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Résultat incertain — inspectez la Corbeille"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "结果不确定 — 请检查废纸篓"
+          }
+        }
+      }
+    },
+    "error.database": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local database unavailable. Cleanup is stopped. Preserve recovery data."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "දේශීය දත්ත සමුදාය නොමැත. පිරිසිදු කිරීම නවත්වා ඇත. ප්‍රතිසාධන දත්ත රැකගන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "உள்ளூர் தரவுத்தளம் கிடைக்கவில்லை. சுத்தப்படுத்தல் நிறுத்தப்பட்டது. மீட்புத் தரவைப் பாதுகாக்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्थानीय डेटाबेस अनुपलब्ध है। सफ़ाई रोकी गई है। पुनर्प्राप्ति डेटा सुरक्षित रखें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "قاعدة البيانات المحلية غير متاحة. توقف التنظيف. احتفظ ببيانات الاستعادة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Base locale indisponible. Nettoyage arrêté. Préservez les données de récupération."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "本地数据库不可用。已停止清理。请保留恢复数据。"
+          }
+        }
+      }
+    },
+    "error.scanRoot": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a real folder without symbolic-link ancestors."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සංකේත සබැඳි නොමැති සැබෑ ෆෝල්ඩරයක් තෝරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "குறியீட்டு இணைப்புகள் இல்லாத உண்மையான கோப்புறையைத் தேர்ந்தெடுக்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "प्रतीकात्मक लिंक के बिना वास्तविक फ़ोल्डर चुनें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "اختر مجلداً حقيقياً دون روابط رمزية في مساره."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Choisissez un vrai dossier sans lien symbolique dans son chemin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "请选择路径中不含符号链接的真实文件夹。"
+          }
+        }
+      }
+    },
+    "error.scanUnreadable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The folder cannot be read. Choose an accessible location."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ෆෝල්ඩරය කියවිය නොහැක. ප්‍රවේශ විය හැකි ස්ථානයක් තෝරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கோப்புறையைப் படிக்க முடியவில்லை. அணுகக்கூடிய இடத்தைத் தேர்ந்தெடுக்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "फ़ोल्डर पढ़ा नहीं जा सकता। सुलभ स्थान चुनें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تعذرت قراءة المجلد. اختر موقعاً متاحاً."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dossier illisible. Choisissez un emplacement accessible."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "无法读取文件夹。请选择可访问的位置。"
+          }
+        }
+      }
+    },
+    "error.busy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another operation is running. Wait for it to finish."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "වෙනත් ක්‍රියාවක් සිදුවෙයි. එය අවසන් වන තුරු රැඳී සිටින්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மற்றொரு செயல் நடைபெறுகிறது. அது முடியும் வரை காத்திருக்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "दूसरी कार्रवाई जारी है। उसके पूरा होने तक प्रतीक्षा करें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "عملية أخرى قيد التنفيذ. انتظر اكتمالها."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Une opération est en cours. Attendez sa fin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "另一项操作正在进行。请等待其完成。"
+          }
+        }
+      }
+    },
+    "error.protected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This item is protected or unsupported and was left untouched."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මෙය ආරක්ෂිත හෝ සහාය නොදක්වන අයිතමයකි. එය වෙනස් කර නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இந்த உருப்படி பாதுகாக்கப்பட்டது அல்லது ஆதரிக்கப்படவில்லை. மாற்றப்படவில்லை."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "यह आइटम सुरक्षित या असमर्थित है और बदला नहीं गया।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "هذا العنصر محمي أو غير مدعوم ولم يتم تغييره."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Élément protégé ou non pris en charge, laissé intact."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "此项目受保护或不受支持，未对其进行更改。"
+          }
+        }
+      }
+    },
+    "error.symlink": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The path contains a symbolic link. The item was skipped."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මාර්ගයේ සංකේත සබැඳියක් ඇත. අයිතමය මඟහැරියා."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "பாதையில் குறியீட்டு இணைப்பு உள்ளது. உருப்படி தவிர்க்கப்பட்டது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पथ में प्रतीकात्मक लिंक है। आइटम छोड़ दिया गया।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يحتوي المسار على رابط رمزي. تم تخطي العنصر."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lien symbolique dans le chemin. Élément ignoré."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "路径中包含符号链接。已跳过此项目。"
+          }
+        }
+      }
+    },
+    "error.changed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The file changed since inspection. It was skipped; scan and review it again."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පරීක්ෂාවෙන් පසු ගොනුව වෙනස් වී ඇත. මඟහැරියා; නැවත පරිලෝකනය කර සමාලෝචනය කරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சரிபார்த்த பின் கோப்பு மாறிவிட்டது. தவிர்க்கப்பட்டது; மீண்டும் வருடிச் சரிபார்க்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "जाँच के बाद फ़ाइल बदल गई। उसे छोड़ दिया गया; फिर स्कैन और समीक्षा करें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تغير الملف بعد فحصه. تم تخطيه؛ أعد الفحص والمراجعة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fichier modifié depuis l’inspection. Ignoré ; analysez-le et vérifiez-le à nouveau."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "文件在检查后已更改。已跳过；请重新扫描并检查。"
+          }
+        }
+      }
+    },
+    "error.permission": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The folder is not writable. Nothing was moved."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ෆෝල්ඩරයට ලිවිය නොහැක. කිසිවක් ගෙන ගියේ නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கோப்புறையில் எழுத முடியவில்லை. எதுவும் நகர்த்தப்படவில்லை."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "फ़ोल्डर लिखने योग्य नहीं है। कुछ नहीं हटाया गया।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المجلد غير قابل للكتابة. لم يُنقل شيء."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dossier non modifiable. Aucun déplacement effectué."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "无法写入此文件夹。未移动任何内容。"
+          }
+        }
+      }
+    },
+    "error.trashUncertain": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trash did not return recovery information. Inspect Trash manually; do not retry automatically."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "කුණු කූඩයෙන් ප්‍රතිසාධන තොරතුරු ලැබුණේ නැත. අතින් පරීක්ෂා කරන්න; ස්වයංක්‍රීයව නැවත නොකරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "குப்பை மீட்புத் தகவலை வழங்கவில்லை. கைமுறையாகச் சரிபார்க்கவும்; தானாக மீண்டும் முயல வேண்டாம்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ट्रैश ने पुनर्प्राप्ति जानकारी नहीं दी। ट्रैश जाँचें; अपने आप पुनः प्रयास न करें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "لم تُرجع السلة معلومات الاستعادة. افحصها يدوياً ولا تكرر تلقائياً."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Informations de récupération absentes. Inspectez la Corbeille ; ne réessayez pas automatiquement."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "废纸篓未返回恢复信息。请手动检查，切勿自动重试。"
+          }
+        }
+      }
+    },
+    "error.recoveryUnavailable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovery information is unavailable. Inspect Trash manually."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රතිසාධන තොරතුරු නොමැත. කුණු කූඩය අතින් පරීක්ෂා කරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீட்புத் தகவல் கிடைக்கவில்லை. குப்பையைக் கைமுறையாகச் சரிபார்க்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्प्राप्ति जानकारी अनुपलब्ध है। ट्रैश स्वयं जाँचें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "معلومات الاستعادة غير متاحة. افحص السلة يدوياً."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Informations de récupération indisponibles. Inspectez la Corbeille."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "恢复信息不可用。请手动检查废纸篓。"
+          }
+        }
+      }
+    },
+    "error.restoreChanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Trash item or original folder changed. Restore was refused."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "කුණු කූඩ අයිතමය හෝ මුල් ෆෝල්ඩරය වෙනස් වී ඇත. ප්‍රතිසාධනය ප්‍රතික්ෂේප කළා."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "குப்பை உருப்படி அல்லது அசல் கோப்புறை மாறிவிட்டது. மீட்பு மறுக்கப்பட்டது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ट्रैश आइटम या मूल फ़ोल्डर बदल गया है। पुनर्स्थापना रोकी गई।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تغير عنصر السلة أو المجلد الأصلي. رُفضت الاستعادة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Élément de Corbeille ou dossier d’origine modifié. Restauration refusée."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "废纸篓中的项目或原始文件夹已更改。已拒绝恢复。"
+          }
+        }
+      }
+    },
+    "error.conflict": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The original path exists or cannot be checked. No overwrite was attempted."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මුල් මාර්ගය පවතී හෝ පරීක්ෂා කළ නොහැක. උඩින් ලිවීමට උත්සාහ කළේ නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அசல் பாதை உள்ளது அல்லது சரிபார்க்க முடியவில்லை. மேலெழுத முயற்சிக்கவில்லை."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "मूल पथ मौजूद है या जाँचा नहीं जा सकता। उस पर लिखने का प्रयास नहीं हुआ।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المسار الأصلي موجود أو تعذر التحقق منه. لم تحدث محاولة استبدال."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Chemin d’origine existant ou invérifiable. Aucun écrasement tenté."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "原始路径已存在或无法检查。未尝试覆盖。"
+          }
+        }
+      }
+    },
+    "error.restoreUncertain": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore could not be verified. Inspect the original location before trying again."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රතිසාධනය තහවුරු කළ නොහැක. නැවත උත්සාහයට පෙර මුල් ස්ථානය පරීක්ෂා කරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீட்பை உறுதிப்படுத்த முடியவில்லை. மீண்டும் முயலும் முன் அசல் இடத்தைச் சரிபார்க்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्स्थापना सत्यापित नहीं हो सकी। फिर कोशिश से पहले मूल स्थान जाँचें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تعذر التحقق من الاستعادة. افحص الموقع الأصلي قبل المحاولة مجدداً."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Restauration non vérifiée. Inspectez l’emplacement d’origine avant de réessayer."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "无法验证恢复结果。重试前请检查原始位置。"
+          }
+        }
+      }
+    },
+    "error.duplicateLimit": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate detection is limited to 20,000 candidates. Scan a smaller folder."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අනුපිටපත් සෙවීම ගොනු 20,000කට සීමා වේ. කුඩා ෆෝල්ඩරයක් පරිලෝකනය කරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நகல் கண்டறிதல் 20,000 கோப்புகளுக்கு வரையறுக்கப்பட்டுள்ளது. சிறிய கோப்புறையை வருடவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डुप्लिकेट खोज 20,000 फ़ाइलों तक सीमित है। छोटा फ़ोल्डर स्कैन करें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "كشف التكرار محدود بعشرين ألف ملف. افحص مجلداً أصغر."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Détection limitée à 20 000 candidats. Analysez un dossier plus petit."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "重复检测最多支持20,000个候选文件。请扫描较小的文件夹。"
+          }
+        }
+      }
+    },
+    "message.pending": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Operation started; if interrupted, inspect Trash manually."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ක්‍රියාව ඇරඹුණි; බාධා වුවහොත් කුණු කූඩය පරීක්ෂා කරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "செயல் தொடங்கியது; தடைப்பட்டால் குப்பையைச் சரிபார்க்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "कार्रवाई शुरू हुई; बाधित होने पर ट्रैश जाँचें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بدأت العملية؛ افحص السلة يدوياً عند الانقطاع."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Opération démarrée ; inspectez la Corbeille en cas d’interruption."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "操作已开始；如中断，请手动检查废纸篓。"
+          }
+        }
+      }
+    },
+    "message.trashed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moved to Trash; disk space has not been reclaimed."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "කුණු කූඩයට ගෙන ගියේය; තැටි ඉඩ නිදහස් වී නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "குப்பைக்கு நகர்த்தப்பட்டது; வட்டு இடம் காலியாகவில்லை."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ट्रैश में भेजा गया; डिस्क स्थान खाली नहीं हुआ।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نُقل إلى السلة؛ لم تُحرر مساحة القرص."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déplacé vers la Corbeille ; aucun espace libéré."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已移到废纸篓；尚未释放磁盘空间。"
+          }
+        }
+      }
+    },
+    "message.restoring": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore started; inspect the original location if interrupted."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ප්‍රතිසාධනය ඇරඹුණි; බාධා වුවහොත් මුල් ස්ථානය පරීක්ෂා කරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீட்பு தொடங்கியது; தடைப்பட்டால் அசல் இடத்தைச் சரிபார்க்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्स्थापना शुरू हुई; बाधित होने पर मूल स्थान जाँचें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بدأت الاستعادة؛ افحص الموقع الأصلي عند الانقطاع."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Restauration démarrée ; inspectez le chemin d’origine si elle est interrompue."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "恢复已开始；如中断，请检查原始位置。"
+          }
+        }
+      }
+    },
+    "message.restored": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restored to the original location."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "මුල් ස්ථානයට ප්‍රතිසාධනය කළා."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அசல் இடத்திற்கு மீட்டமைக்கப்பட்டது."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "मूल स्थान पर पुनर्स्थापित किया गया।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تمت الاستعادة إلى الموقع الأصلي."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Restauré à l’emplacement d’origine."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已恢复到原始位置。"
+          }
+        }
+      }
+    },
+    "developerMode": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advanced developer mode"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "උසස් සංවර්ධක ප්‍රකාරය"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மேம்பட்ட உருவாக்குநர் முறை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "उन्नत डेवलपर मोड"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "وضع المطور المتقدم"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mode développeur avancé"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "高级开发者模式"
+          }
+        }
+      }
+    },
+    "associatedApplication": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Default application"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පෙරනිමි යෙදුම"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "இயல்புநிலைச் செயலி"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डिफ़ॉल्ट ऐप"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "التطبيق الافتراضي"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Application par défaut"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "默认应用程序"
+          }
+        }
+      }
+    },
+    "reused": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "metadata reused"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පාරදත්ත නැවත භාවිත කළා"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மெட்டாடேட்டா மீண்டும் பயன்படுத்தப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "मेटाडेटा पुनः उपयोग"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بيانات وصفية معاد استخدامها"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "métadonnées réutilisées"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已复用元数据"
+          }
+        }
+      }
+    },
+    "scanIssues": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan issues (up to 200 entries)"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පරිලෝකන ගැටලු (උපරිම 200)"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "வருடல் சிக்கல்கள் (அதிகபட்சம் 200)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्कैन समस्याएँ (अधिकतम 200)"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مشكلات الفحص (حتى 200)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Problèmes d’analyse (jusqu’à 200)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "扫描问题（最多200条）"
+          }
+        }
+      }
+    },
+    "group.browsers": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Browser Caches"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "බ්‍රවුසර හැඹිලි"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "உலாவி தற்காலிகச் சேமிப்பு"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ब्राउज़र कैश"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ذاكرة المتصفحات المؤقتة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Caches des navigateurs"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "浏览器缓存"
+          }
+        }
+      }
+    },
+    "group.creative": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creative Applications"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නිර්මාණ යෙදුම්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "படைப்புச் செயலிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "रचनात्मक ऐप्स"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "التطبيقات الإبداعية"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Applications créatives"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "创意应用程序"
+          }
+        }
+      }
+    },
+    "group.development": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Development Tools"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සංවර්ධන මෙවලම්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மேம்பாட்டுக் கருவிகள்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "डेवलपमेंट टूल"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "أدوات التطوير"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Outils de développement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "开发工具"
+          }
+        }
+      }
+    },
+    "regeneration": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regeneration"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නැවත සෑදීම"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீளுருவாக்கம்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्निर्माण"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إعادة الإنشاء"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Régénération"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "重新生成"
+          }
+        }
+      }
+    },
+    "mayRegenerate": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "May regenerate; dependencies are not established"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නැවත සෑදිය හැක; පරායත්තතා තහවුරු නැත"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீண்டும் உருவாகலாம்; சார்புகள் உறுதிப்படுத்தப்படவில்லை"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "दोबारा बन सकता है; निर्भरताएँ प्रमाणित नहीं"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "قد يُعاد إنشاؤه؛ التبعيات غير مثبتة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Peut être régénéré ; dépendances non établies"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "可能重新生成；依赖关系尚未确认"
+          }
+        }
+      }
+    },
+    "notRegenerable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regeneration is not established; may contain unique data"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "නැවත සෑදීම තහවුරු නැත; අනන්‍ය දත්ත තිබිය හැක"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மீளுருவாக்கம் உறுதியில்லை; தனிப்பட்ட தரவு இருக்கலாம்"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "पुनर्निर्माण प्रमाणित नहीं; अद्वितीय डेटा हो सकता है"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إعادة الإنشاء غير مثبتة؛ قد يحتوي بيانات فريدة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Régénération non établie ; données potentiellement uniques"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "无法确认是否可重新生成；可能包含唯一数据"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
