@@ -1,4 +1,5 @@
 import XCTest
+import Darwin
 @testable import SpaceMithraCore
 
 private struct Fixture {
@@ -353,7 +354,7 @@ extension PresentationTests {
 
 /// Injection stays in the test target and only mutates its explicitly isolated fixture.
 private actor FaultJournal: CleanupJournal {
-    enum Fault: Sendable { case pendingWrite, resultWrite, restoreWrite, replaceTrash, createConflict }
+    enum Fault: Sendable { case pendingWrite, resultWrite, restoreWrite, replaceTrash, createConflict, cancelledWrite }
     let catalog: Catalog
     let root: URL
     let fault: Fault
@@ -363,7 +364,7 @@ private actor FaultJournal: CleanupJournal {
     func saveHistory(_ entry: HistoryEntry) async throws {
         guard root.path.contains("/.test-fixtures/"), entry.record.path.hasPrefix(root.path + "/") else { throw StorageError.refused("Outside fixture") }
         switch (fault, entry.status) {
-        case (.pendingWrite, "pending"), (.resultWrite, "trashed"), (.restoreWrite, "restoring"):
+        case (.pendingWrite, "pending"), (.resultWrite, "trashed"), (.restoreWrite, "restoring"), (.cancelledWrite, "cancelled"):
             throw StorageError.database("Injected journal failure")
         default: break
         }
@@ -607,5 +608,283 @@ extension CoreTests {
         try await f.catalog.insert([b])
         let unknownType = try await DuplicateDetector().find(catalog: f.catalog) { _ in }
         XCTAssertTrue(unknownType.isEmpty)
+    }
+}
+
+extension CoreTests {
+    func testDuplicateReportContinuesWhenOneCandidateDisappears() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt")), c = try FileMetadata.read(f.file("c.txt"))
+        try await f.catalog.insert([a,b,c])
+        try FileManager.default.removeItem(atPath: c.path)
+        let report = try await DuplicateDetector().analyze(catalog: f.catalog) { _ in }
+        XCTAssertEqual(report.groups.count, 1)
+        XCTAssertEqual(report.groups.first?.files.map(\.path), [a.path,b.path])
+        XCTAssertEqual(report.skippedCount, 1); XCTAssertEqual(report.issues.first?.path, c.path)
+    }
+    func testDuplicateReportContinuesPastUnreadableFile() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        let denied = try f.file("c.txt")
+        try FileManager.default.setAttributes([.posixPermissions: 0], ofItemAtPath: denied.path)
+        defer { try? FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: denied.path) }
+        let c = try FileMetadata.read(denied)
+        try await f.catalog.insert([a,b,c])
+        let report = try await DuplicateDetector().analyze(catalog: f.catalog) { _ in }
+        XCTAssertEqual(report.groups.first?.files.count, 2)
+        XCTAssertEqual(report.skippedCount, 1)
+        XCTAssertEqual(report.issues.first?.path, c.path)
+    }
+    func testEarlierHashChangedDuringProgressIsRemovedFromResults() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt")), c = try FileMetadata.read(f.file("c.txt"))
+        try await f.catalog.insert([a,b,c])
+        let path = a.path
+        let report = try await DuplicateDetector().analyze(catalog: f.catalog) { checked in
+            if checked == 2 { try? Data("changed after hashing".utf8).write(to: URL(fileURLWithPath: path)) }
+        }
+        XCTAssertEqual(report.groups.first?.files.map(\.path), [b.path,c.path])
+        XCTAssertEqual(report.skippedCount, 1); XCTAssertEqual(report.issues.first?.path, a.path)
+    }
+    func testSecureDescriptorRejectsReplacedLeafAndSymbolicLinkAncestor() throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let url = try f.file("original/a.txt")
+        let record = try FileMetadata.read(url)
+        try FileManager.default.moveItem(at: url, to: f.root.appendingPathComponent("saved.txt"))
+        try FileManager.default.createSymbolicLink(at: url, withDestinationURL: f.root.appendingPathComponent("saved.txt"))
+        XCTAssertThrowsError(try SecureDuplicateHasher().openValidated(record))
+        try FileManager.default.removeItem(at: url)
+        try FileManager.default.moveItem(at: f.root.appendingPathComponent("saved.txt"), to: url)
+        let fresh = try FileMetadata.read(url)
+        try FileManager.default.moveItem(at: url.deletingLastPathComponent(), to: f.root.appendingPathComponent("moved"))
+        try FileManager.default.createSymbolicLink(at: f.root.appendingPathComponent("original"), withDestinationURL: f.root.appendingPathComponent("moved"))
+        XCTAssertThrowsError(try SecureDuplicateHasher().openValidated(fresh))
+        XCTAssertEqual(try String(contentsOfFile: f.root.appendingPathComponent("moved/a.txt").path, encoding: .utf8), "fixture data")
+    }
+    func testDuplicateCancellationDoesNotBecomeSkippedFileResult() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        try await f.catalog.insert([a,b])
+        let catalog = f.catalog
+        let task = Task {
+            try await DuplicateDetector().analyze(catalog: catalog) { _ in
+                withUnsafeCurrentTask { $0?.cancel() }
+            }
+        }
+        do { _ = try await task.value; XCTFail("Cancellation must abort analysis") }
+        catch is CancellationError {} catch { XCTFail("Unexpected error: \(error)") }
+    }
+}
+
+extension PresentationTests {
+    func testKnownDuplicatesAlreadyQueuedCannotAllBeApproved() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        let model = AppModel(); model.catalog = f.catalog; model.queue = [a,b]
+        model.duplicates = [DuplicateGroup(id: "same", files: [a,b])]
+        await model.prepareCleanupReview()
+        XCTAssertNil(model.cleanupReview); XCTAssertNotNil(model.error)
+        model.keep(b)
+        await model.prepareCleanupReview()
+        XCTAssertTrue(try XCTUnwrap(model.cleanupReview).canConfirm)
+    }
+    func testAnalysisBlocksSelectionAndGlobalCancelCancelsPreflight() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let file = try FileMetadata.read(f.file("a.txt"))
+        let model = AppModel(); model.catalog = f.catalog; model.progress.state = .completed; model.duplicateWorking = true
+        model.enqueue(file); XCTAssertTrue(model.queue.isEmpty)
+        model.duplicateWorking = false; model.queue = [file]
+        let gate = ReviewGate(catalog: f.catalog)
+        let task = Task { await model.prepareCleanupReview(using: gate) }
+        await gate.waitUntilEntered()
+        model.cancel(); await gate.release(); await task.value
+        XCTAssertNil(model.cleanupReview); XCTAssertNil(model.error)
+        XCTAssertFalse(model.working)
+    }
+}
+
+extension CoreTests {
+    func testDuplicateHashIncludesBytesBeyondOneMegabyte() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let prefix = String(repeating: "a", count: 1024 * 1024)
+        let a = try FileMetadata.read(f.file("a.bin", content: prefix + "x"))
+        let b = try FileMetadata.read(f.file("b.bin", content: prefix + "x"))
+        let c = try FileMetadata.read(f.file("c.bin", content: prefix + "y"))
+        try await f.catalog.insert([a,b,c])
+        let report = try await DuplicateDetector().analyze(catalog: f.catalog) { _ in }
+        XCTAssertEqual(report.groups.count, 1)
+        XCTAssertEqual(report.groups.first?.files.map(\.path), [a.path,b.path])
+        XCTAssertEqual(report.hashedCount, 3); XCTAssertEqual(report.skippedCount, 0)
+    }
+    func testSecureDescriptorRejectsFIFOReplacementWithoutWaitingForWriter() throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let url = try f.file("replaced.txt")
+        let record = try FileMetadata.read(url)
+        try FileManager.default.removeItem(at: url)
+        XCTAssertEqual(mkfifo(url.path, 0o600), 0)
+        // No writer exists: a blocking open would hang. NONBLOCK + fstat must reject it.
+        XCTAssertThrowsError(try SecureDuplicateHasher().openValidated(record))
+        var info = stat()
+        XCTAssertEqual(lstat(url.path, &info), 0)
+        XCTAssertEqual(info.st_mode & mode_t(S_IFMT), mode_t(S_IFIFO))
+    }
+}
+
+extension PresentationTests {
+    func testStartingThenCancellingAnalysisDoesNotDiscardKnownDuplicateGroups() throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        let model = AppModel(); model.catalog = f.catalog
+        model.duplicates = [DuplicateGroup(id: "known", files: [a,b])]
+        model.findDuplicates()
+        XCTAssertTrue(model.duplicateWorking)
+        XCTAssertEqual(model.duplicates.map(\.id), ["known"])
+        model.cancelDuplicates()
+        XCTAssertEqual(model.duplicates.map(\.id), ["known"])
+    }
+}
+
+private actor CleanupProgressLog {
+    private var states: [CleanupProgress] = []
+    func append(_ state: CleanupProgress) { states.append(state) }
+    func all() -> [CleanupProgress] { states }
+}
+private actor PendingCleanupGate: CleanupJournal {
+    let catalog: Catalog
+    private var gate: CheckedContinuation<Void, Never>?
+    private var entered = false
+    private var observers: [CheckedContinuation<Void, Never>] = []
+    init(catalog: Catalog) { self.catalog = catalog }
+    func protections() async throws -> [Protection] { try await catalog.protections() }
+    func history() async throws -> [HistoryEntry] { try await catalog.history() }
+    func saveHistory(_ entry: HistoryEntry) async throws {
+        try await catalog.saveHistory(entry)
+        if entry.status == "pending" {
+            await withCheckedContinuation { continuation in
+                gate = continuation; entered = true
+                observers.forEach { $0.resume() }; observers.removeAll()
+            }
+        }
+    }
+    func waitUntilEntered() async {
+        if entered { return }
+        await withCheckedContinuation { observers.append($0) }
+    }
+    func release() { gate?.resume(); gate = nil }
+}
+
+extension CoreTests {
+    func testCleanupCancellationBeforeFirstItemJournalsUntouchedSelection() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        let engine = CleanupEngine(catalog: f.catalog, operations: FixtureTrash(root: f.root))
+        let log = CleanupProgressLog()
+        let result = try await engine.clean(confirmed: [a,b]) { state in
+            await log.append(state)
+            if state.completed == 0 { await engine.requestCancellation() }
+        }
+        XCTAssertEqual(result.map(\.status), ["cancelled", "cancelled"])
+        XCTAssertTrue(FileManager.default.fileExists(atPath: a.path)); XCTAssertTrue(FileManager.default.fileExists(atPath: b.path))
+        let history = try await f.catalog.history(), states = await log.all()
+        XCTAssertEqual(history.count, 2); XCTAssertEqual(Set(history.map(\.session)).count, 1)
+        XCTAssertEqual(states.map(\.completed), [0,1,2])
+        XCTAssertEqual(states.last?.cancelled, 2); XCTAssertEqual(states.last?.moved, 0)
+    }
+    func testCleanupStopsBetweenJournaledItemsAndFreshBatchCanProceed() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt")), c = try FileMetadata.read(f.file("c.txt"))
+        let engine = CleanupEngine(catalog: f.catalog, operations: FixtureTrash(root: f.root))
+        let result = try await engine.clean(confirmed: [a,b,c]) { state in
+            if state.completed == 1 { await engine.requestCancellation() }
+        }
+        XCTAssertEqual(result.map(\.status), ["trashed", "cancelled", "cancelled"])
+        XCTAssertFalse(FileManager.default.fileExists(atPath: a.path))
+        XCTAssertEqual(try FileMetadata.identity(b.path), b.identity)
+        XCTAssertEqual(try FileMetadata.identity(c.path), c.identity)
+        let retry = try await engine.clean(confirmed: [b,c])
+        XCTAssertEqual(retry.map(\.status), ["trashed", "trashed"])
+        XCTAssertNotEqual(result.first?.session, retry.first?.session)
+    }
+    func testCancellationDuringPendingJournalPreventsTrash() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt"))
+        let journal = PendingCleanupGate(catalog: f.catalog)
+        let engine = CleanupEngine(catalog: journal, operations: FixtureTrash(root: f.root))
+        let task = Task { try await engine.clean(confirmed: [a]) }
+        await journal.waitUntilEntered()
+        await engine.requestCancellation(); await journal.release()
+        let result = try await task.value
+        XCTAssertEqual(result.first?.status, "cancelled")
+        XCTAssertEqual(try FileMetadata.identity(a.path), a.identity)
+        let history = try await f.catalog.history()
+        XCTAssertEqual(history.first?.status, "cancelled")
+        XCTAssertNil(history.first?.trashPath)
+    }
+    func testCancelledJournalFailureStopsWithoutMovingFiles() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt"))
+        let engine = CleanupEngine(catalog: FaultJournal(f, fault: .cancelledWrite), operations: FixtureTrash(root: f.root))
+        let token = CleanupCancellation(); token.cancel()
+        do { _ = try await engine.clean(confirmed: [a], cancellation: token); XCTFail("Must propagate cancellation journal failure") } catch {}
+        XCTAssertEqual(try FileMetadata.identity(a.path), a.identity)
+        let history = try await f.catalog.history()
+        XCTAssertTrue(history.isEmpty)
+    }
+}
+
+extension PresentationTests {
+    func testImmediateCleanupCancellationRetainsQueueForFreshReview() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        let engine = CleanupEngine(catalog: f.catalog, operations: FixtureTrash(root: f.root))
+        let model = AppModel(catalog: f.catalog, cleanup: engine)
+        model.queue = [a,b]
+        await model.prepareCleanupReview()
+        let review = try XCTUnwrap(model.cleanupReview)
+        let task = try XCTUnwrap(model.performCleanup(confirmed: review))
+        model.cancel()
+        await task.value
+        XCTAssertEqual(model.queue.map(\.path), [a.path,b.path])
+        XCTAssertEqual(model.cleanupProgress.cancelled, 2); XCTAssertEqual(model.cleanupProgress.moved, 0)
+        XCTAssertFalse(model.cleaning); XCTAssertFalse(model.working); XCTAssertNil(model.error)
+        XCTAssertFalse(model.isCurrentReview(review))
+        XCTAssertEqual(model.history.map(\.status), ["cancelled", "cancelled"])
+        XCTAssertEqual(try FileMetadata.identity(a.path), a.identity)
+    }
+    func testAlreadyCancelledCallerCannotMoveApprovedFile() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt"))
+        let engine = CleanupEngine(catalog: f.catalog, operations: FixtureTrash(root: f.root))
+        let task = Task { try await engine.clean(confirmed: [a]) }
+        task.cancel()
+        let result = try await task.value
+        XCTAssertEqual(result.first?.status, "cancelled")
+        XCTAssertEqual(try FileMetadata.identity(a.path), a.identity)
+    }
+}
+
+private struct CancellingFixtureTrash: TrashOperations {
+    let root: URL
+    let cancellation: CleanupCancellation
+    func trash(_ url: URL) throws -> URL {
+        let destination = try FixtureTrash(root: root).trash(url)
+        cancellation.cancel()
+        return destination
+    }
+    func restore(_ source: URL, to destination: URL) throws { try FixtureTrash(root: root).restore(source, to: destination) }
+}
+extension CoreTests {
+    func testCancellationDuringMoveStillJournalsSuccessfulCurrentItem() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        let token = CleanupCancellation()
+        let engine = CleanupEngine(catalog: f.catalog, operations: CancellingFixtureTrash(root: f.root, cancellation: token))
+        let results = try await engine.clean(confirmed: [a,b], cancellation: token)
+        XCTAssertEqual(results.map(\.status), ["trashed", "cancelled"])
+        XCTAssertNotNil(results.first?.trashPath); XCTAssertNotNil(results.first?.trashIdentity)
+        XCTAssertEqual(try FileMetadata.identity(b.path), b.identity)
+        let history = try await f.catalog.history()
+        XCTAssertEqual(history.first(where: { $0.record.path == a.path })?.status, "trashed")
+        XCTAssertEqual(history.first(where: { $0.record.path == b.path })?.status, "cancelled")
     }
 }

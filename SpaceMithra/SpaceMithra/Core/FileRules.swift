@@ -5,7 +5,10 @@ public enum FileMetadata {
     public static func identity(_ path: String) throws -> Identity {
         var info = stat()
         guard lstat(path, &info) == 0 else { throw POSIXError(POSIXErrorCode(rawValue: errno) ?? .EIO) }
-        return Identity(device: UInt64(info.st_dev), inode: UInt64(info.st_ino), size: Int64(info.st_size),
+        return identity(from: info)
+    }
+    static func identity(from info: stat) -> Identity {
+        Identity(device: UInt64(UInt32(bitPattern: info.st_dev)), inode: UInt64(info.st_ino), size: Int64(info.st_size),
                         modified: Double(info.st_mtimespec.tv_sec) + Double(info.st_mtimespec.tv_nsec) / 1e9,
                         changed: Double(info.st_ctimespec.tv_sec) + Double(info.st_ctimespec.tv_nsec) / 1e9,
                         links: UInt64(info.st_nlink))

@@ -35,3 +35,17 @@ Protection rules bind exact normalized paths and explicit descendant boundaries;
 The recovery screen performs read-only, timestamped inspections of recorded Trash identities and original destinations. Missing Trash paths, changed identities or symbolic-link paths, occupied original locations and unverified permissions disable Restore. Inspection does not change historical operation outcomes: a file that was successfully moved remains historically moved even if Trash was later emptied. Availability is only a snapshot and does not authorize a filesystem operation; the restore engine independently revalidates after confirmation.
 
 Preflight can be cancelled while awaiting journal protection rules or between metadata checks. Cancellation cannot persist a cleanup entry, create an approval, or move a file. An in-progress filesystem metadata syscall itself is not interruptible.
+
+## Duplicate content reads
+
+Duplicate hashing uses validated read-only file descriptors, with no-follow openat traversal of all parent components and the leaf. A FIFO replacement cannot block waiting for a writer because the leaf is opened nonblocking and fstat must establish the exact recorded regular-file identity before any content is read. Reads stop at the scanned length even if a file grows. Changed or unreadable candidates are skipped and reported; cancellation is propagated rather than converted into a skipped-file result. Files whose earlier hashes become stale are removed before results are displayed.
+
+These descriptor checks protect duplicate reads. They do not remove the separately documented Foundation path race in Trash/restore operations. Both duplicate results and recovery availability remain time-limited snapshots. No copy is selected automatically, and known groups must retain an unselected copy at review and confirmation.
+
+## Cleanup cancellation
+
+Cancellation is a request to stop at a safe boundary, not an interruption of Foundation Trash. A lock-protected token accepts requests before the worker starts and while validation is running. The engine checks before starting an item, after journal/permission-rule suspensions, and immediately before its final validation-and-move sequence. Once a move begins, it completes and its actual result is journaled before the next item is considered. Requests arriving after the last checkpoint can therefore still allow the current item to finish.
+
+Every remaining approved record is journaled as cancelled without a Trash attempt. These records stay in the queue, but their old review approval is discarded. Retrying requires a new preflight and explicit confirmation. Recording cancellations can take time for a large batch; the stopping indicator remains visible until journaling finishes. A failed journal write still aborts the batch and surfaces an error rather than falsely reporting a fully recorded cancellation.
+
+Caller-task cancellation is also observed at checkpoints, but the normal UI uses the explicit token rather than cancelling the task that must finish journaling. Neither cleanup nor cancellation permanently deletes data or empties Trash.

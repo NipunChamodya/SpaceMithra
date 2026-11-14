@@ -25,3 +25,21 @@ Initial native app: SQLite-backed scans, folder exploration, risk/protection rul
 - Allow cancelling preflight while it is waiting or checking files, without a late approval appearing.
 - Exclude cloud-classified and unestablished file types from duplicate hashing; recheck metadata before opening content.
 - Expand to 42 passing tests and 173 localization keys across seven languages.
+
+### Duplicate-analysis safety follow-up
+
+- Read through validated descriptors with no-follow traversal of every path component and nonblocking rejection of special-file replacements.
+- Bound content reads to the scanned length and validate descriptor/path identity after hashing.
+- Continue past per-file failures with bounded issue details and explicit partial-result warnings.
+- Remove stale earlier hashes during final result validation.
+- Preserve known duplicate-copy safeguards across cancelled refreshes and reject approval of every known copy, including previously queued items.
+- Route the global Cancel command to active preflight or duplicate analysis before scan cancellation.
+- Expand to 52 passing tests and 177 localization keys in seven languages.
+
+### Cleanup cancellation and progress follow-up
+
+- Show cleanup progress and route Cancel / Cmd-. to the active cleanup batch.
+- Observe cancellation at safe checkpoints; finish and journal any move already underway.
+- Record unstarted items as cancelled without attempting a move, and retain them in the queue for fresh review.
+- Use a lock-protected cancellation token so an immediate request cannot be lost before the worker starts.
+- Cover journal failures and cancellation during a move; expand to 59 passing tests and 181 keys across seven languages.

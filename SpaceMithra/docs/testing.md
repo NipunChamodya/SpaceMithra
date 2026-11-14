@@ -8,8 +8,8 @@ Recorded 2026-11-14 on the available Apple Silicon host running macOS 26.6.2, us
 |---|---|
 | Native Debug build | Passed during implementation |
 | Final universal Release build | Passed, arm64 + x86_64 |
-| Core + presentation XCTest suite | 42 tests passed, 0 failures (recovery-availability checkpoint) |
-| Localization coverage | 173 keys × 7 languages; dynamic key families and literal UI keys checked |
+| Core + presentation XCTest suite | 59 tests passed, 0 failures (cleanup-cancellation checkpoint) |
+| Localization coverage | 181 keys × 7 languages; dynamic key families and literal UI keys checked |
 | Localization fallback | Tested using an isolated synthetic bundle with a missing Sinhala key and unsupported locale |
 | Local signature verification | Ad hoc signature verifies; not Developer ID notarized |
 | ZIP checksum | SHA-256 verified after packaging |
@@ -88,3 +88,25 @@ RecoveryInspector never mutates journal entries or files. It reports available-a
 The new app is built separately with `scripts/release.sh build-recovery`, at `build-recovery/Build/Products/Release/SpaceMithra.app`. The release ZIP is refreshed without replacing older running copies.
 
 The final recovery build passed its isolated Launch Services startup smoke check: a visible window and initialized test database were reported in **1.65 seconds**, then the test app exited successfully. A separate temporary bundle identity was used so the user's running copy remained untouched. The universal app signature, ZIP SHA-256 and 173-key/seven-language coverage checks also passed. This does not validate interactive VoiceOver or actual system Trash on unsupported/unavailable test hardware.
+
+## Duplicate-analysis safety follow-up
+
+Ten additional tests cover missing candidates, unreadable candidates, earlier hashes becoming stale during progress, leaf and ancestor symlink replacement, cancellation propagation, previously queued copies requiring a keeper, selection exclusion during analysis, global preflight cancellation, content beyond a 1 MiB buffer boundary, nonblocking FIFO rejection and preservation of known groups across a cancelled refresh. All **52 tests pass**, with the final run taking about **3.24 seconds**. That run scanned the 3,000-file synthetic fixture in about **1.83 seconds**; this is a single-host sample, not a full-volume benchmark.
+
+SecureDuplicateHasher opens parents with `openat` plus `O_DIRECTORY | O_NOFOLLOW`, and the leaf with `O_NOFOLLOW | O_NONBLOCK`. It validates the opened regular-file descriptor using fstat before reading, reads no more than the recorded length using a 1 MiB buffer, then compares descriptor and path identity again. Results are grouped by length and SHA-256 digest and all hashed records are validated again before publication. A per-file failure does not suppress valid groups from other readable files; up to 200 issue details are retained, with a full skipped-file count. Catalog errors, candidate-limit errors and cancellation still stop analysis explicitly.
+
+The native UI shows partial-result warnings, keeps one copy of known groups out of approval, and blocks new selection/cleanup while analysis is active. This is snapshot validation, not an atomic filesystem snapshot. Cleanup still independently revalidates every exact approved record before Trash. No permanent deletion or shell cleanup command was introduced.
+
+The updated universal app is built using `scripts/release.sh build-duplicates` at `build-duplicates/Build/Products/Release/SpaceMithra.app`. Older running copies remain untouched. Actual system Trash, supported hardware/OS runtime, interactive UI and accessibility acceptance gates remain open.
+
+The final duplicate-analysis app passed its isolated Launch Services smoke check with a visible window and initialized test database in **1.53 seconds**, then exited. The actual release bundle's ad hoc signature verifies, its ZIP checksum passes, and all 177 localization keys are present in seven languages. The smoke copy used a separate bundle identity and isolated data; the user's running app was not changed. Interactive UI, accessibility, system Trash and supported-hardware/OS acceptance remain separate release gates.
+
+## Cleanup cancellation and progress follow-up
+
+Seven new tests bring the suite to **59 passing tests** (about 4.02 seconds in the checkpoint run). They cover cancellation before the first item, between completed items, during a suspended pending journal write, failure to journal a cancelled item, immediate presentation-layer cancellation before the worker starts, an already-cancelled caller task, and cancellation triggered inside a successful fixture move. The tests verify monotonic processed counts, per-result counts, unchanged remaining identities, durable outcomes, cancellation reset on a fresh batch, invalidation of prior approval and retention of unstarted records in the queue. All moves remain fixture-only; SystemTrash is not invoked in tests.
+
+A progress callback runs only after an item's terminal status has been saved. The operation already underway is not labelled cancelled if it actually moved. Cancellation tokens carry request state across actor scheduling, preventing a race in which the user cancels before the cleanup actor has started. The UI does not cancel the journaling task itself.
+
+The follow-up universal release is built using `scripts/release.sh build-cleanup` at `build-cleanup/Build/Products/Release/SpaceMithra.app`. The ZIP is refreshed. The previous running app is not overwritten. UI automation, VoiceOver, actual system Trash, macOS 13/Intel runtime and independent safety review remain release gates.
+
+The final cleanup-progress app passed its isolated Launch Services startup smoke check with a visible window and initialized test database in **1.95 seconds**, then exited. Its actual universal release signature and ZIP SHA-256 verification passed, along with all 181 localization keys in seven languages. The test copy used isolated data and a separate bundle identity; the user's running app was not replaced. Startup verification does not validate interactive cancellation or VoiceOver, which remain manual/desktop-automation acceptance work.

@@ -21,8 +21,8 @@ The app is at `build/Build/Products/Debug/SpaceMithra.app`. Development builds a
 - Folder columns, breadcrumbs, search, category/name/size/date sorting, hidden files, file metadata, Finder reveal and Quick Look.
 - Biggest-files filters, recognized cache owners grouped by discovered paths, developer storage inspection, deterministic risk explanations.
 - Individual Keep/Clean/Protect, persistent exact-path and descendant rules, 24-hour protection, explicit review queue spanning scans, read-only preflight and immutable confirmation snapshots and cancellable preflight.
-- Identity revalidation, durable per-operation journal, Move to Trash without permanent-delete fallback, recovery with conflict checks and history grouped by cleanup session, with timestamped recovery availability and conflict checks.
-- SHA-256 duplicate detection with bounded candidate count and no automatic duplicate selection.
+- Identity revalidation, durable per-operation journal, Move to Trash without permanent-delete fallback, batch progress and safe cancellation, recovery with conflict checks and history grouped by cleanup session, with timestamped recovery availability and conflict checks.
+- SHA-256 duplicate detection with bounded candidate count, descriptor-validated reads, partial-error reporting, and no automatic duplicate selection.
 - Interactive treemap, volume usage and local scan totals over time.
 - Seven-language string catalog, Sinhala default, Arabic RTL, standard keyboard controls and native accessibility semantics.
 
@@ -50,7 +50,7 @@ See [test results and measurements](docs/testing.md), [architecture and checklis
 
 - Draft translations require fluent-speaker review. Filesystem/system errors may use the operating system’s language.
 - A fresh scan replaces the previous browsable catalog. The queue and recovery journal retain their file records. Rescans enumerate the tree and reuse metadata for unchanged identities; filesystem-event monitoring is not implemented.
-- Duplicate detection is limited to 20,000 candidates and compares full SHA-256 content hashes. It does not identify APFS shared extents, visually similar images, or cloud-only content.
+- Duplicate detection is limited to 20,000 candidates and compares file length plus full SHA-256 content hashes. Changed/unreadable files are reported and skipped; issue details are capped at 200. It does not identify APFS shared extents, visually similar images, or cloud-only content.
 - Charts show bounded current-page data and explicitly disclose partial results. Scan history totals are not comparable when roots differ.
 - No automatic tool commands, folder cleanup, active-use detection, clone accounting, or post-Trash free-space claims. Developer storage paths are inspected, not forcibly removed.
 - Foundation path APIs cannot provide a race-free inode-bound Trash transaction. A hostile process swapping paths during the final call remains a limitation.

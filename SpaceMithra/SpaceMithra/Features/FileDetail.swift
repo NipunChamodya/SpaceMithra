@@ -33,7 +33,7 @@ struct FileDetail: View {
                 if !file.isDirectory && !file.isSymlink { Button(model.text("preview")) { PreviewController.shared.show(URL(fileURLWithPath: file.path)) } }
                 HStack {
                     Button(model.text("keep")) { model.keep(file) }
-                    Button(model.text("clean")) { model.enqueue(file) }.disabled(!model.assessment(file).eligible || model.scanning || model.working)
+                    Button(model.text("clean")) { model.enqueue(file) }.disabled(!model.assessment(file).eligible || model.scanning || model.working || model.duplicateWorking)
                 }
                 Menu(model.text("protect")) {
                     Button(model.text("permanent")) { model.protect(file) }

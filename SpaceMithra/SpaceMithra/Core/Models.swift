@@ -87,3 +87,24 @@ public struct ScanIssue: Identifiable, Sendable {
     public var path: String
     public var message: String
 }
+
+public struct CleanupProgress: Sendable {
+    public var total: Int
+    public var completed = 0
+    public var moved = 0
+    public var skipped = 0
+    public var uncertain = 0
+    public var cancelled = 0
+    public var currentPath = ""
+    public init(total: Int) { self.total = total }
+}
+
+/// Lock-protected request state only; safe to request before an actor starts a batch.
+/// No filesystem operation is interrupted by this token.
+public final class CleanupCancellation: @unchecked Sendable {
+    private let lock = NSLock()
+    private var requested = false
+    public init() {}
+    public func cancel() { lock.lock(); requested = true; lock.unlock() }
+    public var isCancelled: Bool { lock.lock(); defer { lock.unlock() }; return requested }
+}

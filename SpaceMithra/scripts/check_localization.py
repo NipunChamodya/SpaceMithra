@@ -11,7 +11,7 @@ for family,values in {
     'recoveryCheck.':['available','missing','changed','conflict','unverified','notApplicable'],
     'state.':['idle','preparing','scanning','paused','completed','cancelled','failed'],
     'riskLevel.':['low','reviewRequired','protected','unknown'],
-    'history.':['pending','trashed','skipped','uncertain','restoring','restored'],
+    'history.':['pending','trashed','skipped','uncertain','restoring','restored','cancelled'],
     'category.':['applications','documents','images','videos','audio','archives','installers','caches','logs','backups','developer','support','cloud','unknown'],
 }.items():
     for value in values: assert family+value in catalog['strings']

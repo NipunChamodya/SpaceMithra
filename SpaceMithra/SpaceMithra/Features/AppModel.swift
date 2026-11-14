@@ -31,6 +31,11 @@ import SpaceMithraCore
     @Published var showHidden = false
     @Published var error: String?
     @Published var working = false
+    @Published private(set) var cleaning = false
+    @Published private(set) var cleanupCancellationRequested = false
+    @Published private(set) var cleanupProgress = CleanupProgress(total: 0)
+    @Published var duplicateIssues: [ScanIssue] = []
+    @Published var duplicateSkipped = 0
     @Published var duplicateCount = 0
     @Published var page = 0
     @Published var hasMore = false
@@ -42,12 +47,16 @@ import SpaceMithraCore
     @AppStorage("language") var language = "si"
     private let scanner = StorageScanner()
     private var cleanup: CleanupEngine?
+    private var cleanupCancellation: CleanupCancellation?
     private var scanTask: Task<Void, Never>?
     private var duplicateTask: Task<Void, Never>?
     private var reviewTask: Task<CleanupReview, Error>?
     private var recoveryCheckID = UUID()
     private var scope: URL?
     private var refreshID = UUID()
+    init(catalog: Catalog? = nil, cleanup: CleanupEngine? = nil) {
+        self.catalog = catalog; self.cleanup = cleanup
+    }
     var selected: FileRecord? { rows.first { $0.path == selection } ?? queue.first { $0.path == selection } }
     var scanning: Bool { [.preparing, .scanning, .paused].contains(progress.state) }
     var historySessions: [CleanupHistorySession] { CleanupHistorySession.group(history) }
@@ -103,7 +112,7 @@ import SpaceMithraCore
         guard !scanning, !working, !duplicateWorking, let catalog else { return }
         scope?.stopAccessingSecurityScopedResource(); scope = nil
         if url.startAccessingSecurityScopedResource() { scope = url }
-        root = url; folder = url.path; section = "explorer"; rows = []; selection = nil; duplicates = []; page = 0
+        root = url; folder = url.path; section = "explorer"; rows = []; selection = nil; duplicates = []; duplicateIssues = []; duplicateSkipped = 0; page = 0
         progress = ScanProgress(); progress.state = .preparing
         scanTask = Task {
             do {
@@ -115,7 +124,12 @@ import SpaceMithraCore
         }
     }
     func pause() { let value = progress.state != .paused; Task { await scanner.pause(value) } }
-    func cancel() { Task { await scanner.cancel() } }
+    func cancel() {
+        if cleaning { cancelCleanup() }
+        else if preparingReview { cancelCleanupReview() }
+        else if duplicateWorking { cancelDuplicates() }
+        else { Task { await scanner.cancel() } }
+    }
     func navigate(_ path: String) { folder = path; section = "explorer"; selection = nil; page = 0; Task { await refresh() } }
     func switchSection(_ value: String) { section = value; storageGroup = nil; selection = nil; page = 0; Task { await refresh(); if value == "recovery" { await refreshRecoveryAvailability() } } }
     func refresh() async {
@@ -152,7 +166,7 @@ import SpaceMithraCore
     }
     func assessment(_ file: FileRecord) -> Assessment { RiskEngine.assess(file, protections: protections) }
     func enqueue(_ file: FileRecord) {
-        guard !scanning, !working, progress.state == .completed, assessment(file).eligible, !queue.contains(where: { $0.path == file.path }) else { return }
+        guard !scanning, !working, !duplicateWorking, progress.state == .completed, assessment(file).eligible, !queue.contains(where: { $0.path == file.path }) else { return }
         // The same rule applies from every screen, including bulk page selection.
         for group in duplicates where group.files.contains(where: { $0.path == file.path }) {
             let selected = Set(queue.map(\.path)).union([file.path])
@@ -173,10 +187,11 @@ import SpaceMithraCore
         Task { do { try await catalog?.removeProtection(rule.id); try await loadPersistent() } catch { self.error = describe(error) } }
     }
     func prepareCleanupReview(using journal: (any CleanupJournal)? = nil) async {
-        guard !scanning, !working, let source = journal ?? catalog else { return }
+        guard !scanning, !working, !duplicateWorking, let source = journal ?? catalog else { return }
         working = true; preparingReview = true; cleanupReview = nil
         defer { working = false; preparingReview = false; reviewTask = nil }
         let selected = queue
+        guard preservesDuplicateCopy(selected) else { self.error = text("duplicate.keepOne"); return }
         let task = Task { try await CleanupReviewer().review(selected, journal: source) }
         reviewTask = task
         do {
@@ -199,20 +214,39 @@ import SpaceMithraCore
         } catch is CancellationError {
         } catch { if recoveryCheckID == token { self.error = describe(error) } }
     }
-    func isCurrentReview(_ review: CleanupReview) -> Bool {
-        cleanupReview?.id == review.id && review.canConfirm && review.records == queue
+    private func preservesDuplicateCopy(_ records: [FileRecord]) -> Bool {
+        let paths = Set(records.map(\.path))
+        return !duplicates.contains { $0.files.count > 1 && $0.files.allSatisfy { paths.contains($0.path) } }
     }
-    func performCleanup(confirmed review: CleanupReview) {
-        guard !scanning, !working, let cleanup else { return }
-        guard isCurrentReview(review) else { self.error = text("error.changed"); return }
+    func isCurrentReview(_ review: CleanupReview) -> Bool {
+        cleanupReview?.id == review.id && review.canConfirm && review.records == queue && preservesDuplicateCopy(review.records)
+    }
+    @discardableResult
+    func performCleanup(confirmed review: CleanupReview) -> Task<Void, Never>? {
+        guard !scanning, !working, !duplicateWorking, let cleanup else { return nil }
+        guard isCurrentReview(review) else { self.error = text("error.changed"); return nil }
         let approved = review.records
         cleanupReview = nil
-        working = true
-        Task {
-            defer { working = false }
-            do { _ = try await cleanup.clean(confirmed: approved); queue.removeAll(); try await loadPersistent(); section = "recovery" }
+        let cancellation = CleanupCancellation(); cleanupCancellation = cancellation
+        working = true; cleaning = true; cleanupCancellationRequested = false
+        cleanupProgress = CleanupProgress(total: approved.count)
+        return Task {
+            defer { working = false; cleaning = false; cleanupCancellation = nil }
+            do {
+                let results = try await cleanup.clean(confirmed: approved, cancellation: cancellation) { [weak self] state in
+                    await MainActor.run { self?.cleanupProgress = state }
+                }
+                let cancelled = Set(results.filter { $0.status == "cancelled" }.map { $0.record.path })
+                queue.removeAll { !cancelled.contains($0.path) }
+                try await loadPersistent(); section = "recovery"
+            }
             catch { self.error = describe(error); try? await loadPersistent() }
         }
+    }
+    func cancelCleanup() {
+        guard cleaning, !cleanupCancellationRequested else { return }
+        cleanupCancellationRequested = true
+        cleanupCancellation?.cancel()
     }
     func restore(_ entry: HistoryEntry) {
         guard !working, let cleanup else { return }
@@ -224,11 +258,14 @@ import SpaceMithraCore
         }
     }
     func findDuplicates() {
-        guard !scanning, !duplicateWorking, let catalog else { return }
-        duplicateWorking = true; duplicateCount = 0
+        guard !scanning, !working, !duplicateWorking, let catalog else { return }
+        duplicateWorking = true; duplicateCount = 0; duplicateIssues = []; duplicateSkipped = 0
         duplicateTask = Task {
             defer { duplicateWorking = false }
-            do { duplicates = try await DuplicateDetector().find(catalog: catalog) { [weak self] count in await MainActor.run { self?.duplicateCount = count } } }
+            do {
+                let report = try await DuplicateDetector().analyze(catalog: catalog) { [weak self] count in await MainActor.run { self?.duplicateCount = count } }
+                duplicates = report.groups; duplicateIssues = report.issues; duplicateSkipped = report.skippedCount
+            }
             catch is CancellationError {} catch { self.error = describe(error) }
         }
     }

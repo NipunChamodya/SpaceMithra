@@ -6158,6 +6158,382 @@
         }
       }
     },
+    "history.cancelled": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelled before moving"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ගෙන යාමට පෙර අවලංගු කළා"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "நகர்த்தும் முன் ரத்துசெய்யப்பட்டது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "भेजने से पहले रद्द"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "أُلغي قبل النقل"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Annulé avant déplacement"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "移动前已取消"
+          }
+        }
+      }
+    },
+    "message.cancelled": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleanup was cancelled. No move was attempted for this item. Review again before retrying."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පිරිසිදු කිරීම අවලංගු කළා. මෙම අයිතමය ගෙන යාමට උත්සාහ කළේ නැත. නැවත උත්සාහයට පෙර සමාලෝචනය කරන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சுத்தப்படுத்தல் ரத்துசெய்யப்பட்டது. இந்த உருப்படியை நகர்த்த முயற்சிக்கவில்லை. மீண்டும் முயலும் முன் சரிபார்க்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सफ़ाई रद्द कर दी गई। इस आइटम को भेजने का प्रयास नहीं हुआ। दोबारा प्रयास से पहले समीक्षा करें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "أُلغي التنظيف. لم تحدث محاولة لنقل هذا العنصر. راجعه قبل إعادة المحاولة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nettoyage annulé. Aucun déplacement tenté pour cet élément. Vérifiez à nouveau avant de réessayer."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清理已取消。未尝试移动此项目。重试前请重新检查。"
+          }
+        }
+      }
+    },
+    "cleanup.progress": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moving approved files to Trash"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "අනුමත ගොනු කුණු කූඩයට ගෙන යමින්"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "அங்கீகரித்த கோப்புகளைக் குப்பைக்கு நகர்த்துகிறது"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "स्वीकृत फ़ाइलें ट्रैश में भेजी जा रही हैं"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نقل الملفات الموافق عليها إلى السلة"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déplacement des fichiers approuvés vers la Corbeille"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在将已批准的文件移到废纸篓"
+          }
+        }
+      }
+    },
+    "cleanup.stopping": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finishing the current item and recording cancellations…"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "වත්මන් අයිතමය අවසන් කර අවලංගු කිරීම් සටහන් කරමින්…"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தற்போதைய உருப்படியை முடித்து ரத்துசெய்தல்களைப் பதிவு செய்கிறது…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "वर्तमान आइटम पूरा करके रद्द किए गए आइटम दर्ज हो रहे हैं…"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إنهاء العنصر الحالي وتسجيل الإلغاءات…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fin de l’élément en cours et enregistrement des annulations…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在完成当前项目并记录取消项…"
+          }
+        }
+      }
+    },
+    "duplicate.checked": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "files checked"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ගොනු පරීක්ෂා කළා"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கோப்புகள் சரிபார்க்கப்பட்டன"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "फ़ाइलें जाँची गईं"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ملفات تم فحصها"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "fichiers vérifiés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "个文件已检查"
+          }
+        }
+      }
+    },
+    "duplicate.skipped": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "files skipped"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ගොනු මඟහැරියා"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கோப்புகள் தவிர்க்கப்பட்டன"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "फ़ाइलें छोड़ी गईं"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ملفات تم تخطيها"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "fichiers ignorés"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "个文件已跳过"
+          }
+        }
+      }
+    },
+    "duplicate.partial": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Results are incomplete because some files could not be verified. Changed or unreadable files were not recommended."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "සමහර ගොනු තහවුරු කළ නොහැකි නිසා ප්‍රතිඵල අසම්පූර්ණයි. වෙනස් වූ හෝ කියවිය නොහැකි ගොනු නිර්දේශ කළේ නැත."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சில கோப்புகளை உறுதிப்படுத்த முடியாததால் முடிவுகள் முழுமையற்றவை. மாற்றப்பட்ட அல்லது படிக்க முடியாத கோப்புகள் பரிந்துரைக்கப்படவில்லை."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "कुछ फ़ाइलें सत्यापित नहीं हो सकीं, इसलिए परिणाम अधूरे हैं। बदली हुई या अपठनीय फ़ाइलें सुझाई नहीं गईं।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "النتائج غير مكتملة لتعذر التحقق من بعض الملفات. لم تُوصَ الملفات المتغيرة أو غير المقروءة."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Résultats incomplets : certains fichiers ne sont pas vérifiables. Les fichiers modifiés ou illisibles ne sont pas recommandés."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "由于部分文件无法验证，结果不完整。已更改或无法读取的文件不会被推荐。"
+          }
+        }
+      }
+    },
+    "duplicate.keepOne": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep at least one copy of each known duplicate group before reviewing cleanup."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "පිරිසිදු කිරීම සමාලෝචනයට පෙර හඳුනාගත් සෑම අනුපිටපත් කාණ්ඩයකම අවම වශයෙන් එක් පිටපතක් තබාගන්න."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "சுத்தப்படுத்தலைச் சரிபார்க்கும் முன் அறியப்பட்ட ஒவ்வொரு நகல் குழுவிலும் குறைந்தது ஒரு நகலை வைத்திருக்கவும்."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सफ़ाई की समीक्षा से पहले प्रत्येक ज्ञात डुप्लिकेट समूह की कम से कम एक प्रति रखें।"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "احتفظ بنسخة واحدة على الأقل من كل مجموعة تكرار معروفة قبل مراجعة التنظيف."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conservez au moins une copie de chaque groupe de doublons connu avant de vérifier le nettoyage."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "检查清理操作前，请为每个已知重复组至少保留一份副本。"
+          }
+        }
+      }
+    },
     "review.preparing": {
       "extractionState": "manual",
       "localizations": {

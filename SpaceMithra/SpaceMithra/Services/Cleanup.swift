@@ -26,37 +26,63 @@ public actor CleanupEngine {
     private let catalog: any CleanupJournal
     private let operations: any TrashOperations
     private var busy = false
+    private var cleaning = false
+    private var cancellation: CleanupCancellation?
     public init(catalog: any CleanupJournal, operations: any TrashOperations = SystemTrash()) { self.catalog = catalog; self.operations = operations }
-    public func clean(confirmed records: [FileRecord]) async throws -> [HistoryEntry] {
+    public func requestCancellation() { if cleaning { cancellation?.cancel() } }
+    private var shouldCancel: Bool { (cancellation?.isCancelled ?? false) || Task.isCancelled }
+    public func clean(confirmed records: [FileRecord], cancellation: CleanupCancellation = CleanupCancellation(), progress: @Sendable (CleanupProgress) async -> Void = { _ in }) async throws -> [HistoryEntry] {
         guard !busy else { throw StorageError.refused("error.busy") }
-        busy = true; defer { busy = false }
+        busy = true; cleaning = true; self.cancellation = cancellation
+        defer { busy = false; cleaning = false; self.cancellation = nil }
         let session = UUID().uuidString
         var results: [HistoryEntry] = []
+        var state = CleanupProgress(total: records.count)
+        await progress(state)
         for record in records {
             var entry = HistoryEntry(id: UUID().uuidString, session: session, record: record, date: Date(), status: "pending", message: "message.pending")
+            if shouldCancel { entry.status = "cancelled"; entry.message = "message.cancelled" }
             // Journal failure aborts the batch before any unjournaled move.
             try await catalog.saveHistory(entry)
-            var attempted = false
-            do {
-                let rules = try await catalog.protections()
-                let assessment = RiskEngine.assess(record, protections: rules)
-                guard assessment.eligible else { throw StorageError.refused("error.protected") }
-                let url = URL(fileURLWithPath: record.path)
-                guard url.standardizedFileURL.path == record.path, url.resolvingSymlinksInPath().path == record.path else { throw StorageError.refused("error.symlink") }
-                let fresh = try FileMetadata.read(url)
-                guard fresh.identity == record.identity, !fresh.isSymlink, !fresh.isDirectory,
-                      RiskEngine.assess(fresh, protections: rules).eligible else { throw StorageError.refused("error.changed") }
-                guard FileManager.default.isWritableFile(atPath: url.deletingLastPathComponent().path) else { throw StorageError.refused("error.permission") }
-                // No suspension between final identity check and the filesystem operation.
-                guard try FileMetadata.identity(record.path) == record.identity else { throw StorageError.refused("error.changed") }
-                attempted = true
-                let destination = try operations.trash(url)
-                entry.trashPath = destination.path
-                entry.trashIdentity = try? FileMetadata.identity(destination.path)
-                entry.status = "trashed"; entry.message = "message.trashed"
-            } catch { entry.status = attempted ? "uncertain" : "skipped"; entry.message = error.localizedDescription }
-            try await catalog.saveHistory(entry)
+            if entry.status != "cancelled" {
+                var attempted = false
+                do {
+                    if shouldCancel { throw CancellationError() }
+                    let rules = try await catalog.protections()
+                    if shouldCancel { throw CancellationError() }
+                    let assessment = RiskEngine.assess(record, protections: rules)
+                    guard assessment.eligible else { throw StorageError.refused("error.protected") }
+                    let url = URL(fileURLWithPath: record.path)
+                    guard url.standardizedFileURL.path == record.path, url.resolvingSymlinksInPath().path == record.path else { throw StorageError.refused("error.symlink") }
+                    let fresh = try FileMetadata.read(url)
+                    guard fresh.identity == record.identity, !fresh.isSymlink, !fresh.isDirectory,
+                          RiskEngine.assess(fresh, protections: rules).eligible else { throw StorageError.refused("error.changed") }
+                    guard FileManager.default.isWritableFile(atPath: url.deletingLastPathComponent().path) else { throw StorageError.refused("error.permission") }
+                    if shouldCancel { throw CancellationError() }
+                    // No suspension between final identity check and the filesystem operation.
+                    guard try FileMetadata.identity(record.path) == record.identity else { throw StorageError.refused("error.changed") }
+                    attempted = true
+                    let destination = try operations.trash(url)
+                    entry.trashPath = destination.path
+                    entry.trashIdentity = try? FileMetadata.identity(destination.path)
+                    entry.status = "trashed"; entry.message = "message.trashed"
+                } catch is CancellationError {
+                    entry.status = attempted ? "uncertain" : "cancelled"
+                    entry.message = attempted ? "error.trashUncertain" : "message.cancelled"
+                } catch { entry.status = attempted ? "uncertain" : "skipped"; entry.message = error.localizedDescription }
+                try await catalog.saveHistory(entry)
+            }
             results.append(entry)
+            state.completed += 1; state.currentPath = record.path
+            switch entry.status {
+            case "trashed": state.moved += 1
+            case "skipped": state.skipped += 1
+            case "uncertain": state.uncertain += 1
+            case "cancelled": state.cancelled += 1
+            default: break
+            }
+            // Cancellation is observed between fully journaled operations.
+            await progress(state)
         }
         return results
     }

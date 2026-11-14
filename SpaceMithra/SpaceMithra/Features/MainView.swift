@@ -69,12 +69,21 @@ struct MainView: View {
     }
     private var statusBar: some View {
         HStack {
-            if model.scanning { ProgressView().controlSize(.small) }
-            Text(model.text("state." + model.progress.state.rawValue))
-            Text("\(model.progress.count) " + model.text("items") + " · " + byteString(model.progress.bytes))
-            Text("\(model.progress.reused) " + model.text("reused")).foregroundStyle(.secondary)
-            Text("\(model.progress.errors) " + model.text("scanErrors")).foregroundStyle(.secondary)
-            if model.progress.state != .idle { Text(Date().timeIntervalSince(model.progress.started), format: .number.precision(.fractionLength(0))).monospacedDigit(); Text(model.text("seconds")) }
+            if model.cleaning {
+                ProgressView(value: Double(model.cleanupProgress.completed), total: Double(max(1, model.cleanupProgress.total)))
+                    .frame(width: 140).accessibilityLabel(model.text("cleanup.progress"))
+                Text("\(model.cleanupProgress.completed) / \(model.cleanupProgress.total)").monospacedDigit()
+                Text(model.cleanupProgress.currentPath).lineLimit(1).truncationMode(.middle).frame(maxWidth: 280)
+                Text(model.text(model.cleanupCancellationRequested ? "cleanup.stopping" : "cleanup.progress"))
+                Button(model.text("cancel")) { model.cancelCleanup() }.disabled(model.cleanupCancellationRequested)
+            } else {
+                if model.scanning { ProgressView().controlSize(.small) }
+                Text(model.text("state." + model.progress.state.rawValue))
+                Text("\(model.progress.count) " + model.text("items") + " · " + byteString(model.progress.bytes))
+                Text("\(model.progress.reused) " + model.text("reused")).foregroundStyle(.secondary)
+                Text("\(model.progress.errors) " + model.text("scanErrors")).foregroundStyle(.secondary)
+                if model.progress.state != .idle { Text(Date().timeIntervalSince(model.progress.started), format: .number.precision(.fractionLength(0))).monospacedDigit(); Text(model.text("seconds")) }
+            }
             Spacer()
             if model.scanning {
                 Button(model.text(model.progress.state == .paused ? "resume" : "pause")) { model.pause() }
@@ -187,7 +196,7 @@ struct MainView: View {
                         TableColumn(model.text("risk")) { Text(model.text("riskLevel." + model.assessment($0).risk.rawValue)).font(.caption) }.width(110)
                         TableColumn(model.text("clean")) { file in
                             Toggle(model.text("clean"), isOn: Binding(get: { model.queue.contains { $0.path == file.path } }, set: { if $0 { model.enqueue(file) } else { model.keep(file) } }))
-                                .labelsHidden().disabled(!model.assessment(file).eligible || model.progress.state != .completed || model.working)
+                                .labelsHidden().disabled(!model.assessment(file).eligible || model.progress.state != .completed || model.working || model.duplicateWorking)
                                 .accessibilityLabel(model.text("clean") + " " + file.name)
                         }.width(50)
                     }.contextMenu {
@@ -200,7 +209,7 @@ struct MainView: View {
                         Spacer()
                         Image(systemName: pageSelectionSymbol).accessibilityLabel(model.text("queue"))
                         Text("\(model.rows.filter { file in model.queue.contains { $0.path == file.path } }.count) / \(model.rows.filter { model.assessment($0).eligible }.count)")
-                        Button(model.text("selectEligible")) { model.rows.forEach { model.enqueue($0) } }.disabled(model.scanning)
+                        Button(model.text("selectEligible")) { model.rows.forEach { model.enqueue($0) } }.disabled(model.scanning || model.working || model.duplicateWorking)
                         Button(model.text("deselectPage")) { model.rows.forEach { model.keep($0) } }
                     }.font(.caption).padding(10)
                 }.frame(minWidth: 430)
@@ -210,7 +219,7 @@ struct MainView: View {
     }
     @ViewBuilder private func fileActions(_ file: FileRecord) -> some View {
         Button(model.text("reveal")) { model.reveal(file) }
-        Button(model.text("clean")) { model.enqueue(file) }.disabled(!model.assessment(file).eligible || model.scanning)
+        Button(model.text("clean")) { model.enqueue(file) }.disabled(!model.assessment(file).eligible || model.scanning || model.working || model.duplicateWorking)
         Button(model.text("keep")) { model.keep(file) }
         Button(model.text("protect")) { model.protect(file) }
     }
@@ -242,7 +251,7 @@ struct MainView: View {
                 Button(model.text("deselectAll")) { model.queue.removeAll() }.disabled(model.working)
                 Button(model.text("reviewTrash")) {
                     Task { await model.prepareCleanupReview(); confirming = model.cleanupReview != nil }
-                }.disabled(model.queue.isEmpty || model.scanning || model.working)
+                }.disabled(model.queue.isEmpty || model.scanning || model.working || model.duplicateWorking)
             }.padding()
         }
     }
@@ -337,13 +346,27 @@ struct MainView: View {
             HStack {
                 Text(model.text("duplicateGuidance")); Spacer()
                 if model.duplicateWorking {
-                    ProgressView(); Text("\(model.duplicateCount)")
+                    ProgressView(); Text("\(model.duplicateCount) " + model.text("duplicate.checked"))
                     Button(model.text("cancel")) { model.cancelDuplicates() }
                 } else {
-                    Button(model.text("findDuplicates")) { model.findDuplicates() }.disabled(model.root == nil || model.scanning)
+                    Button(model.text("findDuplicates")) { model.findDuplicates() }.disabled(model.root == nil || model.scanning || model.working)
                 }
             }.padding()
+            if model.duplicateSkipped > 0 {
+                Text("\(model.duplicateSkipped) " + model.text("duplicate.skipped")).font(.callout).padding(.horizontal)
+                Text(model.text("duplicate.partial")).font(.caption).foregroundStyle(.secondary).padding(.horizontal)
+            }
             List {
+                if !model.duplicateIssues.isEmpty {
+                    DisclosureGroup(model.text("scanIssues")) {
+                        ForEach(model.duplicateIssues) { issue in
+                            VStack(alignment: .leading) {
+                                Text(issue.path).font(.caption).textSelection(.enabled)
+                                Text(model.text(issue.message)).font(.caption).foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
                 ForEach(model.duplicates) { group in
                     Section(byteString(group.files.first?.logical ?? 0)) {
                         ForEach(group.files) { file in
@@ -351,7 +374,7 @@ struct MainView: View {
                                 Text(file.path).textSelection(.enabled); Spacer()
                                 Button(model.text("reveal")) { model.reveal(file) }
                                 Button(model.text("clean")) { model.enqueue(file) }
-                                    .disabled(!model.assessment(file).eligible || model.queue.filter { f in group.files.contains { $0.path == f.path } }.count >= group.files.count - 1 || model.queue.contains { $0.path == file.path })
+                                    .disabled(model.working || model.duplicateWorking || !model.assessment(file).eligible || model.queue.filter { f in group.files.contains { $0.path == f.path } }.count >= group.files.count - 1 || model.queue.contains { $0.path == file.path })
                             }
                         }
                     }
