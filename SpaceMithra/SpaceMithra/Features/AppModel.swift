@@ -108,10 +108,12 @@ import SpaceMithraCore
         panel.allowsMultipleSelection = false; panel.prompt = text("scan")
         if panel.runModal() == .OK, let url = panel.url { scan(url) }
     }
-    func scan(_ url: URL) {
+    func scan(_ inputURL: URL) {
         guard !scanning, !working, !duplicateWorking, let catalog else { return }
+        let url: URL
+        do { url = try FileLocation.validated(inputURL) } catch { self.error = describe(error); return }
         scope?.stopAccessingSecurityScopedResource(); scope = nil
-        if url.startAccessingSecurityScopedResource() { scope = url }
+        if inputURL.startAccessingSecurityScopedResource() { scope = inputURL }
         root = url; folder = url.path; section = "explorer"; rows = []; selection = nil; duplicates = []; duplicateIssues = []; duplicateSkipped = 0; page = 0
         progress = ScanProgress(); progress.state = .preparing
         scanTask = Task {
@@ -130,7 +132,26 @@ import SpaceMithraCore
         else if duplicateWorking { cancelDuplicates() }
         else { Task { await scanner.cancel() } }
     }
-    func navigate(_ path: String) { folder = path; section = "explorer"; selection = nil; page = 0; Task { await refresh() } }
+    var canNavigateParent: Bool {
+        guard let folder, let root else { return false }
+        return (try? FileLocation.parent(of: URL(fileURLWithPath: folder, isDirectory: true), within: root)) != nil
+    }
+    func navigateParent() {
+        guard let folder, let root else { return }
+        do { if let parent = try FileLocation.parent(of: URL(fileURLWithPath: folder, isDirectory: true), within: root) { navigate(parent.path) } }
+        catch { self.error = describe(error) }
+    }
+    func navigate(_ path: String) {
+        guard let root else { return }
+        do {
+            let url = try FileLocation.validated(URL(fileURLWithPath: path, isDirectory: true))
+            guard FileLocation.contains(url.path, within: root.path) else { throw StorageError.refused("error.invalidLocation") }
+            let record = try FileMetadata.read(url)
+            guard record.isDirectory, !record.isSymlink, FileManager.default.isReadableFile(atPath: url.path) else { throw StorageError.refused("error.scanUnreadable") }
+            folder = url.path; section = "explorer"; selection = nil; page = 0
+            Task { await refresh() }
+        } catch { self.error = describe(error) }
+    }
     func switchSection(_ value: String) { section = value; storageGroup = nil; selection = nil; page = 0; Task { await refresh(); if value == "recovery" { await refreshRecoveryAvailability() } } }
     func refresh() async {
         guard let catalog else { return }
@@ -144,11 +165,7 @@ import SpaceMithraCore
             hasMore = records.count > 300
             rows = Array(records.prefix(300)).filter { showHidden || !$0.name.hasPrefix(".") }
             if section == "explorer", let folder, let root {
-                var paths = [folder]
-                var current = folder
-                while current != root.path && current.hasPrefix(root.path + "/") && paths.count < 3 {
-                    current = URL(fileURLWithPath: current).deletingLastPathComponent().path; paths.insert(current, at: 0)
-                }
+                let paths = try FileLocation.breadcrumbs(to: URL(fileURLWithPath: folder, isDirectory: true), within: root).suffix(3).map(\.path)
                 var loaded: [(String, [FileRecord])] = []
                 for path in paths {
                     let children = try await catalog.list(parent: path, sort: "name", directoriesOnly: true, limit: 150)

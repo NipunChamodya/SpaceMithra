@@ -149,8 +149,8 @@ struct MainView: View {
             }
             HStack {
                 if let folder = model.folder, model.section == "explorer" {
-                    Button { model.navigate(URL(fileURLWithPath: folder).deletingLastPathComponent().path) } label: { Image(systemName: "chevron.up") }
-                        .disabled(folder == model.root?.path).accessibilityLabel(model.text("parentFolder"))
+                    Button { model.navigateParent() } label: { Image(systemName: "chevron.up") }
+                        .disabled(!model.canNavigateParent).accessibilityLabel(model.text("parentFolder"))
                     ScrollView(.horizontal) {
                         HStack(spacing: 4) {
                             ForEach(breadcrumbs(folder), id: \.self) { path in
@@ -411,11 +411,7 @@ struct MainView: View {
     }
     private func reload() { model.page = 0; Task { await model.refresh() } }
     private func breadcrumbs(_ path: String) -> [String] {
-        guard let root = model.root?.path, path.hasPrefix(root) else { return [path] }
-        let suffix = String(path.dropFirst(root.count)).split(separator: "/")
-        var result = [root], current = root
-        for component in suffix { current = URL(fileURLWithPath: current).appendingPathComponent(String(component)).path; result.append(current) }
-        return result
+        guard let root = model.root else { return [] }
+        return (try? FileLocation.breadcrumbs(to: URL(fileURLWithPath: path, isDirectory: true), within: root).map(\.path)) ?? []
     }
 }
-

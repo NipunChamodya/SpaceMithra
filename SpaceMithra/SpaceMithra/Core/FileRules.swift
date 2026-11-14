@@ -13,21 +13,22 @@ public enum FileMetadata {
                         changed: Double(info.st_ctimespec.tv_sec) + Double(info.st_ctimespec.tv_nsec) / 1e9,
                         links: UInt64(info.st_nlink))
     }
-    public static func read(_ url: URL, inPackage: Bool = false, inspectAncestors: Bool = true) throws -> FileRecord {
+    public static func read(_ inputURL: URL, inPackage: Bool = false, inspectAncestors: Bool = true) throws -> FileRecord {
+        let url = try FileLocation.validated(inputURL)
         let keys: Set<URLResourceKey> = [.isDirectoryKey, .isRegularFileKey, .isSymbolicLinkKey, .isPackageKey, .fileSizeKey, .fileAllocatedSizeKey, .creationDateKey, .contentModificationDateKey, .contentAccessDateKey, .isUbiquitousItemKey, .typeIdentifierKey]
         let v = try url.resourceValues(forKeys: keys)
         let identity = try identity(url.path)
         var packageAncestor = inPackage
         if inspectAncestors && !packageAncestor {
-            var parent = url.deletingLastPathComponent()
-            while parent.path != "/" {
-                if try parent.resourceValues(forKeys: [.isPackageKey]).isPackage == true { packageAncestor = true; break }
-                let next = parent.deletingLastPathComponent()
-                if next.path == parent.path { break }
-                parent = next
+            var parent = try FileLocation.parent(of: url, within: URL(fileURLWithPath: "/", isDirectory: true))
+            while let ancestor = parent {
+                if try ancestor.resourceValues(forKeys: [.isPackageKey]).isPackage == true { packageAncestor = true; break }
+                parent = try FileLocation.parent(of: ancestor, within: URL(fileURLWithPath: "/", isDirectory: true))
             }
         }
-        return FileRecord(path: url.path, parent: url.deletingLastPathComponent().path, name: url.lastPathComponent,
+        let parentPath = try FileLocation.parent(of: url, within: URL(fileURLWithPath: "/", isDirectory: true))?.path ?? ""
+
+        return FileRecord(path: url.path, parent: parentPath, name: url.path == "/" ? (try? url.resourceValues(forKeys: [.volumeNameKey]).volumeName) ?? "/" : url.lastPathComponent,
                           isDirectory: v.isDirectory ?? false, isRegular: v.isRegularFile, isSymlink: v.isSymbolicLink ?? false, inPackage: packageAncestor,
                           isPackage: v.isPackage ?? false, logical: v.isDirectory == true ? 0 : Int64(v.fileSize ?? 0),
                           allocated: v.fileAllocatedSize.map(Int64.init), created: v.creationDate, modified: v.contentModificationDate,

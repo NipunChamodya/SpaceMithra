@@ -8,12 +8,13 @@ public actor StorageScanner {
     public func pause(_ value: Bool) { paused = value }
     public func cancel() { cancelled = true }
     private func shouldStop() -> Bool { cancelled || Task.isCancelled }
-    public func scan(root: URL, catalog: Catalog, update: @Sendable (ScanProgress) async -> Void) async throws -> ScanProgress {
+    public func scan(root inputRoot: URL, catalog: Catalog, update: @Sendable (ScanProgress) async -> Void) async throws -> ScanProgress {
         guard !running else { throw StorageError.refused("error.busy") }
         running = true; defer { running = false }
         paused = false; cancelled = false
         var progress = ScanProgress(); progress.state = .preparing
         await update(progress)
+        let root = try FileLocation.validated(inputRoot)
         let rootRecord = try FileMetadata.read(root)
         guard rootRecord.isDirectory, !rootRecord.isSymlink, root.resolvingSymlinksInPath().path == root.standardizedFileURL.path else { throw StorageError.refused("error.scanRoot") }
         try await catalog.resetScan()

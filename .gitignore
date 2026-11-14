@@ -1,0 +1,14 @@
+.DS_Store
+.build/
+build/
+build-safety/
+build-review/
+build-recovery/
+build-duplicates/
+build-cleanup/
+dist/
+.test-fixtures/
+*.xcuserstate
+xcuserdata/
+*.xcresult
+__pycache__/
