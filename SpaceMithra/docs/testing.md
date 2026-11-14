@@ -8,7 +8,7 @@ Recorded 2026-11-14 on the available Apple Silicon host running macOS 26.6.2, us
 |---|---|
 | Native Debug build | Passed during implementation |
 | Final universal Release build | Passed, arm64 + x86_64 |
-| Core + presentation XCTest suite | 28 tests passed, 0 failures, about 2.60 seconds |
+| Core + presentation XCTest suite | 33 tests passed, 0 failures, about 2.80 seconds |
 | Localization coverage | 159 keys × 7 languages; dynamic key families and literal UI keys checked |
 | Localization fallback | Tested using an isolated synthetic bundle with a missing Sinhala key and unsupported locale |
 | Local signature verification | Ad hoc signature verifies; not Developer ID notarized |
@@ -16,13 +16,13 @@ Recorded 2026-11-14 on the available Apple Silicon host running macOS 26.6.2, us
 | Real app startup smoke | Visible window + initialized isolated database confirmed; no scan or cleanup |
 | Native UI automation | Blocked by host automation initialization timeout; no UI-test success claimed |
 
-Tests cover recursion, directory totals, pagination, symlink cycles and ancestor swaps, hard-link accounting, package protection even when scanning from inside a package, unknown risk, exact protection boundaries/expiry, file changes, Trash failures, empty approved lists, partial cleanup, recovery conflicts and tampering, persisted rules/trends, SHA-256 duplicates, cancellation, unreadable directories, corrupt SQLite, incremental metadata reuse/removal, duplicate keeper enforcement from shared presentation logic, selection rejection while scanning, Library-state rejection, and invalid/nonfinite numeric filter input.
+Tests cover recursion, directory totals, pagination, symlink cycles and ancestor swaps, hard-link accounting, package protection even when scanning from inside a package, unknown risk, exact protection boundaries/expiry, file changes, Trash failures, empty approved lists, partial cleanup, recovery conflicts and tampering, persisted rules/trends, SHA-256 duplicates, cancellation, unreadable directories, corrupt SQLite, incremental metadata reuse/removal, duplicate keeper enforcement from shared presentation logic, selection rejection while scanning, Library-state rejection, invalid/nonfinite numeric filter input, journal-write rejection before Trash/restore, batch abortion after a failed result write, Trash replacement during journal persistence, and destination creation during journal persistence.
 
 Mutating tests require `SPACEMITHRA_TEST_MODE=1`. They create UUID-isolated `.test-fixtures` beneath this repository. An injected fixture Trash refuses all paths outside that fixture. It moves files within the fixture and does not call macOS SystemTrash. Tests never clean real personal folders. Temporary fixture cleanup uses FileManager removal only for its own generated tree.
 
 ## Measurements and limits
 
-- Final synthetic scan: 3,000 ten-byte files, approximately **1.54 seconds** (fixture creation excluded). Measurements during development ranged roughly 0.45–1.72 seconds as metadata validation evolved and concurrent builds competed for resources. This is not a whole-disk throughput claim.
+- Final synthetic scan: 3,000 ten-byte files, approximately **1.70 seconds** (fixture creation excluded). Measurements during development ranged roughly 0.45–1.72 seconds as metadata validation evolved and concurrent builds competed for resources. This is not a whole-disk throughput claim.
 - A separate measured test-binary run (25-test checkpoint, before the final policy/input-only changes) used **91,881,472 bytes maximum resident memory**. It included the 3,000-file scan and presentation tests, without compiler memory. This does not establish the <250 MB target on millions of files.
 - Startup smoke on a near-final Release build: visible window and initialized fresh test database at **1.37 seconds** after App initialization, including an intentional 250 ms wait for visibility. Whole process ran for about **1.55 seconds**; maximum resident memory was **100,237,312 bytes**. The smoke mode exits immediately after checking readiness. Later changes only tightened Library risk and numeric input handling.
 - Reference hardware CPU model/RAM were not captured. These single-host samples are preliminary, not representative hardware benchmarks.
@@ -52,7 +52,7 @@ xcodebuild -project SpaceMithra.xcodeproj -scheme SpaceMithra \
 ## Outstanding acceptance work
 
 - Actual SystemTrash behavior and recovery on isolated test volumes, including external/unmounted/unsupported volumes; never use real personal files.
-- Interrupted journal and restoration crash tests, disk-full/injected database-write faults, hostile concurrent path replacement review.
+- Actual process-crash/restart and ENOSPC SQLite tests, plus hostile concurrent path replacement review. Injected journal-write failures are now covered; these do not replace actual disk-full/crash tests.
 - Real-volume and million-file performance, peak memory and responsiveness under contention; cold-start measurements on specified reference hardware.
 - macOS 13 runtime and actual Intel hardware. Cross-compilation alone is insufficient.
 - Keyboard/VoiceOver traversal, Quick Look, confirmation cancellation through the UI, RTL, long translations, text size, Increase Contrast and Reduce Motion.
@@ -62,3 +62,11 @@ xcodebuild -project SpaceMithra.xcodeproj -scheme SpaceMithra \
 ## Repository hygiene
 
 The parent Macos repository remains the source-control root. An empty nested Git directory (no commits, tracked files or remotes) was discovered inside SpaceMithra and preserved at `/tmp/SpaceMithra-empty-nested-git-20261114-1515` so the project can be added normally to the parent repository. No source history was discarded. Generated build directories, packages and test fixtures are ignored. Nothing was committed, pushed or published.
+
+## Safety follow-up
+
+Restore now validates the Trash identity, resolved parent paths and destination conflicts again after the durable restore journal write returns. No suspension occurs between this final check and the move. Verification checks inode, device, size, modification time and link count; rename-induced ctime changes are expected.
+
+CleanupJournal abstracts only the three journal operations used by cleanup. Production uses the same SQLite Catalog. Tests inject failures at pending, result and restore writes. Failed pending/restore writes prevent mutation; a failed result write stops the remaining batch and leaves a durable pending entry requiring manual inspection.
+
+The follow-up release was built with `scripts/release.sh build-safety` to avoid overwriting the previously launched app. The updated app is in `build-safety/Build/Products/Release/SpaceMithra.app`; the ZIP in `dist/` is refreshed. These changes do not eliminate the final path-based Foundation syscall race.

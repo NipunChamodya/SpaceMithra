@@ -4,6 +4,14 @@ public protocol TrashOperations: Sendable {
     func trash(_ url: URL) throws -> URL
     func restore(_ source: URL, to destination: URL) throws
 }
+/// The journal must durably acknowledge each write before mutation can proceed.
+/// A small interface allows tests to inject storage failures at transaction boundaries.
+public protocol CleanupJournal: Sendable {
+    func protections() async throws -> [Protection]
+    func history() async throws -> [HistoryEntry]
+    func saveHistory(_ entry: HistoryEntry) async throws
+}
+extension Catalog: CleanupJournal {}
 public struct SystemTrash: TrashOperations {
     public init() {}
     public func trash(_ url: URL) throws -> URL {
@@ -15,10 +23,10 @@ public struct SystemTrash: TrashOperations {
     public func restore(_ source: URL, to destination: URL) throws { try FileManager.default.moveItem(at: source, to: destination) }
 }
 public actor CleanupEngine {
-    private let catalog: Catalog
+    private let catalog: any CleanupJournal
     private let operations: any TrashOperations
     private var busy = false
-    public init(catalog: Catalog, operations: any TrashOperations = SystemTrash()) { self.catalog = catalog; self.operations = operations }
+    public init(catalog: any CleanupJournal, operations: any TrashOperations = SystemTrash()) { self.catalog = catalog; self.operations = operations }
     public func clean(confirmed records: [FileRecord]) async throws -> [HistoryEntry] {
         guard !busy else { throw StorageError.refused("error.busy") }
         busy = true; defer { busy = false }
@@ -53,7 +61,7 @@ public actor CleanupEngine {
         return results
     }
     public func restore(_ original: HistoryEntry) async throws -> HistoryEntry {
-        guard !busy else { throw StorageError.refused("Another operation is in progress") }
+        guard !busy else { throw StorageError.refused("error.busy") }
         busy = true; defer { busy = false }
         let stored = try await catalog.history()
         guard let current = stored.first(where: { $0.id == original.id }), current.status == "trashed",
@@ -68,9 +76,19 @@ public actor CleanupEngine {
         entry.status = "restoring"; entry.message = "message.restoring"
         try await catalog.saveHistory(entry)
         do {
+            // Journal persistence suspends execution. Recheck all filesystem assumptions
+            // after it returns, with no suspension before the actual move.
+            guard source.resolvingSymlinksInPath().path == source.path,
+                  destination.deletingLastPathComponent().resolvingSymlinksInPath().path == destination.deletingLastPathComponent().path,
+                  try FileMetadata.identity(trash) == identity else { throw StorageError.refused("error.restoreChanged") }
+            var destinationInfo = stat()
+            guard lstat(destination.path, &destinationInfo) != 0 && errno == ENOENT else { throw StorageError.refused("error.conflict") }
             try operations.restore(source, to: destination)
             let restored = try FileMetadata.identity(destination.path)
-            guard restored.inode == identity.inode, restored.device == identity.device, restored.size == identity.size else { throw StorageError.refused("error.restoreUncertain") }
+            // Renaming may change ctime, but must preserve file content identity and link count.
+            guard restored.inode == identity.inode, restored.device == identity.device,
+                  restored.size == identity.size, restored.modified == identity.modified,
+                  restored.links == identity.links else { throw StorageError.refused("error.restoreUncertain") }
             entry.status = "restored"; entry.message = "message.restored"
         } catch {
             // Keep uncertain state if a move may have succeeded; do not blindly retry.

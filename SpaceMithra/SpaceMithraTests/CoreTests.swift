@@ -350,3 +350,96 @@ extension PresentationTests {
         XCTAssertTrue(model.rows.isEmpty)
     }
 }
+
+/// Injection stays in the test target and only mutates its explicitly isolated fixture.
+private actor FaultJournal: CleanupJournal {
+    enum Fault: Sendable { case pendingWrite, resultWrite, restoreWrite, replaceTrash, createConflict }
+    let catalog: Catalog
+    let root: URL
+    let fault: Fault
+    init(_ fixture: Fixture, fault: Fault) { catalog = fixture.catalog; root = fixture.root; self.fault = fault }
+    func protections() async throws -> [Protection] { try await catalog.protections() }
+    func history() async throws -> [HistoryEntry] { try await catalog.history() }
+    func saveHistory(_ entry: HistoryEntry) async throws {
+        guard root.path.contains("/.test-fixtures/"), entry.record.path.hasPrefix(root.path + "/") else { throw StorageError.refused("Outside fixture") }
+        switch (fault, entry.status) {
+        case (.pendingWrite, "pending"), (.resultWrite, "trashed"), (.restoreWrite, "restoring"):
+            throw StorageError.database("Injected journal failure")
+        default: break
+        }
+        try await catalog.saveHistory(entry)
+        if entry.status == "restoring" {
+            switch fault {
+            case .replaceTrash:
+                guard let path = entry.trashPath, path.hasPrefix(root.path + "/") else { throw StorageError.refused("Outside fixture") }
+                try Data("replacement must stay in fixture Trash".utf8).write(to: URL(fileURLWithPath: path))
+            case .createConflict:
+                try Data("new original must survive".utf8).write(to: URL(fileURLWithPath: entry.record.path))
+            default: break
+            }
+        }
+    }
+}
+
+extension CoreTests {
+    func testFailedPendingJournalPreventsAnyMove() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        let engine = CleanupEngine(catalog: FaultJournal(f, fault: .pendingWrite), operations: FixtureTrash(root: f.root))
+        do { _ = try await engine.clean(confirmed: [a,b]); XCTFail("Journal failure must abort cleanup") } catch {}
+        XCTAssertTrue(FileManager.default.fileExists(atPath: a.path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: b.path))
+        let history = try await f.catalog.history()
+        XCTAssertTrue(history.isEmpty)
+    }
+    func testFailedResultJournalStopsBatchAndLeavesPendingRecovery() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let a = try FileMetadata.read(f.file("a.txt")), b = try FileMetadata.read(f.file("b.txt"))
+        let engine = CleanupEngine(catalog: FaultJournal(f, fault: .resultWrite), operations: FixtureTrash(root: f.root))
+        do { _ = try await engine.clean(confirmed: [a,b]); XCTFail("Final journal failure must stop the batch") } catch {}
+        XCTAssertFalse(FileManager.default.fileExists(atPath: a.path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: b.path))
+        let history = try await f.catalog.history()
+        XCTAssertEqual(history.count, 1)
+        XCTAssertEqual(history.first?.status, "pending")
+        XCTAssertNil(history.first?.trashPath)
+        // The physical file remains available for manual inspection; no false success persisted.
+        let trash = try FileManager.default.contentsOfDirectory(at: f.root.appendingPathComponent("fixture-trash"), includingPropertiesForKeys: nil)
+        XCTAssertEqual(trash.count, 1)
+    }
+    func testFailedRestoreJournalPreventsMove() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let file = try FileMetadata.read(f.file("a.txt"))
+        let results = try await CleanupEngine(catalog: f.catalog, operations: FixtureTrash(root: f.root)).clean(confirmed: [file])
+        let entry = try XCTUnwrap(results.first)
+        let engine = CleanupEngine(catalog: FaultJournal(f, fault: .restoreWrite), operations: FixtureTrash(root: f.root))
+        do { _ = try await engine.restore(entry); XCTFail("Restore requires a successful journal write") } catch {}
+        XCTAssertFalse(FileManager.default.fileExists(atPath: file.path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: try XCTUnwrap(entry.trashPath)))
+        let history = try await f.catalog.history()
+        XCTAssertEqual(history.first?.status, "trashed")
+    }
+    func testTrashChangedDuringRestoreJournalIsNotMoved() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let file = try FileMetadata.read(f.file("a.txt"))
+        let results = try await CleanupEngine(catalog: f.catalog, operations: FixtureTrash(root: f.root)).clean(confirmed: [file])
+        let entry = try XCTUnwrap(results.first)
+        let engine = CleanupEngine(catalog: FaultJournal(f, fault: .replaceTrash), operations: FixtureTrash(root: f.root))
+        do { _ = try await engine.restore(entry); XCTFail("Changed Trash item must remain untouched") } catch {}
+        XCTAssertFalse(FileManager.default.fileExists(atPath: file.path))
+        let trash = URL(fileURLWithPath: try XCTUnwrap(entry.trashPath))
+        XCTAssertEqual(try String(contentsOf: trash, encoding: .utf8), "replacement must stay in fixture Trash")
+        let history = try await f.catalog.history()
+        XCTAssertEqual(history.first?.status, "restoring")
+    }
+    func testOriginalCreatedDuringRestoreJournalIsNotOverwritten() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let file = try FileMetadata.read(f.file("a.txt"))
+        let results = try await CleanupEngine(catalog: f.catalog, operations: FixtureTrash(root: f.root)).clean(confirmed: [file])
+        let entry = try XCTUnwrap(results.first)
+        let engine = CleanupEngine(catalog: FaultJournal(f, fault: .createConflict), operations: FixtureTrash(root: f.root))
+        do { _ = try await engine.restore(entry); XCTFail("New original must not be overwritten") } catch {}
+        XCTAssertEqual(try String(contentsOfFile: file.path, encoding: .utf8), "new original must survive")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: try XCTUnwrap(entry.trashPath)))
+    }
+}

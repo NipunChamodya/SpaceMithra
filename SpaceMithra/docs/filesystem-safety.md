@@ -22,7 +22,7 @@ A crash after Trash but before journal completion leaves pending history requiri
 
 ## Restore
 
-Only a stored successful Trash entry with a matching Trash identity can be restored. The original parent must not resolve through symbolic links. lstat rejects any destination conflict, including dangling symlinks. FileManager move does not overwrite existing paths. Restores are journaled before moving, then identity is verified. Partial or interrupted restores remain uncertain. Cross-volume identity changes are conservatively reported as unverified rather than falsely successful.
+Only a stored successful Trash entry with a matching Trash identity can be restored. The original parent must not resolve through symbolic links. lstat rejects any destination conflict, including dangling symlinks. FileManager move does not overwrite existing paths. Restores are journaled before moving. Because journal persistence suspends execution, Trash identity, resolved paths and destination conflicts are checked again after the journal write, without suspension before the move. After moving, inode, device, size, modification time and link count are verified; ctime may change during rename. Partial or interrupted restores remain uncertain. Cross-volume identity changes are conservatively reported as unverified rather than falsely successful.
 
 ## Remaining races
 
