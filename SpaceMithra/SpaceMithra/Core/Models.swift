@@ -1,6 +1,6 @@
 import Foundation
 
-public enum ScanState: String, Sendable { case idle, preparing, scanning, paused, completed, cancelled, failed }
+public enum ScanState: String, Codable, Sendable { case idle, preparing, scanning, paused, completed, cancelled, failed }
 public enum FileCategory: String, CaseIterable, Codable, Sendable {
     case applications, documents, images, videos, audio, archives, installers, caches, logs, backups, developer, support, cloud, unknown
 }
@@ -59,7 +59,7 @@ public struct Protection: Codable, Identifiable, Sendable {
     }
     public func matches(_ candidate: String) -> Bool {
         guard expires.map({ $0 > Date() }) ?? true else { return false }
-        return candidate == path || (descendants && candidate.hasPrefix(path + "/"))
+        return candidate == path || (descendants && FileLocation.contains(candidate,within:path))
     }
 }
 public struct HistoryEntry: Codable, Identifiable, Sendable {

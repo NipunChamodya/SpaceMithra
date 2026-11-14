@@ -3,6 +3,7 @@
 from pathlib import Path
 import json
 from translation_supplements import TRANSLATIONS
+from overhaul_localizations import EXTRAS as OVERHAUL
 base = {
 'dashboard':'Dashboard','explorer':'Storage Explorer','caches':'Cache Explorer','biggest':'Biggest Files','duplicates':'Duplicates','developer':'Developer Storage','queue':'Cleanup Queue','protected':'Protected Items','recovery':'Recovery History','settings':'Settings',
 'locations':'Locations','allAccessible':'Choose accessible storage…','volumes':'Mounted volumes','applications':'Applications','documents':'Documents','downloads':'Downloads','desktop':'Desktop','pictures':'Pictures','movies':'Movies','music':'Music','library':'Library',
@@ -99,6 +100,7 @@ extras = {
  'mayRegenerate': ['May regenerate; dependencies are not established','නැවත සෑදිය හැක; පරායත්තතා තහවුරු නැත','மீண்டும் உருவாகலாம்; சார்புகள் உறுதிப்படுத்தப்படவில்லை','दोबारा बन सकता है; निर्भरताएँ प्रमाणित नहीं','قد يُعاد إنشاؤه؛ التبعيات غير مثبتة','Peut être régénéré ; dépendances non établies','可能重新生成；依赖关系尚未确认'],
  'notRegenerable': ['Regeneration is not established; may contain unique data','නැවත සෑදීම තහවුරු නැත; අනන්‍ය දත්ත තිබිය හැක','மீளுருவாக்கம் உறுதியில்லை; தனிப்பட்ட தரவு இருக்கலாம்','पुनर्निर्माण प्रमाणित नहीं; अद्वितीय डेटा हो सकता है','إعادة الإنشاء غير مثبتة؛ قد يحتوي بيانات فريدة','Régénération non établie ; données potentiellement uniques','无法确认是否可重新生成；可能包含唯一数据']
 }
+extras.update(OVERHAUL)
 for key, values in extras.items():
     base[key] = values[0]
     for locale, value in zip(['si','ta','hi','ar','fr','zh-Hans'],values[1:]): TRANSLATIONS[locale][key] = value

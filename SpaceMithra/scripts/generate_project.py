@@ -4,6 +4,7 @@ from pathlib import Path
 import hashlib
 root = Path(__file__).resolve().parents[1]
 def ident(s): return hashlib.sha1(s.encode()).hexdigest()[:24].upper()
+version = (root/'VERSION').read_text().strip()
 objects = []
 def obj(key, value):
     uid = ident(key); objects.append(f'{uid} = {{ {value} }};'); return uid
@@ -33,7 +34,7 @@ project_configs, target_configs, ui_configs = [], [], []
 for mode in ['Debug','Release']:
     debug = mode == 'Debug'
     project_configs.append(obj('project'+mode, f'isa = XCBuildConfiguration; name = {mode}; buildSettings = {{ {common} SWIFT_OPTIMIZATION_LEVEL = {quote("-Onone" if debug else "-O")}; DEBUG_INFORMATION_FORMAT = {quote("dwarf" if debug else "dwarf-with-dsym")}; }};'))
-    target_configs.append(obj('target'+mode, f'isa = XCBuildConfiguration; name = {mode}; buildSettings = {{ PRODUCT_NAME = SpaceMithra; PRODUCT_BUNDLE_IDENTIFIER = org.spacemithra.app; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = SpaceMithra; INFOPLIST_KEY_CFBundleIconFile = AppIcon; INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities"; INFOPLIST_KEY_NSPrincipalClass = NSApplication; INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright 2026 SpaceMithra contributors"; INFOPLIST_KEY_NSDesktopFolderUsageDescription = "Scan Desktop only when you select it."; INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Scan Documents only when you select it."; INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "Scan Downloads only when you select it."; ENABLE_HARDENED_RUNTIME = YES; ENABLE_APP_SANDBOX = NO; CODE_SIGN_STYLE = Automatic; MARKETING_VERSION = 0.1.0; CURRENT_PROJECT_VERSION = 1; OTHER_LDFLAGS = "-lsqlite3"; SWIFT_EMIT_LOC_STRINGS = NO; }};'))
+    target_configs.append(obj('target'+mode, f'isa = XCBuildConfiguration; name = {mode}; buildSettings = {{ PRODUCT_NAME = SpaceMithra; SPACEMITHRA_BUNDLE_ID = org.spacemithra.app; PRODUCT_BUNDLE_IDENTIFIER = "$(SPACEMITHRA_BUNDLE_ID)"; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = SpaceMithra; INFOPLIST_KEY_CFBundleIconFile = AppIcon; INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities"; INFOPLIST_KEY_NSPrincipalClass = NSApplication; INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright 2026 SpaceMithra contributors"; INFOPLIST_KEY_NSDesktopFolderUsageDescription = "Scan Desktop only when you select it."; INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Scan Documents only when you select it."; INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "Scan Downloads only when you select it."; ENABLE_HARDENED_RUNTIME = YES; ENABLE_APP_SANDBOX = NO; CODE_SIGN_STYLE = Automatic; MARKETING_VERSION = {version}; CURRENT_PROJECT_VERSION = 2; OTHER_LDFLAGS = "-lsqlite3"; SWIFT_EMIT_LOC_STRINGS = NO; }};'))
     ui_configs.append(obj('ui'+mode, f'isa = XCBuildConfiguration; name = {mode}; buildSettings = {{ PRODUCT_NAME = SpaceMithraUITests; PRODUCT_BUNDLE_IDENTIFIER = org.spacemithra.uitests; GENERATE_INFOPLIST_FILE = YES; TEST_TARGET_NAME = SpaceMithra; CODE_SIGN_STYLE = Automatic; }};'))
 def config_list(name, configs): return obj(name, f'isa = XCConfigurationList; buildConfigurations = ({",".join(configs)}); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;')
 pc = config_list('pc', project_configs); tc = config_list('tc', target_configs); uc = config_list('uc', ui_configs)

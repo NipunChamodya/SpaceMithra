@@ -10,6 +10,10 @@ public protocol CleanupJournal: Sendable {
     func protections() async throws -> [Protection]
     func history() async throws -> [HistoryEntry]
     func saveHistory(_ entry: HistoryEntry) async throws
+    func duplicateKeepers(for records: [FileRecord]) async throws -> [String: FileRecord]
+}
+public extension CleanupJournal {
+    func duplicateKeepers(for records: [FileRecord]) async throws -> [String: FileRecord] { [:] }
 }
 extension Catalog: CleanupJournal {}
 public struct SystemTrash: TrashOperations {
@@ -39,6 +43,7 @@ public actor CleanupEngine {
         var results: [HistoryEntry] = []
         var state = CleanupProgress(total: records.count)
         await progress(state)
+        let keepers = shouldCancel ? [:] : try await catalog.duplicateKeepers(for: records)
         for record in records {
             var entry = HistoryEntry(id: UUID().uuidString, session: session, record: record, date: Date(), status: "pending", message: "message.pending")
             if shouldCancel { entry.status = "cancelled"; entry.message = "message.cancelled" }
@@ -58,6 +63,11 @@ public actor CleanupEngine {
                     guard fresh.identity == record.identity, !fresh.isSymlink, !fresh.isDirectory,
                           RiskEngine.assess(fresh, protections: rules).eligible else { throw StorageError.refused("error.changed") }
                     guard FileManager.default.isWritableFile(atPath: url.deletingLastPathComponent().path) else { throw StorageError.refused("error.permission") }
+                    if let keeper = keepers[record.path] {
+                        let url = URL(fileURLWithPath: keeper.path)
+                        guard url.resolvingSymlinksInPath().path == keeper.path,
+                              try FileMetadata.identity(keeper.path) == keeper.identity else { throw StorageError.refused("duplicate.keepOne") }
+                    }
                     if shouldCancel { throw CancellationError() }
                     // No suspension between final identity check and the filesystem operation.
                     guard try FileMetadata.identity(record.path) == record.identity else { throw StorageError.refused("error.changed") }

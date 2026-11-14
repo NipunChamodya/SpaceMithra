@@ -43,3 +43,15 @@ Initial native app: SQLite-backed scans, folder exploration, risk/protection rul
 - Record unstarted items as cancelled without attempting a move, and retain them in the queue for fresh review.
 - Use a lock-protected cancellation token so an immediate request cannot be lost before the worker starts.
 - Cover journal failures and cancellation during a move; expand to 59 passing tests and 181 keys across seven languages.
+
+## 0.2.0 — beginner-first storage overhaul (development preview)
+
+- Fix mounted Macintosh HD `..` ancestry, root boundaries, self-child aggregation and root protection inheritance.
+- Read authoritative startup capacity independently of partial scans; avoid System/Data double counting.
+- Replace the 20,000-candidate duplicate cutoff with bounded, resumable SQLite work, staged SHA-256 and paged keeper-aware results.
+- Add application overview cards, expanded recognized Node/Python/tool inventory, welcome/Scan My Mac, read-only progress and category dashboard.
+- Correct indexed paging filters, Unicode search, legacy migration, stale classifications/results and interrupted scan reporting.
+- Preserve real private-directory identity during lexical path normalization; protect system aliases and format bytes/dates in the selected language.
+- Preserve explicit cleanup review, safe in-flight cancellation, durable history and conflict-aware recovery.
+- Expand seven-language draft resources and accessible, motion-aware native components.
+- Preserve 0.1.0 artifacts; stage universal 0.2.0 separately. Public release acceptance remains open.

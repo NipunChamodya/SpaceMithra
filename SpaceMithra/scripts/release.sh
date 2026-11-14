@@ -10,5 +10,7 @@ app="$build_directory/Build/Products/Release/SpaceMithra.app"
 codesign --force --sign - "$app"
 codesign --verify --strict "$app"
 lipo -info "$app/Contents/MacOS/SpaceMithra"
-ditto -c -k --sequesterRsrc --keepParent "$app" dist/SpaceMithra-0.1.0-macos-universal.zip
-shasum -a 256 dist/SpaceMithra-0.1.0-macos-universal.zip > dist/SHA256SUMS.txt
+version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$app/Contents/Info.plist")"
+archive="dist/SpaceMithra-$version-macos-universal.zip"
+ditto -c -k --sequesterRsrc --keepParent "$app" "$archive"
+shasum -a 256 "$archive" > "dist/SHA256SUMS-$version.txt"

@@ -30,6 +30,7 @@ public actor CleanupReviewer {
     public func review(_ records: [FileRecord], journal: any CleanupJournal) async throws -> CleanupReview {
         let rules = try await journal.protections()
         try Task.checkCancellation()
+        _ = try await journal.duplicateKeepers(for: records)
         var items: [CleanupReviewItem] = []
         for record in records {
             try Task.checkCancellation()

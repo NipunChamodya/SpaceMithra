@@ -2,43 +2,6 @@ import XCTest
 import Darwin
 @testable import SpaceMithraCore
 
-private struct Fixture {
-    let root: URL
-    let catalog: Catalog
-    init() throws {
-        // All mutating tests require this explicit flag and a repository-local fixture root.
-        guard ProcessInfo.processInfo.environment["SPACEMITHRA_TEST_MODE"] == "1" else {
-            throw XCTSkip("Set SPACEMITHRA_TEST_MODE=1 to enable isolated filesystem fixtures")
-        }
-        let repository = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
-        root = repository.appendingPathComponent(".test-fixtures/" + UUID().uuidString)
-        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
-        catalog = try Catalog(url: root.appendingPathComponent("catalog/db.sqlite"))
-    }
-    func file(_ name: String, content: String = "fixture data") throws -> URL {
-        let url = root.appendingPathComponent(name)
-        try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
-        try Data(content.utf8).write(to: url)
-        return url
-    }
-    func cleanup() { try? FileManager.default.removeItem(at: root) }
-}
-private struct FixtureTrash: TrashOperations {
-    let root: URL
-    var fail = false
-    func trash(_ url: URL) throws -> URL {
-        guard url.path.hasPrefix(root.path + "/"), root.path.contains("/.test-fixtures/"), !fail else { throw StorageError.refused("Fixture Trash failure") }
-        let trash = root.appendingPathComponent("fixture-trash")
-        try FileManager.default.createDirectory(at: trash, withIntermediateDirectories: true)
-        let destination = trash.appendingPathComponent(UUID().uuidString)
-        try FileManager.default.moveItem(at: url, to: destination)
-        return destination
-    }
-    func restore(_ source: URL, to destination: URL) throws {
-        guard source.path.hasPrefix(root.path + "/"), destination.path.hasPrefix(root.path + "/") else { throw StorageError.refused("Outside fixture") }
-        try FileManager.default.moveItem(at: source, to: destination)
-    }
-}
 final class CoreTests: XCTestCase {
     func testRecursiveScanAndSymlinkCycle() async throws {
         let f = try Fixture(); defer { f.cleanup() }
@@ -641,7 +604,7 @@ extension CoreTests {
         try await f.catalog.insert([a,b,c])
         let path = a.path
         let report = try await DuplicateDetector().analyze(catalog: f.catalog) { checked in
-            if checked == 2 { try? Data("changed after hashing".utf8).write(to: URL(fileURLWithPath: path)) }
+            if checked == 5 { try? Data("changed after hashing".utf8).write(to: URL(fileURLWithPath: path)) }
         }
         XCTAssertEqual(report.groups.first?.files.map(\.path), [b.path,c.path])
         XCTAssertEqual(report.skippedCount, 1); XCTAssertEqual(report.issues.first?.path, a.path)
@@ -714,7 +677,7 @@ extension CoreTests {
         let report = try await DuplicateDetector().analyze(catalog: f.catalog) { _ in }
         XCTAssertEqual(report.groups.count, 1)
         XCTAssertEqual(report.groups.first?.files.map(\.path), [a.path,b.path])
-        XCTAssertEqual(report.hashedCount, 3); XCTAssertEqual(report.skippedCount, 0)
+        XCTAssertEqual(report.hashedCount, 2); XCTAssertEqual(report.skippedCount, 0)
     }
     func testSecureDescriptorRejectsFIFOReplacementWithoutWaitingForWriter() throws {
         let f = try Fixture(); defer { f.cleanup() }
@@ -756,6 +719,7 @@ private actor PendingCleanupGate: CleanupJournal {
     private var observers: [CheckedContinuation<Void, Never>] = []
     init(catalog: Catalog) { self.catalog = catalog }
     func protections() async throws -> [Protection] { try await catalog.protections() }
+    func duplicateKeepers(for records: [FileRecord]) async throws -> [String: FileRecord] { try await catalog.duplicateKeepers(for: records) }
     func history() async throws -> [HistoryEntry] { try await catalog.history() }
     func saveHistory(_ entry: HistoryEntry) async throws {
         try await catalog.saveHistory(entry)
@@ -886,5 +850,91 @@ extension CoreTests {
         let history = try await f.catalog.history()
         XCTAssertEqual(history.first(where: { $0.record.path == a.path })?.status, "trashed")
         XCTAssertEqual(history.first(where: { $0.record.path == b.path })?.status, "cancelled")
+    }
+}
+
+extension CoreTests {
+    func testMountedStartupRootMetadataHasNoDotDotParent() throws {
+        let root = try XCTUnwrap(FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: nil, options: [.skipHiddenVolumes])?.first { $0.path == "/" })
+        // The unmodified mounted URL produces /.. on this host. Normalize before metadata.
+        let validated = try FileLocation.validated(root)
+        XCTAssertEqual(validated.path, "/")
+        XCTAssertNil(try FileLocation.parent(of: root, within: root))
+        let record = try FileMetadata.read(root)
+        XCTAssertEqual(record.path, "/"); XCTAssertEqual(record.parent, "")
+        XCTAssertTrue(record.isDirectory)
+    }
+    func testRootAndScopedParentNavigationStopsAtBoundary() throws {
+        let root = URL(fileURLWithPath: "/", isDirectory: true)
+        XCTAssertNil(try FileLocation.parent(of: root, within: root))
+        XCTAssertEqual(try FileLocation.parent(of: URL(fileURLWithPath: "/Users", isDirectory: true), within: root)?.path, "/")
+        let scoped = URL(fileURLWithPath: "/Users/example", isDirectory: true)
+        XCTAssertNil(try FileLocation.parent(of: scoped, within: scoped))
+        XCTAssertThrowsError(try FileLocation.parent(of: URL(fileURLWithPath: "/Users/example-other"), within: scoped))
+        XCTAssertEqual(try FileLocation.breadcrumbs(to: URL(fileURLWithPath: "/Users/example/Documents"), within: root).map(\.path), ["/", "/Users", "/Users/example", "/Users/example/Documents"])
+        XCTAssertEqual(try FileLocation.validated(URL(fileURLWithPath: "/../../", isDirectory: true)).path, "/")
+    }
+    func testMalformedAndRemoteURLsCannotBecomeFileLocations() throws {
+        XCTAssertThrowsError(try FileLocation.validated(XCTUnwrap(URL(string: "https://example.com/"))))
+        XCTAssertThrowsError(try FileLocation.validated(XCTUnwrap(URL(string: "file://remote-host/private"))))
+        XCTAssertThrowsError(try FileLocation.validated(URL(fileURLWithPath: "/bad\0name")))
+        XCTAssertThrowsError(try FileLocation.fileURL(path: "relative/folder"))
+        XCTAssertThrowsError(try FileLocation.fileURL(path: "/bad\0name"))
+    }
+    func testRootAggregateExcludesRootSelfAndTotalsNestedDirectory() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        var root = try FileMetadata.read(URL(fileURLWithPath: "/", isDirectory: true))
+        root.parent = ""
+        var directory = try FileMetadata.read(f.root)
+        directory.path = "/SpaceMithraSyntheticRoot"; directory.parent = "/"; directory.name = "SpaceMithraSyntheticRoot"
+        var file = try FileMetadata.read(f.file("a", content: "12345"))
+        file.path = "/SpaceMithraSyntheticRoot/a"; file.parent = directory.path
+        try await f.catalog.insert([root,directory,file]); try await f.catalog.aggregateDirectories()
+        let children = try await f.catalog.list(parent: "/"), roots = try await f.catalog.list(parent: "")
+        XCTAssertEqual(children.count, 1); XCTAssertEqual(children.first?.logical, 5)
+        XCTAssertEqual(roots.first?.logical, 5)
+    }
+    func testMountedRootScanCanCancelBeforeTraversingUserData() async throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let root = try XCTUnwrap(FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: nil, options: [.skipHiddenVolumes])?.first { $0.path == "/" })
+        let scanner = StorageScanner()
+        let result = try await scanner.scan(root: root, catalog: f.catalog) { state in
+            if state.state == .preparing { await scanner.cancel() }
+        }
+        XCTAssertEqual(result.state, .cancelled); XCTAssertEqual(result.count, 0)
+    }
+    func testCapacityUsesReportedValuesRatherThanScannedFileSums() async throws {
+        let snapshot = try await VolumeService().startupCapacity()
+        let direct = try URL(fileURLWithPath: "/", isDirectory: true).resourceValues(forKeys: [.volumeTotalCapacityKey])
+        XCTAssertEqual(snapshot.total, direct.volumeTotalCapacity.map(Int64.init))
+        XCTAssertEqual(snapshot.used + snapshot.available, snapshot.total)
+        XCTAssertGreaterThan(snapshot.total, 0)
+        XCTAssertNil(snapshot.snapshots); XCTAssertNil(snapshot.purgeable)
+        XCTAssertThrowsError(try DiskCapacitySnapshot(name: "invalid", volumeURL: URL(fileURLWithPath: "/"), total: 10, available: 11))
+        let volumes = await VolumeService().discover()
+        XCTAssertEqual(volumes.filter(\.isStartup).count, 1)
+        XCTAssertEqual(Set(volumes.map(\.id)).count, volumes.count)
+        XCTAssertFalse(volumes.contains { $0.url.path.hasPrefix("/System/Volumes/") })
+    }
+}
+
+extension PresentationTests {
+    func testParentControlCannotEscapeRootOrScopedLocation() throws {
+        let model = AppModel()
+        model.root = URL(fileURLWithPath: "/", isDirectory: true); model.folder = "/"
+        XCTAssertFalse(model.canNavigateParent); model.navigateParent(); XCTAssertEqual(model.folder, "/")
+        let f = try Fixture(); defer { f.cleanup() }
+        model.root = f.root; model.folder = f.root.path
+        model.navigate("/Users")
+        XCTAssertEqual(model.folder, f.root.path); XCTAssertNotNil(model.error)
+    }
+    func testInaccessibleDirectoryNavigationLeavesCurrentFolderUnchanged() throws {
+        let f = try Fixture(); defer { f.cleanup() }
+        let denied = try f.file("denied/a").deletingLastPathComponent()
+        try FileManager.default.setAttributes([.posixPermissions: 0], ofItemAtPath: denied.path)
+        defer { try? FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: denied.path) }
+        let model = AppModel(); model.root = f.root; model.folder = f.root.path
+        model.navigate(denied.path)
+        XCTAssertEqual(model.folder, f.root.path); XCTAssertNotNil(model.error)
     }
 }

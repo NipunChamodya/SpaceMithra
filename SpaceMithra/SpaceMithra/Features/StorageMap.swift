@@ -13,24 +13,24 @@ struct StorageMap: View {
                     ForEach(Array(cells.enumerated()), id: \.element.file.path) { index, cell in
                         Button { navigate(cell.file) } label: {
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(Color(hue: Double(index) / 14, saturation: 0.65, brightness: 0.63))
+                                .fill(Color(hue: Double(index) / 14, saturation: 0.65, brightness: 0.45))
                                 .overlay {
                                     if cell.rect.width > 70 && cell.rect.height > 35 {
-                                        VStack { Text(cell.file.name).lineLimit(2); Text(byteString(cell.file.logical)).font(.caption2) }
+                                        VStack { Text(cell.file.name).lineLimit(2); Text(model.byteText(cell.file.logical)).font(.caption2) }
                                             .font(.caption).foregroundStyle(.white).padding(6)
                                     }
                                 }
                         }.buttonStyle(.plain)
                             .frame(width: max(0, cell.rect.width - 3), height: max(0, cell.rect.height - 3))
                             .offset(x: cell.rect.minX, y: cell.rect.minY)
-                            .accessibilityLabel(cell.file.name + ", " + byteString(cell.file.logical))
-                            .help(cell.file.path + " · " + byteString(cell.file.logical))
+                            .accessibilityLabel(cell.file.name + ", " + model.byteText(cell.file.logical))
+                            .help(cell.file.path + " · " + model.byteText(cell.file.logical))
                     }
                 }
             }.frame(height: 220)
             ForEach(items) { file in
                 Button { navigate(file) } label: {
-                    HStack { Text(file.name); Spacer(); Text(byteString(file.logical)) }
+                    HStack { Text(file.name); Spacer(); Text(model.byteText(file.logical)) }
                 }.buttonStyle(.plain).font(.caption)
             }
         }.padding(12)

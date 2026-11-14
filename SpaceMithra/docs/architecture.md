@@ -30,10 +30,27 @@ A durable pending journal entry must precede every Trash move. The returned Tras
 - [ ] Independent deletion-safety review, especially the Foundation path race
 - [ ] Actual system Trash / external-volume recovery manual acceptance
 - [ ] macOS 13 and Intel runtime testing
-- [ ] Native UI automation (runner cannot enable automation in this session)
+- [x] Three native UI smoke scenarios, including seven resource locales (manual acceptance remains open)
 - [ ] VoiceOver, contrast, long text and RTL manual acceptance
 - [ ] Fluent-speaker review for six draft translations
-- [ ] Reference-hardware startup and large-volume memory benchmarks
+- [x] Identified M2/8 GB startup and synthetic 50,000-file CPU/memory measurements
+- [ ] Full-volume realistic workload and rendering/idle profiling
 - [ ] Developer ID signing/notarization for trusted public binary distribution
 
 No live-use detector, shell cleanup commands, permanent deletion, or folder Trash operations are implemented. The app explains these limits and leaves affected items protected or requiring review.
+
+## 0.2.0 beginner-first overhaul (current)
+
+Current work supersedes the historical checkpoint counts and bounded-candidate implementation above. See [the bug-fix report](overhaul-report.md) and [production-readiness checklist](production-readiness.md).
+
+`FileLocation` validates local absolute URLs, rebuilds mounted-root representations, and centralizes containment/parent/breadcrumb boundaries. Dot normalization is lexical so Foundation cannot turn real `/private/var` directories into `/var` symlinks; both real system paths and their aliases remain protected. `VolumeService` reads authoritative capacity independently of the catalog; `DiskScanAccounting` explicitly separates estimated known allocation from capacity, with no fabricated snapshot/purgeable attribution.
+
+`CatalogMigration` adds indexed logical sizes, dates and Unicode-folded names to legacy records in bounded batches. Scan generations and `ScanCatalogContext` preserve coverage and interruption state. SQL filters run before paging; `CatalogOverview` computes exclusive dashboard buckets from the complete current catalog, rather than current explorer rows.
+
+`CatalogDuplicates` owns persistent candidate/work/result tables, resumable checkpoints, group/copy paging and keeper proofs. `Duplicates` performs sequential descriptor-validated staged reads in batches of 128. Cancellation can interrupt the SQL seed; changing scan generations prevent stale publication. Old verified proofs remain available to cleanup even when their preview pages are invalidated. `CleanupJournal` now also supplies keeper validation before review/cleanup.
+
+`ApplicationInventory` and `DeveloperAnalyzer` are separate metadata-only actors; neither executes tools or deletes. Application association requires exact bundle identifiers. Developer storage kinds distinguish cache, dependency store, environment, installation, artifact and user data. Classification by source extension alone no longer implies disposable developer storage.
+
+`WelcomeView`, `ScanningView`, `DashboardView`, `ApplicationsView`, `DeveloperStorageView`, `DesignSystem` and `ErrorMessageView` provide progressive disclosure around the retained explorer/review/recovery screens. AppModel remains the main-actor coordinator; hashing, catalog and enumeration stay in service actors. Native UI test mode always injects rejecting Trash operations and uses an isolated database. Optional auto-scan fixtures must reside within the dedicated temporary UI-fixture boundary.
+
+The 0.2.0 universal release is staged in `build-overhaul`, preserving previous build directories and release ZIPs. Ad hoc signing and synthetic tests are development verification, not public-distribution approval.

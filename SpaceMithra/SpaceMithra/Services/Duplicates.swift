@@ -5,23 +5,73 @@ import Darwin
 public struct DuplicateGroup: Identifiable, Sendable {
     public let id: String
     public let files: [FileRecord]
+    public let totalCopies: Int
+    public init(id: String, files: [FileRecord], totalCopies: Int? = nil) {
+        self.id = id; self.files = files; self.totalCopies = totalCopies ?? files.count
+    }
 }
 public struct DuplicateReport: Sendable {
     public let groups: [DuplicateGroup]
     public let issues: [ScanIssue]
     public let skippedCount: Int
     public let hashedCount: Int
+    public let candidateCount: Int
+    public let totalGroups: Int
 }
 public protocol DuplicateContentReading: Sendable {
     func digest(_ file: FileRecord) throws -> String
+    func sampleDigest(_ file: FileRecord) throws -> String
+}
+public extension DuplicateContentReading {
+    func sampleDigest(_ file: FileRecord) throws -> String { try digest(file) }
+}
+public struct DuplicateAnalysisProgress: Sendable {
+    public let stage: String
+    public let completed: Int
+    public let total: Int?
+    public let resumed: Bool
+    public init(stage: String = "preparing", completed: Int = 0, total: Int? = nil, resumed: Bool = false) {
+        self.stage = stage; self.completed = completed; self.total = total; self.resumed = resumed
+    }
 }
 public struct SecureDuplicateHasher: DuplicateContentReading {
     public init() {}
-    public func digest(_ file: FileRecord) throws -> String {
+    private func validate(_ file: FileRecord) throws {
         let fresh = try FileMetadata.read(URL(fileURLWithPath: file.path))
         guard fresh.identity == file.identity, fresh.isRegular == true, !fresh.isSymlink,
               !fresh.inPackage, !fresh.isPackage, !fresh.cloud, fresh.category != .cloud,
               fresh.identity.links == 1, fresh.identity.size >= 0 else { throw StorageError.refused("error.changed") }
+    }
+    public func sampleDigest(_ file: FileRecord) throws -> String {
+        try validate(file)
+        let descriptor = try openValidated(file); defer { close(descriptor) }
+        var hash = SHA256()
+        let prefix = Int(min(file.identity.size, 65536))
+        let suffixStart = max(Int64(prefix), file.identity.size - 65536)
+        for (offset, length) in [(Int64(0), prefix), (suffixStart, Int(file.identity.size - suffixStart))] where length > 0 {
+            var bytes = [UInt8](repeating: 0, count: length), consumed = 0
+            while consumed < length {
+                try Task.checkCancellation()
+                let n = bytes.withUnsafeMutableBytes { raw in
+                    pread(descriptor, raw.baseAddress?.advanced(by: consumed), length-consumed, off_t(offset + Int64(consumed)))
+                }
+                if n < 0 { if errno == EINTR { continue }; throw POSIXError(POSIXErrorCode(rawValue: errno) ?? .EIO) }
+                guard n > 0 else { throw StorageError.refused("error.changed") }
+                consumed += n
+            }
+            hash.update(data: Data(bytes))
+        }
+        try verify(descriptor, file)
+        return hash.finalize().map { String(format: "%02x", $0) }.joined()
+    }
+    private func verify(_ descriptor: Int32, _ file: FileRecord) throws {
+        var info = stat()
+        guard fstat(descriptor, &info) == 0, FileMetadata.identity(from: info) == file.identity,
+              try FileMetadata.identity(file.path) == file.identity else { throw StorageError.refused("error.changed") }
+        try Task.checkCancellation()
+    }
+    public func digest(_ file: FileRecord) throws -> String {
+        try validate(file)
         let descriptor = try openValidated(file)
         defer { close(descriptor) }
         var hasher = SHA256()
@@ -42,10 +92,7 @@ public struct SecureDuplicateHasher: DuplicateContentReading {
             hasher.update(data: Data(buffer.prefix(count)))
             remaining -= Int64(count)
         }
-        var after = stat()
-        guard fstat(descriptor, &after) == 0, FileMetadata.identity(from: after) == file.identity,
-              try FileMetadata.identity(file.path) == file.identity else { throw StorageError.refused("error.changed") }
-        try Task.checkCancellation()
+        try verify(descriptor, file)
         return hasher.finalize().map { String(format: "%02x", $0) }.joined()
     }
     /// Bind each parent component with openat; no ancestor or leaf symlink is followed.
@@ -82,63 +129,52 @@ public actor DuplicateDetector {
     public func find(catalog: Catalog, progress: @Sendable (Int) async -> Void) async throws -> [DuplicateGroup] {
         try await analyze(catalog: catalog, progress: progress).groups
     }
-    public func analyze(catalog: Catalog, progress: @Sendable (Int) async -> Void) async throws -> DuplicateReport {
+    public func analyze(catalog: Catalog, status: @Sendable (DuplicateAnalysisProgress) async -> Void = { _ in }, progress: @Sendable (Int) async -> Void) async throws -> DuplicateReport {
         guard !running else { throw StorageError.refused("error.busy") }
         running = true; defer { running = false }
-        var offset = 0, count = 0
-        var candidates: [Int64: [FileRecord]] = [:]
-        while true {
-            try Task.checkCancellation()
-            let page = try await catalog.list(biggest: true, offset: offset, limit: 500)
-            if page.isEmpty { break }
-            for file in page where file.logical > 0 && file.isRegular == true && !file.isSymlink && !file.inPackage && !file.isPackage && !file.cloud && file.category != .cloud && file.identity.links == 1 {
-                candidates[file.logical, default: []].append(file)
-                count += 1
-                if count > 20000 { throw StorageError.refused("error.duplicateLimit") }
-            }
-            offset += page.count
-        }
-        var hashed: [String: [FileRecord]] = [:], issues: [ScanIssue] = []
-        var processed = 0, hashedCount = 0, skipped = 0
-        func recordIssue(_ file: FileRecord, _ error: Error) {
-            skipped += 1
-            if issues.count < 200 { issues.append(ScanIssue(path: file.path, message: error.localizedDescription)) }
-        }
-        for size in candidates.keys.sorted(by: >) {
-            guard let group = candidates[size], group.count > 1 else { continue }
-            for file in group.sorted(by: { $0.path < $1.path }) {
+        await status(DuplicateAnalysisProgress())
+        let run = try await catalog.beginDuplicates()
+        var checks = 0
+        for (state, next, stage) in [("pending", "sampled", "sampling"), ("hashing", "hashed", "hashing"), ("hashed", "verified", "verifying")] {
+            if state == "hashing" { try await catalog.prepareFullHashes(run) }
+            if state == "hashed" { try await catalog.prepareDuplicateVerification(run) }
+            let total = try await catalog.duplicateCount(state: state)
+            var completed = 0
+            await status(DuplicateAnalysisProgress(stage: stage,total: total,resumed: run.resumed))
+            while true {
                 try Task.checkCancellation()
-                do {
-                    let hash = String(file.identity.size) + ":" + (try reader.digest(file))
-                    hashed[hash, default: []].append(file); hashedCount += 1
-                } catch is CancellationError { throw CancellationError() }
-                catch { recordIssue(file, error) }
-                processed += 1; await progress(processed)
+                let batch = try await catalog.duplicateBatch(run,state: state)
+                if batch.isEmpty { break }
+                var updates: [DuplicateWorkUpdate] = []
+                for file in batch {
+                    try Task.checkCancellation()
+                    do {
+                        if state == "pending" {
+                            updates.append(DuplicateWorkUpdate(path:file.path,state:next,sample:try reader.sampleDigest(file)))
+                        } else if state == "hashing" {
+                            updates.append(DuplicateWorkUpdate(path:file.path,state:next,hash:try reader.digest(file)))
+                        } else {
+                            let url = URL(fileURLWithPath:file.path)
+                            let fresh = try FileMetadata.read(url)
+                            guard url.resolvingSymlinksInPath().path == file.path, fresh.identity == file.identity,
+                                  fresh.isRegular == true, !fresh.cloud, fresh.category != .cloud,
+                                  !fresh.inPackage, !fresh.isPackage else { throw StorageError.refused("error.changed") }
+                            updates.append(DuplicateWorkUpdate(path:file.path,state:next))
+                        }
+                    } catch is CancellationError { throw CancellationError() }
+                    catch { updates.append(DuplicateWorkUpdate(path:file.path,state:"skipped",message:error.localizedDescription)) }
+                    completed += 1; checks += 1
+                    await progress(checks)
+                }
+                try await catalog.saveDuplicateUpdates(run,updates:updates)
+                await status(DuplicateAnalysisProgress(stage:stage,completed:completed,total:total,resumed:run.resumed))
             }
-        }
-        var result: [DuplicateGroup] = []
-        // Earlier hashes can become stale while subsequent files are read or progress yields.
-        // Final validation removes those paths before displaying any duplicate group.
-        for hash in hashed.keys.sorted() {
-            var verified: [FileRecord] = []
-            for file in hashed[hash] ?? [] {
-                try Task.checkCancellation()
-                do {
-                    let url = URL(fileURLWithPath: file.path)
-                    let fresh = try FileMetadata.read(url)
-                    guard url.resolvingSymlinksInPath().path == file.path, fresh.identity == file.identity,
-                          fresh.isRegular == true, !fresh.cloud, fresh.category != .cloud,
-                          !fresh.inPackage, !fresh.isPackage else { throw StorageError.refused("error.changed") }
-                    verified.append(file)
-                } catch { recordIssue(file, error) }
-            }
-            if verified.count > 1 { result.append(DuplicateGroup(id: hash, files: verified)) }
         }
         try Task.checkCancellation()
-        result.sort {
-            let a = $0.files.first?.logical ?? 0, b = $1.files.first?.logical ?? 0
-            return a == b ? $0.id < $1.id : a > b
-        }
-        return DuplicateReport(groups: result, issues: issues, skippedCount: skipped, hashedCount: hashedCount)
+        try await catalog.publishDuplicates(run)
+        try Task.checkCancellation()
+        let report = try await catalog.duplicateReport()
+        await status(DuplicateAnalysisProgress(stage:"completed",completed:report.candidateCount,total:report.candidateCount,resumed:run.resumed))
+        return report
     }
 }

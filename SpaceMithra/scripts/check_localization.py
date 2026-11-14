@@ -12,6 +12,10 @@ for family,values in {
     'state.':['idle','preparing','scanning','paused','completed','cancelled','failed'],
     'riskLevel.':['low','reviewRequired','protected','unknown'],
     'history.':['pending','trashed','skipped','uncertain','restoring','restored','cancelled'],
+    'bucket.':['applications','images','videos','documents','downloads','caches','developer','other'],
+    'bucket.explain.':['applications','images','videos','documents','downloads','caches','developer','other'],
+    'suggestion.':['installers','videos','caches'],
+    'suggestion.explain.':['installers','videos','caches'],
     'category.':['applications','documents','images','videos','audio','archives','installers','caches','logs','backups','developer','support','cloud','unknown'],
 }.items():
     for value in values: assert family+value in catalog['strings']
@@ -20,3 +24,7 @@ for source in (root/'SpaceMithra').rglob('*.swift'):
         if not key.endswith('.'):
             assert key in catalog['strings'], (source,key)
 print(f"PASS: {len(catalog['strings'])} keys × {len(locales)} locales, all dynamic families present")
+
+for locale in locales[1:]:
+    pending=[key for key,entry in catalog['strings'].items() if entry['localizations'][locale]['stringUnit']['state'] != 'translated']
+    print(f"REVIEW REQUIRED: {locale}: {len(pending)} draft or untranslated keys (presence is not linguistic approval)")

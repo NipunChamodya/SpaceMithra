@@ -110,3 +110,51 @@ A progress callback runs only after an item's terminal status has been saved. Th
 The follow-up universal release is built using `scripts/release.sh build-cleanup` at `build-cleanup/Build/Products/Release/SpaceMithra.app`. The ZIP is refreshed. The previous running app is not overwritten. UI automation, VoiceOver, actual system Trash, macOS 13/Intel runtime and independent safety review remain release gates.
 
 The final cleanup-progress app passed its isolated Launch Services startup smoke check with a visible window and initialized test database in **1.95 seconds**, then exited. Its actual universal release signature and ZIP SHA-256 verification passed, along with all 181 localization keys in seven languages. The test copy used isolated data and a separate bundle identity; the user's running app was not replaced. Startup verification does not validate interactive cancellation or VoiceOver, which remain manual/desktop-automation acceptance work.
+
+## 0.2.0 overhaul — current validation
+
+Environment: **Apple M2, 8 GB RAM, 8 logical CPUs; macOS 26.6.2; Xcode 27.2 / Swift 6.4.2**. Synthetic fixture files only; no real-user cleanup or SystemTrash invocation. Historical checkpoint results above describe earlier implementations.
+
+### Final results
+
+- **87 regression tests: 85 passed, 2 opt-in stress cases skipped, zero failures**, 5.35 s. The 3,000-file read-only scan took 1.45 s under concurrent build load.
+- **3 native UI tests passed**, zero failures, 56.03 s: all seven compiled welcome languages load the exact expected button text; a read-only synthetic scan opens the dashboard and application overview card before technical files; keyboard/Settings/empty-queue navigation works.
+- **25,000 and 50,000 real-file candidate scenarios passed** in separate opt-in runs. The final-source 50,000-file run passed after the lexical path-identity/security fix.
+- Debug and universal Release builds succeeded. The actual release ad hoc signature and new/preserved ZIP checksums verified.
+- Final-artifact Launch Services smoke: **ready=true, visible window, initialized isolated database, 2.050 s, idle, zero scanned files**. It includes a deliberate 250 ms settling delay and ran during the stress benchmark. The temporary app had a distinct bundle identifier and exited; the normal app was not replaced or terminated. An earlier checkpoint measured 1.864 s.
+- Localization coverage: 298 populated keys × seven locales. All six non-English catalogs remain `needs_review`; presence and correct resource loading are not linguistic approval.
+
+Regression coverage includes mounted-root metadata/parents, malformed/unreadable paths, real `/private/var` identity and protected aliases, actual startup capacity, no duplicate volumes, SQL filters before pagination, Unicode names, legacy catalog/recovery migration, interrupted scan context, Node/Python inventory, application attribution, staged hashing/resume, empty files, stale-generation refusal, paged keepers, cleanup cancellation, journal failures and recovery conflicts.
+
+### Synthetic performance
+
+Identical one-byte files intentionally create a very large duplicate group. All copies remain pageable, each full content hash is verified, preview pages stay at 100 copies, and no file is selected or deleted.
+
+| Scenario | Creation | Read-only scan | Duplicate analysis | Result |
+|---|---:|---:|---:|---|
+| 25,000 candidates (earlier overhaul run) | 2.652 s | 17.715 s | 127.093 s | Passed; every copy pageable |
+| 50,000 candidates (final source) | 6.901 s | 21.783 s | 244.445 s | Passed; 50,000 hashed, zero skips |
+
+Final 50,000-file process peak RSS: **158.20 MiB** (getrusage, macOS bytes converted to MiB). CPU time for creation/scan/analysis/assertions: **255.41 CPU seconds**. Maximum MainActor heartbeat interval: **67.7 ms**, with 50 ms requested. Total test including fixture teardown: **277.94 s**.
+
+These are single-host synthetic measurements during local development, with some overlapping native UI/launch work. They are not isolated-lab or full-volume benchmarks. The heartbeat measures test-harness scheduling, not rendering smoothness, VoiceOver responsiveness, large-file throughput or idle CPU. No estimated remaining time is fabricated in the product. A previous instrumented 50,000-file run measured 108.11 MiB and 330.87 s analysis; RSS/timing vary with build and workload state.
+
+### Reproduction
+
+```sh
+SPACEMITHRA_TEST_MODE=1 swift test
+SPACEMITHRA_TEST_MODE=1 SPACEMITHRA_STRESS=1 swift test --filter DuplicateStressTests
+python3 scripts/check_localization.py
+python3 scripts/prepare_ui_fixture.py
+xcodebuild -project SpaceMithra.xcodeproj -scheme SpaceMithra -configuration Debug \
+  -derivedDataPath build-overhaul-ui -destination 'platform=macOS' \
+  SPACEMITHRA_BUNDLE_ID=org.spacemithra.overhaul-ui CODE_SIGN_IDENTITY=- test
+```
+
+The UI fixture is prepared before launching the runner because macOS App Management can prohibit a UI runner from creating synthetic app-bundle contents. Auto-scan accepts only the normalized `/private/tmp/SpaceMithra-UITest-Fixtures` boundary; every Trash/restore operation is rejected in UI-test mode. An initial boundary check failed because Foundation normalizes `/private/tmp` to `/tmp`; both sides are now normalized consistently. Earlier no-window accessibility snapshots were not counted as passes.
+
+Native window screenshots were inspected for Sinhala/Tamil glyphs, Arabic sidebar mirroring, capacity/coverage, and application cards. Byte/date formatting now explicitly follows the chosen app language; the final Arabic screenshot confirms the English zero-size wording is gone. This is a basic visual check, not fluent-speaker review or complete accessibility acceptance.
+
+Current evidence logs are copied under `dist/validation-0.2.0/`. The successful native UI result bundle, including app-window screenshots, is `build-overhaul-ui/Logs/Test/Test-SpaceMithra-2026.11.14_21-42-55-+0530.xcresult`.
+
+Actual system Trash/external drives, VoiceOver, full RTL/long-text review, macOS 13/Intel runtime, realistic full-volume profiling, independent filesystem audit and signed/notarized public distribution remain open gates. Passing these tests alone does not establish public-release safety.

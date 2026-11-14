@@ -49,3 +49,13 @@ Cancellation is a request to stop at a safe boundary, not an interruption of Fou
 Every remaining approved record is journaled as cancelled without a Trash attempt. These records stay in the queue, but their old review approval is discarded. Retrying requires a new preflight and explicit confirmation. Recording cancellations can take time for a large batch; the stopping indicator remains visible until journaling finishes. A failed journal write still aborts the batch and surfaces an error rather than falsely reporting a fully recorded cancellation.
 
 Caller-task cancellation is also observed at checkpoints, but the normal UI uses the explicit token rather than cancelling the task that must finish journaling. Neither cleanup nor cancellation permanently deletes data or empties Trash.
+
+## 0.2.0 root, accounting and duplicate invariants
+
+Canonical URL reconstruction precedes metadata traversal. Root ancestry is finite; parent navigation never escapes a selected scan boundary. Startup scans skip `/System/Volumes`, `/Volumes`, `/dev` and `/net`, allowing startup Data firmlinks while rejecting other devices. Directory and file inode visitation use SQLite indexes, not unbounded sets. Capacity comes from the startup volume API and is never calculated by summing connected APFS volumes or logical categories. Shared extents and exact snapshot/purgeable/protected physical bytes remain unresolved.
+
+Duplicate candidates/work/results are disk-backed. An incomplete analysis resumes only against the same scan generation, and hashed identities are rechecked before publication. Preview pages are invalid after a new scan. Verified keeper proofs are retained for cleanup across pages and rescans; approval refuses a group without an available, unchanged unselected keeper. This can conservatively refuse cleanup when old proofs cannot establish a surviving copy. It never authorizes deleting every known copy.
+
+The explicit `--ui-testing` composition uses a fresh temporary database and rejecting Trash/restore operations. Test auto-scans accept only canonical paths inside `/private/tmp/SpaceMithra-UITest-Fixtures`. Production scanning never uses this auto-scan path. All other mutation tests use injected fixture-only operations and require `SPACEMITHRA_TEST_MODE=1`.
+
+Dot normalization is lexical and does not call Foundation standardization on the original path. This preserves real `/private/var` directory identity rather than rewriting it to the `/var` symlink. Both `/private` locations and system aliases `/var`, `/etc`, `/tmp` are protected. The root URL is still reconstructed to terminate ancestry correctly. The regression reads directory metadata only and never enumerates or mutates its contents.

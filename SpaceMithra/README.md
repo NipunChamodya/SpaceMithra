@@ -17,13 +17,15 @@ The app is at `build/Build/Products/Debug/SpaceMithra.app`. Development builds a
 
 ## What works
 
+- Beginner-first welcome, Scan My Mac, read-only animated progress with Reduce Motion, and a capacity/coverage dashboard.
+- Application overview cards with separate bundle, recognized cache and attributable data sizes; Node.js, Python and other recognized developer locations.
 - User-initiated recursive scans, pause/resume/cancel, streamed SQLite storage, bounded pages, folder totals, hard-link-aware aggregate estimates, unreadable-item counts.
 - Folder columns, breadcrumbs, search, category/name/size/date sorting, hidden files, file metadata, Finder reveal and Quick Look.
 - Biggest-files filters, recognized cache owners grouped by discovered paths, developer storage inspection, deterministic risk explanations.
 - Individual Keep/Clean/Protect, persistent exact-path and descendant rules, 24-hour protection, explicit review queue spanning scans, read-only preflight and immutable confirmation snapshots and cancellable preflight.
 - Identity revalidation, durable per-operation journal, Move to Trash without permanent-delete fallback, batch progress and safe cancellation, recovery with conflict checks and history grouped by cleanup session, with timestamped recovery availability and conflict checks.
-- SHA-256 duplicate detection with bounded candidate count, descriptor-validated reads, partial-error reporting, and no automatic duplicate selection.
-- Interactive treemap, volume usage and local scan totals over time.
+- SQLite-backed resumable staged SHA-256 duplicate detection with bounded batches, descriptor-validated reads, partial-error reporting, and no automatic duplicate selection.
+- Authoritative startup-disk capacity independent of scans, exclusive logical category totals, interactive bounded treemap, and local scan totals over time.
 - Seven-language string catalog, Sinhala default, Arabic RTL, standard keyboard controls and native accessibility semantics.
 
 ## Safety
@@ -39,9 +41,10 @@ All mutating tests use repository-local `.test-fixtures` and an injected fixture
 ```sh
 SPACEMITHRA_TEST_MODE=1 swift test
 python3 scripts/check_localization.py
+python3 scripts/prepare_ui_fixture.py
 xcodebuild -project SpaceMithra.xcodeproj -scheme SpaceMithra \
-  -destination 'platform=macOS' -derivedDataPath build \
-  CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual test
+  -destination 'platform=macOS' -derivedDataPath build-overhaul-ui \
+  SPACEMITHRA_BUNDLE_ID=org.spacemithra.overhaul-ui CODE_SIGN_IDENTITY=- test
 ```
 
 See [test results and measurements](docs/testing.md), [architecture and checklist](docs/architecture.md), [cleanup rules](docs/cleanup-rules.md), and [localization](docs/localization.md).
@@ -50,8 +53,8 @@ See [test results and measurements](docs/testing.md), [architecture and checklis
 
 - Draft translations require fluent-speaker review. Filesystem/system errors may use the operating system’s language.
 - A fresh scan replaces the previous browsable catalog. The queue and recovery journal retain their file records. Rescans enumerate the tree and reuse metadata for unchanged identities; filesystem-event monitoring is not implemented.
-- Duplicate detection is limited to 20,000 candidates and compares file length plus full SHA-256 content hashes. Changed/unreadable files are reported and skipped; issue details are capped at 200. It does not identify APFS shared extents, visually similar images, or cloud-only content.
-- Charts show bounded current-page data and explicitly disclose partial results. Scan history totals are not comparable when roots differ.
+- Duplicate detection has no fixed candidate cutoff: a disk-backed work queue groups by size, samples content, then compares full SHA-256 hashes. Results page 200 groups and 100 copies at a time. Changed/unreadable files are reported and skipped; issue details are capped at 200. It does not identify APFS shared extents, visually similar images, or cloud-only content.
+- The treemap shows bounded current-page data; dashboard category totals use the complete current scan catalog. Both explicitly disclose partial coverage. Scan history totals are not comparable when roots differ.
 - No automatic tool commands, folder cleanup, active-use detection, clone accounting, or post-Trash free-space claims. Developer storage paths are inspected, not forcibly removed.
 - Foundation path APIs cannot provide a race-free inode-bound Trash transaction. A hostile process swapping paths during the final call remains a limitation.
 - macOS 13 runtime, Intel runtime, large real-volume memory, VoiceOver, Quick Look, and actual system Trash need additional manual acceptance testing. A universal binary build alone does not validate both runtimes.
@@ -59,4 +62,4 @@ See [test results and measurements](docs/testing.md), [architecture and checklis
 
 ## Release package
 
-Run `scripts/release.sh`. It builds an Apple Silicon + Intel app, signs it locally ad hoc, and creates a ZIP plus SHA-256 checksum under `dist/`. Ad hoc signing is for local testing and is not Developer ID notarization. Public releases should be independently reviewed, Developer ID signed and notarized when that signing infrastructure is available. See [release instructions](docs/releasing.md).
+Run `scripts/release.sh build-overhaul` for version 0.2.0 without replacing older build directories. It builds an Apple Silicon + Intel app, signs it locally ad hoc, and creates a ZIP plus SHA-256 checksum under `dist/`. Ad hoc signing is for local testing and is not Developer ID notarization. Public releases should be independently reviewed, Developer ID signed and notarized when that signing infrastructure is available. See [release instructions](docs/releasing.md).

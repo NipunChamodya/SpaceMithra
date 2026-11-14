@@ -14,9 +14,11 @@ import SwiftUI
                     let arguments = ProcessInfo.processInfo.arguments
                     // Explicit local smoke mode uses an isolated database and never scans user files.
                     if arguments.contains("--ui-testing") && arguments.contains("--smoke-test") {
+                        let deadline=Date().addingTimeInterval(10)
+                        while model.scanning && Date()<deadline {try? await Task.sleep(for:.milliseconds(50))}
                         try? await Task.sleep(for: .milliseconds(250))
                         let ready = model.catalog != nil && NSApplication.shared.windows.contains { $0.isVisible }
-                        print("SPACEMITHRA_SMOKE ready=\(ready) windowSeconds=\(Date().timeIntervalSince(launchStarted))")
+                        print("SPACEMITHRA_SMOKE ready=\(ready) windowSeconds=\(Date().timeIntervalSince(launchStarted)) state=\(model.progress.state.rawValue) count=\(model.progress.count) root=\(model.root?.path ?? "none")")
                         NSApplication.shared.terminate(nil)
                     }
                 }

@@ -47,10 +47,11 @@ public enum Classifier {
         if p.hasPrefix(home), let first = p.dropFirst(home.count).split(separator: "/").first,
            ["dropbox", "onedrive", "google drive", "googledrive"].contains(where: { first.hasPrefix($0) }) { return .cloud }
         if ext == "icloud" { return .cloud }
+        if url.pathComponents.contains(where: { $0.lowercased().hasSuffix(".app") }) { return .applications }
         if StorageRule.all.contains(where: { $0.isCache && $0.matches(url.path) }) { return .caches }
         if StorageRule.all.contains(where: { !$0.isCache && $0.matches(url.path) }) { return .developer }
         if p.contains("/library/caches/") || p.contains("/.npm/_cacache/") { return .caches }
-        if p.contains("/library/developer/") || p.contains("/node_modules/") || ["swift", "rs", "py", "js", "o", "a"].contains(ext) { return .developer }
+        if DeveloperLocation.matching(url.path) != nil || p.contains("/library/developer/") || url.pathComponents.contains(where: { ["node_modules", ".venv", "venv", "__pycache__"].contains($0) }) { return .developer }
         if p.contains("/library/application support/") { return .support }
         if p.contains("/library/logs/") || ext == "log" { return .logs }
         if p.contains("/mobilesync/backup/") || ext == "backup" { return .backups }
@@ -67,7 +68,7 @@ public enum Classifier {
 public enum RiskEngine {
     public static func assess(_ file: FileRecord, protections: [Protection], now: Date = Date()) -> Assessment {
         let p = file.path
-        let systemRoots = ["/System", "/Library", "/usr", "/bin", "/sbin", "/private", "/dev", "/Applications", "/Volumes/Preboot"]
+        let systemRoots = ["/System", "/Library", "/usr", "/bin", "/sbin", "/private", "/var", "/etc", "/tmp", "/dev", "/Applications", "/Volumes/Preboot"]
         let home = FileManager.default.homeDirectoryForCurrentUser.path
         let prohibited = systemRoots.contains { p.lowercased() == $0.lowercased() || p.lowercased().hasPrefix($0.lowercased() + "/") }
             || p == home || p == home + "/.Trash" || p.hasPrefix(home + "/.Trash/")
@@ -76,7 +77,9 @@ public enum RiskEngine {
         let sensitive = sensitiveRoots.contains { p == home + $0 || p.hasPrefix(home + $0 + "/") }
         // Unrecognized Library data may be application state even without a database extension.
         let unknownLibraryState = p.lowercased().hasPrefix(home.lowercased() + "/library/") && Classifier.recognizedCache(p) == nil
-        if prohibited || sensitive || unknownLibraryState || protections.contains(where: { $0.matches(p) }) {
+        let developerState = DeveloperLocation.matching(p).map { $0.kind != .cache } ?? false
+        let environmentOrDependencies = URL(fileURLWithPath:p).pathComponents.contains { ["node_modules", ".venv", "venv"].contains($0) }
+        if prohibited || sensitive || developerState || environmentOrDependencies || unknownLibraryState || protections.contains(where: { $0.matches(p) }) {
             return Assessment(risk: .protected, explanation: "risk.protected", consequence: "consequence.protected", eligible: false)
         }
         if file.isRegular != true || file.isSymlink || file.isDirectory || file.inPackage || file.isPackage || file.identity.links > 1 || file.cloud || file.category == .cloud {
